@@ -1,12 +1,17 @@
 import React from 'react';
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
+import urlcat from 'urlcat'
 
 const handleSubmit = (event) => {
     event.preventDefault()
     console.log("Crear una cuenta")
-    fetch('/user?mail=1admin&password=admin', {method: 'POST', credentials:'same-origin'})
-    .then(response => response.text())
-    .then(data => console.log(data));
+    fetch(  urlcat('/user?mail=:mail&password=:password', {
+            mail:'juan', password:'juan'}), {
+            method: 'POST', credentials:'same-origin'}
+    );
+    //fetchOP('POST','/user?mail=:mail&password=:password', {id:'juan', password:'juan'})
+    //.then(response => response.text())
+    //.then(data => console.log(data));
     console.log("usuario creado")
 }
 
