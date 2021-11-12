@@ -9,7 +9,6 @@ export const crearCuenta = async info => {
             mail: info.mail, password: info.password}), {
             method: 'POST', credentials:'same-origin'}
     )
-    
 }
 
 //borrar cuenta de usuario

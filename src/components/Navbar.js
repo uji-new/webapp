@@ -1,27 +1,70 @@
 import React from 'react';
+import {Nav,NavDropdown, Row, Col, Offcanvas,Button, Navbar, Container, Form, FormControl} from "react-bootstrap";
 
-export default function Nav() {
+const handleSesion = (event) => {
+    event.preventDefault()
+    console.log("logIn")
+}
+
+export default function Barrasuperior() {
     return (
-      <nav class="navbar navbar-light bg-light">
-        <div name="panel-seperior" class="container-fluid">
-            <a class="navbar-brand">Navbar</a>
-            <form class="d-flex input-group w-auto">
-                <input
-                  type="search"
-                  class="form-control"
-                  placeholder="Type location"
-                  aria-label="Search"
-                />
-                <button
-                  class="btn btn-outline-primary"
-                  type="button"
-                  data-mdb-ripple-color="dark"
+      <Navbar bg="light" expand={false}>
+            <Container fluid>
+                <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+                <Form className="d-flex">
+                    <FormControl
+                    type="search"
+                    placeholder="Search"
+                    className="me-2"
+                    aria-label="Search"
+                    />
+                    <Button variant="outline-success">Search</Button>
+                </Form>
+
+        
+                <Navbar.Toggle aria-controls="offcanvasNavbar" />
+                <Navbar.Offcanvas
+                id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel"
+                placement="end"
                 >
-                  Search
-                </button>
-              </form>
-        </div>
-      </nav>
+                <Offcanvas.Header closeButton>
+                    <Offcanvas.Title id="offcanvasNavbarLabel"> {"Log in"}</Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+
+                <Container>
+                <Row className="mt-5">
+                        <Form onSubmit={handleSesion}>
+                            <Form.Group controlId="formBasicEmail">
+                                <Form.Label>Mail</Form.Label>
+                                <Form.Control 
+                                    name="mail"
+                                    type="text" 
+                                    placeholder="Enter email" 
+                                    />
+                                    
+                            </Form.Group>
+
+                            <Form.Group controlId="formBasicPassword">
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control 
+                                    name="password"                                    
+                                    type="password" 
+                                    placeholder="Password" 
+                                    />
+                            </Form.Group>
+                            <Button variant="success btn-block" type="submit">
+                                Iniciar Session
+                            </Button>
+                        </Form>
+                </Row>
+            </Container>
+                
+                </Offcanvas.Body>
+                </Navbar.Offcanvas>
+            </Container>
+        </Navbar>
     );
   }
 

@@ -4,7 +4,7 @@ import urlcat from 'urlcat'
 //ver lugares guardados
 export const verLugares = async info => {
     console.log("Peticion para ver los lugares")
-    fetch(  urlcat('/places'), {
+    return fetch(  urlcat('/places'), {
             method: 'GET', credentials:'same-origin'}
     ).then(response => response.text())
     .then(data => console.log(data));
@@ -14,7 +14,7 @@ export const verLugares = async info => {
 //anyadir lugar guardado
 export const anadirLugares = async info => {
     console.log("Anadiendo un nuevo lugar")
-    fetch(  urlcat('/places/:query?alias=:name', {
+    return fetch(  urlcat('/places/:query?alias=:name', {
             query:info.query, name:info.name}), {
             method: 'POST', credentials:'same-origin'}
     ).then(response => response.text())
@@ -25,7 +25,7 @@ export const anadirLugares = async info => {
 //buscar nuevos lugares (por topónimo o coordenadas)
 export const buscarLugares = async info => {
     console.log("Buscando un nuevo lugar")
-    fetch(  urlcat('/query/:query', {
+    return fetch(  urlcat('/query/:query', {
             query: info.query}), {
             method: 'GET', credentials:'same-origin'}
     ).then(response => response.text())

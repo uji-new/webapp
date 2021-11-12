@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import LoginPage from './components/LoginPage';
-import Pruebas from './Pruebas';
 import 'bootstrap/dist/css/bootstrap.css';
 
 //pasar sesiones dos opciones 
@@ -22,7 +20,7 @@ function p(){
 */
 ReactDOM.render(
   <React.StrictMode>
-    <Pruebas />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
