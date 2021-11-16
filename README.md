@@ -1,5 +1,13 @@
-# Frontend
-
-### `Codigo relativo a la parte del frontend de la aplicacion`
-
-Para ver el codigo completo vista [https://github.com/Team-EI1039-EI1048-2021-22/app]
+# App (frontend only)
+## Setup
+- Terminal: `git clone URL`
+- IDE: https://code.visualstudio.com/docs/editor/github#_cloning-a-repository
+## NPM commands
+- Setup: `npm install`
+- Run: `npm start`
+## Project hierarchy
+- Static: `public`
+- Dynamic: `src`
+## Recommended software
+- Node: Node 16.13.0 (https://nodejs.org)
+- IDE: Visual Stuido Code 1.62 (https://code.visualstudio.com)
