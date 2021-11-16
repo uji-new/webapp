@@ -3,7 +3,7 @@ import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import App from "./App";
 import { crearCuenta, iniciarSesion } from './services/sesiones';
 import { verLugares, anadirLugares,buscarLugares } from './services/lugares';
-import { fetch } from './helpers/Api';
+import { fetch } from './utils/Api';
 
 
 const Pruebas = () => {
