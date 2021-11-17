@@ -26,7 +26,7 @@ export const iniciarSesion = async info => {
 
     console.log("Iniciar Sesion")
     console.log(info.mail, info.password);
-    fetch(  urlcat('/session?mail=:mail&password=:password', {
+    fetch(  urlcat('/session', {
         mail: info.mail, password: info.password}), {
             method: 'POST', credentials:'same-origin'}
     ).then(r => r.ok?estado = true:estado=false)
@@ -40,7 +40,7 @@ export const iniciarSesion = async info => {
 export const borrarSesion = async info => {
     console.log("Borrar Sesion")
     fetch(  urlcat('/session'), {
-            method: 'POST', credentials:'same-origin'}
+            method: 'DELETE', credentials:'same-origin'}
     );
     console.log("Session Borrada")
 }

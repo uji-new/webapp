@@ -14,8 +14,8 @@ export const verLugares = async info => {
 //anyadir lugar guardado
 export const anadirLugares = async info => {
     console.log("Anadiendo un nuevo lugar")
-    return fetch(  urlcat('/places/:query?alias=:name', {
-            query:info.query, name:info.name}), {
+    return fetch(  urlcat('/places/:query', {
+            query:info.query, alias:info.name}), {
             method: 'POST', credentials:'same-origin'}
     ).then(response => response.text())
     .then(data => console.log(data));
