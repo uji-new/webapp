@@ -10,17 +10,18 @@ class SideBar extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            lugares: [w]
-                     //[  {
-                     //   coords: "39,0", 
-                     //   name: "Castellon", 
-                     //   alias: "Castellon"
-                     //   },
-                     //   {  
-                     //   coords: "39,0", 
-                     //   name: "Valencia", 
-                     //   alias: "Valencia"
-                     //   }]
+            lugares: [
+                        {
+                            coords: "39,0", 
+                            name: "Castellon", 
+                            alias: "Castellon"
+                        },
+                        {  
+                            coords: "39,0", 
+                            name: "Valencia", 
+                            alias: "Valencia"
+                        }
+                    ]
         }
     }
 

@@ -1,9 +1,8 @@
 import React,{ Component, useState, useEffect } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { crearCuenta, iniciarSesion } from '../services/sesiones'
-import { verLugares, anadirLugares,buscarLugares } from '../services/lugares'
-import { fetchOP } from '../helpers/fetchOP'
-
+import { crearCuenta, iniciarSesion } from '../services/sesiones';
+import { verLugares, anadirLugares,buscarLugares } from '../services/lugares';
+import { fetch } from '../utils/Api';
 
 
 const GestorSesiones = () => {
