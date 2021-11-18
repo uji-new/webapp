@@ -3,7 +3,7 @@ import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import App from "./App";
 import { crearCuenta, iniciarSesion } from './services/sesiones';
 import { verLugares, anadirLugares,buscarLugares } from './services/lugares';
-import { fetch } from './utils/Api';
+import Client from './utils/Client';
 
 
 const Pruebas = () => {
@@ -22,14 +22,13 @@ const Pruebas = () => {
     //}
     const handleCuenta = async(event) => {
         event.preventDefault();
-        fetch('GET', '/places', {}).then(r => console.log(r));
+        Client.places.getPlaces().then(console.log);
     }
     
     
     const handleSesion = async(event) => {
         event.preventDefault();
-        let b = iniciarSesion({mail, password});
-        if(b) setUsuario(mail + 'hdCOD');
+        Client.session.newSession(mail, password).then(() => setUsuario(`${mail}hdCOD`));
     }
     
         //const valueToPassword = (target) => {

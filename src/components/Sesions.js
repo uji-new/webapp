@@ -2,7 +2,7 @@ import React,{ Component, useState, useEffect } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { crearCuenta, iniciarSesion } from '../services/sesiones';
 import { verLugares, anadirLugares,buscarLugares } from '../services/lugares';
-import { fetch } from '../utils/Api';
+import Client from '../utils/Client';
 
 
 const GestorSesiones = () => {
@@ -11,39 +11,28 @@ const GestorSesiones = () => {
     const [password, setPasstord] = useState('')
     
     const handleCuenta = async(event) => {
-    event.preventDefault()
-        let b = crearCuenta({
-            mail,
-            password
-        })
-        b.then(setUsuario(mail+'hdCOD'))
+        event.preventDefault();
+        Client.user.newUser(mail, password).then(() => setUsuario(`${mail}hdCOD`));
     }
-    
     
     const handleSesion = async(event) => {
         event.preventDefault()
-        let b = iniciarSesion({
-            mail,
-            password
-        })
-        if(b)
-            setUsuario(mail+'hdCOD')
+        Client.session.newSession(mail, password).then(() => setUsuario(`${mail}hdCOD`));
     }
 
     const lista = () => {
-        console.log("LISTA")
-        verLugares({})
+        console.log("LISTA");
+        Client.places.getPlaces().then(console.log);
     }
+
     const buscar = () => {
         console.log("BUSCAR");
-        buscarLugares({query: 'cas'})
+        Client.query.query('cas').then(console.log);
     }
+
     const anadir = () => {
-        console.log("ANADIR")
-        anadirLugares({
-            query: 'Valencia',
-            name: 'vlc'
-        })
+        console.log("ANADIR");
+        Client.places.newPlace('Valencia', 'vlc');
     }
    
     return(
