@@ -7,23 +7,10 @@ const METHOD = {
     DELETE: 'DELETE'
 }
 
-const SERVICE_TYPE = {
-    WEATHER: 'WEATHER',
-    EVENTS: 'EVENTS',
-    NEWS: 'NEWS'
-}
-
-export function fetch(method, path, params) {
-    return new Promise((resolve, reject) => {
-        window.fetch(urlcat(path, params), {method, credentials: 'same-origin'}).catch(reject)
-            .then(response => response.ok ? response.json().then(resolve).catch(() => resolve(null)) : reject(response));
-    });
-}
-
 class BaseClient {
     _setupRequest(method, paths=[], params={}) {
         return new Promise((resolve, reject) => {
-            window.fetch(urlcat(paths.join('/'), params), {method, credentials: 'same-origin'}).catch(reject)
+            window.fetch(urlcat(['', ...paths].join('/'), params), {method, credentials: 'same-origin'}).catch(reject)
                 .then(response => response.ok ? response.json().then(resolve).catch(() => resolve(null)) : reject(response));
         })
     }
@@ -31,7 +18,7 @@ class BaseClient {
 
 class HistoryClient extends BaseClient {
     _setupRequest(method, paths=[], params={}) {
-        return super._setupRequest(method, ['/history', ...paths], params);
+        return super._setupRequest(method, ['history', ...paths], params);
     }
 
     getPlaces() {
@@ -49,7 +36,7 @@ class HistoryClient extends BaseClient {
 
 class PlaceClient extends BaseClient {
     _setupRequest(method, paths=[], params={}) {
-        return super._setupRequest(method, ['/places', ...paths], params);
+        return super._setupRequest(method, ['places', ...paths], params);
     }
 
     getPlaces() {
@@ -71,7 +58,7 @@ class PlaceClient extends BaseClient {
 
 class QueryClient extends BaseClient {
     _setupRequest(method, paths=[], params={}) {
-        return super._setupRequest(method, ['/query', ...paths], params);
+        return super._setupRequest(method, ['query', ...paths], params);
     }
 
     query(query) {
@@ -80,8 +67,14 @@ class QueryClient extends BaseClient {
 }
 
 class ServiceClient extends BaseClient {
+    TYPE = {
+        WEATHER: 'WEATHER',
+        EVENTS: 'EVENTS',
+        NEWS: 'NEWS'
+    }
+
     _setupRequest(method, paths=[], params={}) {
-        return super._setupRequest(method, ['/services', ...paths], params);
+        return super._setupRequest(method, ['services', ...paths], params);
     }
 
     getServices() {
@@ -111,7 +104,7 @@ class ServiceClient extends BaseClient {
 
 class SessionClient extends BaseClient {
     _setupRequest(method, paths=[], params={}) {
-        return super._setupRequest(method, ['/session', ...paths], params);
+        return super._setupRequest(method, ['session', ...paths], params);
     }
 
     getSession() {
@@ -133,7 +126,7 @@ class SessionClient extends BaseClient {
 
 class UserClient extends BaseClient {
     _setupRequest(method, paths=[], params={}) {
-        return super._setupRequest(method, ['/user', ...paths], params);
+        return super._setupRequest(method, ['user', ...paths], params);
     }
 
     newUser(mail, password) {
