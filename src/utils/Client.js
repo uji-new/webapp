@@ -29,15 +29,15 @@ class UserClient extends BaseClient {
     }
 
     newUser(mail, password) {
-        return this._setupRequestMETHOD(METHOD.POST, null, {mail, password});
+        return this._setupRequest(METHOD.POST, null, {mail, password});
     }
 
     updateUser(password) {
-        return this._setupRequestMETHOD(METHOD.PUT, null, {password});
+        return this._setupRequest(METHOD.PUT, null, {password});
     }
 
     deleteUser() {
-        return this._setupRequestMETHOD(METHOD.DELETE);
+        return this._setupRequest(METHOD.DELETE);
     }
 }
 
@@ -47,7 +47,7 @@ class SessionClient extends BaseClient {
     }
 
     getSession() {
-        return this._setupRequestMETHOD(METHOD.GET);
+        return this._setupRequest(METHOD.GET);
     }
 
     newSession(mail, password) {
@@ -69,7 +69,7 @@ class PlaceClient extends BaseClient {
     }
 
     getPlaces() {
-        return this._setupRequestMETHOD(METHOD.GET);
+        return this._setupRequest(METHOD.GET);
     }
 
     newPlace(query, alias) {
@@ -91,7 +91,7 @@ class QueryClient extends BaseClient {
     }
 
     query(query) {
-        return this._setupRequestMETHOD(METHOD.GET, query);
+        return this._setupRequest(METHOD.GET, query);
     }
 }
 
