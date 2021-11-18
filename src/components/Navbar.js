@@ -1,5 +1,6 @@
 import React from 'react';
 import {Nav,NavDropdown, Row, Col, Offcanvas,Button, Navbar, Container, Form, FormControl} from "react-bootstrap";
+import { getSesion } from '../services/sesiones'
 
 const handleSesion = (event) => {
     event.preventDefault()
@@ -10,7 +11,7 @@ export default function Barrasuperior() {
     return (
       <Navbar bg="light" expand={false}>
             <Container fluid>
-                <Navbar.Brand href="#">Navbar scroll</Navbar.Brand>
+                <Navbar.Brand href="#">App</Navbar.Brand>
                 <Form className="d-flex">
                     <FormControl
                     type="search"
@@ -34,6 +35,7 @@ export default function Barrasuperior() {
                 <Offcanvas.Body>
 
                 <Container>
+                {getSesion().then(r => r.text())}
                 <Row className="mt-5">
                         <Form onSubmit={handleSesion}>
                             <Form.Group controlId="formBasicEmail">

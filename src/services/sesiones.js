@@ -19,6 +19,21 @@ export const borrarCuenta = async info => {
     );
     console.log("Usuario Borrado")
 }
+//ver la sesion que hay iniciada
+export const getSesion = async info => {
+    console.log("Ver que sesion esta iniciada")
+    return fetch(  urlcat('/session'), {
+            method: 'POST', credentials:'same-origin'}
+    )
+}
+
+//iniciar sesion como invitado
+export const iniciarSesionInvitado = async info => {
+    console.log("Iniciar Sesion Invitado")
+    fetch(  urlcat('/session/guest'), {
+            method: 'POST', credentials:'same-origin'}
+    )
+}
 
 //iniciar sesion de usuario
 export const iniciarSesion = async info => {

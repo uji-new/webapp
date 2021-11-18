@@ -2,8 +2,8 @@
   "description": "Proyecto ATTD",
   "license": "BSD-3-Clause",
   "repository": {
-      "type": "git",
-      "url": "https://github.com/Team-EI1039-EI1048-2021-22/webapp.git"
+    "type": "git",
+    "url": "https://github.com/Team-EI1039-EI1048-2021-22/webapp.git"
   },
   "proxy": "http://localhost:8080",
   "dependencies": {
@@ -17,5 +17,17 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
