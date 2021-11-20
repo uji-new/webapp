@@ -81,11 +81,11 @@ class ServiceClient extends BaseClient {
         return this._setupRequest(METHOD.GET);
     }
 
-    addAllServices() {
+    enableAllServices() {
         return this._setupRequest(METHOD.POST);
     }
 
-    removeAllServices() {
+    disableAllServices() {
         return this._setupRequest(METHOD.DELETE);
     }
 
