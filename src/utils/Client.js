@@ -106,7 +106,6 @@ class SessionClient extends BaseClient {
     _setupRequest(method, paths=[], params={}) {
         return super._setupRequest(method, ['session', ...paths], params);
     }
-
     getSession() {
         return this._setupRequest(METHOD.GET);
     }

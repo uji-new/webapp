@@ -1,22 +1,35 @@
-import Barrasuperior from './components/Navbar';
-import SideBar from './components/Sidebar';
-import {iniciarSesionInvitado} from './services/sesiones';
-
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {Layout} from './components/Layout';
+import Client from 'utils/Client'
+import {UserForm} from 'components/Form'
 
 export default function App(){
-    console.log("App")
-    console.log(document.cookie.replace(';', '\n'))
-    window.onload = function(){
-        iniciarSesionInvitado()
-    }
-    return(
+    const [user, setUser] = useState();
+    
+    useEffect(() => {
+        let mounted = true;
+        Client.session.getSession()
+          .then(r => {
+            if(mounted) {
+                console.log(r.mail);
+              setUser(r.mail)
+            }
+          })
+        return () => mounted = false;
+      }, [])
+
+    //if(!user) {
+    //  return <UserForm setUser={setUser}/>
+    //}
+    
+    return (
         <>
-            <Barrasuperior />
-            <SideBar />
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Layout />} />                     
+                </Routes>
+            </BrowserRouter>
         </>
-    )
+      );
 }
-
-
-
-

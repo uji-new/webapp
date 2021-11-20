@@ -1,11 +1,9 @@
 import React,{ Component, useState, useEffect } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { crearCuenta, iniciarSesion } from '../services/sesiones';
-import { verLugares, anadirLugares,buscarLugares } from '../services/lugares';
-import Client from '../utils/Client';
+import Client from 'utils/Client';
 
 
-const GestorSesiones = () => {
+export const Sessions = () => {
     const[usuario, setUsuario] = useState(null)
     const [mail, setMail] = useState('')
     const [password, setPasstord] = useState('')
@@ -33,6 +31,10 @@ const GestorSesiones = () => {
     const anadir = () => {
         console.log("ANADIR");
         Client.places.newPlace('Valencia', 'vlc');
+    }
+    const who = () => {
+        console.log("QUIEN SOY");
+        Client.session.getSession(r => console.log(r));
     }
    
     return(
@@ -115,12 +117,13 @@ const GestorSesiones = () => {
                 <Button onClick={anadir} variant="success btn-block">
                     anadir
                 </Button>
+                <Button onClick={who} variant="success btn-block">
+                    QUIEN
+                </Button>
             
             </Container>
         </Container>
         </>
     )
 }
-
-export default GestorSesiones
 
