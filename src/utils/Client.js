@@ -89,11 +89,11 @@ class ServiceClient extends BaseClient {
         return this._setupRequest(METHOD.DELETE);
     }
 
-    addService(type) {
+    enableService(type) {
         return this._setupRequest(METHOD.POST, [], {type});
     }
 
-    removeService(type) {
+    disableService(type) {
         return this._setupRequest(METHOD.DELETE, [], {type});
     }
 
@@ -101,19 +101,19 @@ class ServiceClient extends BaseClient {
         return this._setupRequest(METHOD.GET, [':coords'], {coords});
     }
 
-    addAllServicesForLocation(coords) {
+    enableAllServicesForLocation(coords) {
         return this._setupRequest(METHOD.POST, [':coords'], {coords});
     }
 
-    removeAllServicesForLocation(coords) {
+    disableAllServicesForLocation(coords) {
         return this._setupRequest(METHOD.DELETE, [':coords'], {coords});
     }
 
-    addServiceForLocation(coords, type) {
+    enableServiceForLocation(coords, type) {
         return this._setupRequest(METHOD.POST, [':coords'], {coords, type});
     }
 
-    removeServiceForLocation(coords, type) {
+    disableServiceForLocation(coords, type) {
         return this._setupRequest(METHOD.DELETE, [':coords'], {coords, type});
     }
 }
