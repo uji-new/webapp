@@ -21,37 +21,37 @@ class HistoryClient extends BaseClient {
         return super._setupRequest(method, ['history', ...paths], params);
     }
 
-    getPlaces() {
+    getLocations() {
         return this._setupRequest(METHOD.GET);
     }
 
-    newPlace(coords) {
+    restoreLocation(coords) {
         return this._setupRequest(METHOD.POST, [':coords'], {coords});
     }
 
-    deletePlace(coords) {
+    removeLocation(coords) {
         return this._setupRequest(METHOD.DELETE, [':coords'], {coords});
     }
 }
 
-class PlaceClient extends BaseClient {
+class LocationClient extends BaseClient {
     _setupRequest(method, paths=[], params={}) {
-        return super._setupRequest(method, ['places', ...paths], params);
+        return super._setupRequest(method, ['locations', ...paths], params);
     }
 
-    getPlaces() {
+    getLocations() {
         return this._setupRequest(METHOD.GET);
     }
 
-    newPlace(query, alias) {
+    addLocation(query, alias) {
         return this._setupRequest(METHOD.POST, [':query'], {query, alias});
     }
 
-    updatePlace(coords, alias) {
+    updateLocation(coords, alias) {
         return this._setupRequest(METHOD.PUT, [':coords'], {coords, alias});
     }
 
-    deletePlace(coords) {
+    removeLocation(coords) {
         return this._setupRequest(METHOD.DELETE, [':coords'], {coords});
     }
 }
@@ -81,23 +81,39 @@ class ServiceClient extends BaseClient {
         return this._setupRequest(METHOD.GET);
     }
 
-    newService(type) {
+    addAllServices() {
+        return this._setupRequest(METHOD.POST);
+    }
+
+    removeAllServices() {
+        return this._setupRequest(METHOD.DELETE);
+    }
+
+    addService(type) {
         return this._setupRequest(METHOD.POST, [], {type});
     }
 
-    deleteService(type) {
+    removeService(type) {
         return this._setupRequest(METHOD.DELETE, [], {type});
     }
 
-    getServicesForPlace(coords) {
+    getServicesForLocation(coords) {
         return this._setupRequest(METHOD.GET, [':coords'], {coords});
     }
 
-    newService(coords, type) {
+    addAllServicesForLocation(coords) {
+        return this._setupRequest(METHOD.POST, [':coords'], {coords});
+    }
+
+    removeAllServicesForLocation(coords) {
+        return this._setupRequest(METHOD.DELETE, [':coords'], {coords});
+    }
+
+    addServiceForLocation(coords, type) {
         return this._setupRequest(METHOD.POST, [':coords'], {coords, type});
     }
 
-    deleteService(coords, type) {
+    removeServiceForLocation(coords, type) {
         return this._setupRequest(METHOD.DELETE, [':coords'], {coords, type});
     }
 }
@@ -111,42 +127,42 @@ class SessionClient extends BaseClient {
         return this._setupRequest(METHOD.GET);
     }
 
-    newSession(mail, password) {
+    login(mail, password) {
         return this._setupRequest(METHOD.POST, [], {mail, password});
     }
 
-    newGuest() {
+    loginAsGuest() {
         return this._setupRequest(METHOD.POST, ['guest']);
     }
 
-    deleteSession() {
+    logout() {
         return this._setupRequest(METHOD.DELETE);
     }
 }
 
-class UserClient extends BaseClient {
+class AccountClient extends BaseClient {
     _setupRequest(method, paths=[], params={}) {
-        return super._setupRequest(method, ['user', ...paths], params);
+        return super._setupRequest(method, ['account', ...paths], params);
     }
 
-    newUser(mail, password) {
+    register(mail, password) {
         return this._setupRequest(METHOD.POST, [], {mail, password});
     }
 
-    updateUser(password) {
+    updateAccount(password) {
         return this._setupRequest(METHOD.PUT, [], {password});
     }
 
-    deleteUser() {
+    deregister() {
         return this._setupRequest(METHOD.DELETE);
     }
 }
 
 export default {
     history: new HistoryClient(),
-    places: new PlaceClient(),
+    location: new LocationClient(),
     query: new QueryClient(),
     service: new ServiceClient(),
     session: new SessionClient(),
-    user: new UserClient()
+    account: new AccountClient()
 }
