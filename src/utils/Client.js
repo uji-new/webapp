@@ -44,7 +44,9 @@ class LocationClient extends BaseClient {
     }
 
     addLocation(query, alias) {
-        return this._setupRequest(METHOD.POST, [':query'], {query, alias});
+        let params = {query, alias};
+        if (!alias) delete params.alias;
+        return this._setupRequest(METHOD.POST, [':query'], params);
     }
 
     updateLocation(coords, alias) {
