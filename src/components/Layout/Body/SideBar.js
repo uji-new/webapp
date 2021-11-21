@@ -1,12 +1,11 @@
 import React ,{useState} from 'react';
 import {Tab, Row, Col, Nav} from "react-bootstrap";
-import GestorSesiones from './Sesions';
-import {Clima, Evento, Noticia} from "./Servicios"
-import LugaresListado from '../auxComponents/LugaresListado';
-import LugaresAcciones from '../auxComponents/LugaresAccion';
-import { verLugares }from '../services/lugares'
+import {Sessions} from 'features';
+import {LugaresListado} from '.';
+import {LugaresAcciones} from '.';
 
-class SideBar extends React.Component {
+
+export class SideBar extends React.Component {
     constructor(props){
         super(props)
         this.state = {
@@ -23,7 +22,6 @@ class SideBar extends React.Component {
                      //   }]
         }
     }
-
     render(){
         return (
             <Tab.Container id="left-tabs-example" defaultActiveKey="first">
@@ -40,15 +38,14 @@ class SideBar extends React.Component {
                     <Tab.Content>
                         {this.state.lugares.map(l => <LugaresAcciones key={l.name} lugar={l.name}/>)}    
                         <Tab.Pane eventKey="create">
-                            <GestorSesiones/>
+                            <Sessions/>
                         </Tab.Pane>
                     
                     </Tab.Content>
                     </Col>
                 </Row>
             </Tab.Container>
+            
         );
     }
 }
-
-export default SideBar;
