@@ -1,51 +1,72 @@
-import React ,{useState} from 'react';
-import {Tab, Row, Col, Nav} from "react-bootstrap";
-import {Sessions} from 'features';
-import {LugaresListado} from '.';
-import {LugaresAcciones} from '.';
-
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHome,
+  faBriefcase,
+  faPaperPlane,
+  faQuestion,
+  faImage,
+  faTimes
+} from "@fortawesome/free-solid-svg-icons";
+import { Nav, Button } from "react-bootstrap";
+import classNames from "classnames";
 
 export class SideBar extends React.Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            lugares: []
-                     //[  {
-                     //   coords: "39,0", 
-                     //   name: "Castellon", 
-                     //   alias: "Castellon"
-                     //   },
-                     //   {  
-                     //   coords: "39,0", 
-                     //   name: "Valencia", 
-                     //   alias: "Valencia"
-                     //   }]
-        }
-    }
-    render(){
-        return (
-            <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-                <Row>
-                    <Col sm={3}>
-                    <Nav variant="pills" className="flex-column">
-                        {this.state.lugares.map(l => <LugaresListado key={l.name} lugar={l.name}/>)}    
-                        <Nav.Item>
-                        <Nav.Link eventKey="create">Creac cuenta</Nav.Link>
-                        </Nav.Item>
-                    </Nav>
-                    </Col>
-                    <Col sm={9}>
-                    <Tab.Content>
-                        {this.state.lugares.map(l => <LugaresAcciones key={l.name} lugar={l.name}/>)}    
-                        <Tab.Pane eventKey="create">
-                            <Sessions/>
-                        </Tab.Pane>
-                    
-                    </Tab.Content>
-                    </Col>
-                </Row>
-            </Tab.Container>
-            
-        );
-    }
+  render() {
+    return (
+      <div className={classNames("sidebar", { "is-open": this.props.isOpen })}>
+        <div className="sidebar-header">
+          <Button
+            variant="link"
+            onClick={this.props.toggle}
+            style={{ color: "#fff" }}
+            className="mt-4"
+          >
+            <FontAwesomeIcon icon={faTimes} pull="right" size="xs" />
+          </Button>
+          <h3>react-bootstrap sidebar</h3>
+        </div>
+
+        <Nav className="flex-column pt-2">
+          <p className="ml-3">Heading</p>
+
+          <Nav.Item className="active">
+            <Nav.Link href="/">
+              <FontAwesomeIcon icon={faHome} className="mr-2" />
+              Home
+            </Nav.Link>
+          </Nav.Item>
+
+          <Nav.Item>
+            <Nav.Link href="/">
+              <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
+              About
+            </Nav.Link>
+          </Nav.Item>
+
+          <Nav.Item>
+            <Nav.Link href="/">
+              <FontAwesomeIcon icon={faImage} className="mr-2" />
+              Portfolio
+            </Nav.Link>
+          </Nav.Item>
+
+          <Nav.Item>
+            <Nav.Link href="/">
+              <FontAwesomeIcon icon={faQuestion} className="mr-2" />
+              FAQ
+            </Nav.Link>
+          </Nav.Item>
+
+          <Nav.Item>
+            <Nav.Link href="/">
+              <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
+              Contact
+            </Nav.Link>
+          </Nav.Item>
+        </Nav>
+      </div>
+    );
+  }
 }
+

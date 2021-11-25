@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {Layout} from './components/Layout';
 import Client from 'utils/Client'
 import {UserForm} from 'components/Form'
+import {T} from './T'
+
 
 export default function App(){
     const [user, setUser] = useState();
@@ -22,14 +24,10 @@ export default function App(){
     //if(!user) {
     //  return <UserForm setUser={setUser}/>
     //}
+
     
-    return (
-        <>
-            <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Layout />} />                     
-                </Routes>
-            </BrowserRouter>
-        </>
+
+    return (          
+          <Layout/>
       );
 }

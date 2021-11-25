@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Row, Offcanvas,Button, Navbar, Container, Form, FormControl} from "react-bootstrap";
 import Client from 'utils/Client'
+import { SearchBar } from 'features';
 
 const logOut = () => {
     console.log("logOut")
@@ -28,15 +29,8 @@ export function Head() {
       <Navbar bg="light" expand={false}>
             <Container fluid>
                 <Navbar.Brand href="#">App</Navbar.Brand>
-                <Form className="d-flex">
-                    <FormControl
-                    type="search"
-                    placeholder="Search"
-                    className="me-2"
-                    aria-label="Search"
-                    />
-                    <Button variant="outline-success">Search</Button>
-                </Form>
+                
+                <SearchBar />
 
         
                 <Navbar.Toggle aria-controls="offcanvasNavbar" />

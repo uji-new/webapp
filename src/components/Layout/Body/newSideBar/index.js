@@ -1,1 +1,1 @@
-export {NewSideBar} from './NewSideBar'
+export { NewSideBar } from './NewSideBar'
