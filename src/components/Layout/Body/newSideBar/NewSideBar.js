@@ -43,9 +43,9 @@ const routes = [
 
 export function NewSideBar() {
   return (
-    <div className="wrapper">
+    <div >
       <div className="sidebar">
-        <ul className="nav">
+        <ul >
           <li><Link to="/">Home</Link></li>
           <li><Link to="/profile">Profile</Link></li>
           <li><Link to="/settings">Settings</Link></li>
