@@ -9,7 +9,8 @@ export class NavBar extends React.Component {
     return (
       <Navbar
         bg="light"
-        className="navbar shadow-sm p-3 mb-5 bg-white rounded"
+        className="ml-auto navbar shadow-sm p-3 mb-5 bg-white rounded"
+        sticky="top"
         expand
       >
         <Button variant="outline-info" onClick={this.props.toggle}>

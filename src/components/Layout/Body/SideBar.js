@@ -16,41 +16,33 @@ const Home = () => <h1>Home</h1>;
 const Profile = () => <h1>Profile</h1>;
 const Settings = () => <h1>Settings</h1>;
 
-const routes = [
-  {
-    path: "/",
-    main: () => <Home />,
-    sidebar: () => (
-      <p>
-        This is your home page. You'll see your feed which is made up of the
-        people you follow.
-      </p>
-    )
-  },
-  {
-    path: "/profile",
-    main: () => <Profile />,
-    sidebar: () => (
-      <p>
-        This is your profile page. You'll be able to see all your profile
-        information as well as the people you follow.
-      </p>
-    )
-  },
-  {
-    path: "/settings",
-    main: () => <Settings />,
-    sidebar: () => (
-      <p>
-        This is your settings page. You can change your name, image, and
-        anything else associated with your account.
-      </p>
-    )
-  }
-];
 
 export class SideBar extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // Moblie first
+    this.state = {
+      isOpen: false,
+      isMobile: true,
+      routes: [
+        {
+          path: "/",
+          main: () => <h1>home</h1>
+        },
+      ]
+    }
+  }
   render() {
+    const routes = []
+    this.props.lugares.map(r => {
+      routes.push({
+        path: '/'+r.name,
+        main: r.name
+      })
+    })
+  
+
     return (
       <>
       <div className={classNames("sidebar", { "is-open": this.props.isOpen })}>
@@ -66,38 +58,33 @@ export class SideBar extends React.Component {
           <h3>react-bootstrap sidebar</h3>
         </div>
         <div>
-        <Nav className="flex-column pt-2">
-          <p className="ml-3">Heading</p>
-          
-          <Nav.Item className="active">
-            <Link to="/">Home</Link>              
-          </Nav.Item>
+          <Nav className="flex-column pt-2">
+            <p className="ml-3">Heading</p>
+            
+            <Nav.Item>
+              
+                <Link to="/">Home</Link>   
+                       
+            </Nav.Item>
 
-          <Nav.Item>
-            <Link to="/profile">Profile</Link>
-          </Nav.Item>
+            <Nav.Item>
+             
+                <Link to="/profile">Profile</Link>
+              
+            </Nav.Item>
 
-          <Nav.Item>
-            <Link to="/settings">Settings</Link>
-          </Nav.Item>
-
-        </Nav>
-        
-          <Routes>
-            {routes.map(({ path, sidebar }) => (
-              <Route
-                key={path}
-                path={path}
-                element={sidebar()}
-              />
-            ))}
-          </Routes>
+            <Nav.Item>
+              
+                <Link to="/settings">Settings</Link>
+              
+            </Nav.Item>
+          </Nav>
         </div>
 
         
       </div>
         <Routes>
-        {routes.map(({ path, main }) => (
+        {this.state.routes.map(({ path, main }) => (
           <Route
             key={path}
             path={path}

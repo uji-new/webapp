@@ -34,23 +34,23 @@ export function Head() {
 
         
                 <Navbar.Toggle aria-controls="offcanvasNavbar" />
-                <Navbar.Offcanvas
-                id="offcanvasNavbar"
-                aria-labelledby="offcanvasNavbarLabel"
-                placement="end"
-                >
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title id="offcanvasNavbarLabel"> {user}</Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
+                  <Navbar.Offcanvas
+                  id="offcanvasNavbar"
+                  aria-labelledby="offcanvasNavbarLabel"
+                  placement="end"
+                  >
+                  <Offcanvas.Header closeButton>
+                      <Offcanvas.Title id="offcanvasNavbarLabel"> {user}</Offcanvas.Title>
+                  </Offcanvas.Header>
+                  <Offcanvas.Body>
 
-                <Container>                                               
-                    <Button onClick={logOut} variant="success btn-block">
-                        Cerrar Session
-                    </Button>                                          
-                </Container>
-                
-                </Offcanvas.Body>
+                  <Container>                                               
+                      <Button onClick={logOut} variant="success btn-block">
+                          Cerrar Session
+                      </Button>                                          
+                  </Container>
+                  
+                  </Offcanvas.Body>
                 </Navbar.Offcanvas>
             </Container>
         </Navbar>

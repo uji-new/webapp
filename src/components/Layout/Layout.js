@@ -3,6 +3,8 @@ import { Head,Menu,NewSideBar } from 'components/Layout'
 import "App.css";
 import { SideBar } from 'components'
 import { Content } from 'components'
+import Clima from "components/Elements/Weather/Weather";
+import { BrowserRouter as Router } from "react-router-dom";
 
 export class Layout extends React.Component {
     constructor(props) {
@@ -11,7 +13,24 @@ export class Layout extends React.Component {
       // Moblie first
       this.state = {
         isOpen: false,
-        isMobile: true
+        isMobile: true,
+        
+        lugares:[
+          {coords: "0,1", name: "castellon", alias: "cs"},
+          {coords: "0,2", name: "valencia", alias: "vlc"}
+        ],
+        
+        clima: {icon: "URL", description: "string", temp: "number", rain: "number", wind: "number"},
+        
+        eventos: [
+          {title: 'string', date: 'string', location: 'string', author: 'string', url: 'URL', image: 'URL', price: 'number'},
+          {title: 'string', date: 'string', location: 'string', author: 'string', url: 'URL', image: 'URL', price: 'number'}
+        ],
+
+        noticias:[
+          {title: 'string', description: 'string', author: 'string', url: 'URL', image: 'URL'},
+          {title: 'string', description: 'string', author: 'string', url: 'URL', image: 'URL'}
+        ]   
       };
   
       this.previousWidth = -1;
@@ -54,7 +73,9 @@ export class Layout extends React.Component {
     render() {
         return(
             <div className="App wrapper">
-                <SideBar toggle={this.toggle} isOpen={this.state.isOpen} />
+                <Router>
+                  <SideBar lugares={this.state.lugares} toggle={this.toggle} isOpen={this.state.isOpen} />
+                </Router>
                 <Content toggle={this.toggle} isOpen={this.state.isOpen} />
             </div>
         )

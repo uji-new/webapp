@@ -1,0 +1,5 @@
+intento almacenar tanto los lugares como los servicios en Layout
+
+a la hora de renderizar mando la lista de lugares a SideBar
+y desde ahi creo las rutas a las distintas paginas
+con la ruta envio
