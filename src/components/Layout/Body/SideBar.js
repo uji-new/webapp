@@ -1,51 +1,93 @@
-import React ,{useState} from 'react';
-import {Tab, Row, Col, Nav} from "react-bootstrap";
-import {Sessions} from 'features';
-import {LugaresListado} from '.';
-import {LugaresAcciones} from '.';
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHome,
+  faBriefcase,
+  faPaperPlane,
+  faQuestion,
+  faImage,
+  faTimes
+} from "@fortawesome/free-solid-svg-icons";
+import { Route,Routes,Link } from "react-router-dom";
+import { Nav, Button } from "react-bootstrap";
+import classNames from "classnames";
 
+const lugares = [
+  {coords: "0,1", name: "castellon", alias: "cs"},
+  {coords: "0,2", name: "valencia", alias: "vlc"},
+  {coords: "0,3", name: "alicante", alias: "ali"}
+],
 
 export class SideBar extends React.Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            lugares: []
-                     //[  {
-                     //   coords: "39,0", 
-                     //   name: "Castellon", 
-                     //   alias: "Castellon"
-                     //   },
-                     //   {  
-                     //   coords: "39,0", 
-                     //   name: "Valencia", 
-                     //   alias: "Valencia"
-                     //   }]
-        }
+  constructor(props) {
+    super(props);
+
+    // Moblie first
+    this.state = {
+      isOpen: false,
+      isMobile: true,
+      routes: [
+        {
+          nombre: 'HOME',
+          path: "/",
+        },
+      ]
     }
-    render(){
-        return (
-            <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-                <Row>
-                    <Col sm={3}>
-                    <Nav variant="pills" className="flex-column">
-                        {this.state.lugares.map(l => <LugaresListado key={l.name} lugar={l.name}/>)}    
-                        <Nav.Item>
-                        <Nav.Link eventKey="create">Creac cuenta</Nav.Link>
-                        </Nav.Item>
-                    </Nav>
-                    </Col>
-                    <Col sm={9}>
-                    <Tab.Content>
-                        {this.state.lugares.map(l => <LugaresAcciones key={l.name} lugar={l.name}/>)}    
-                        <Tab.Pane eventKey="create">
-                            <Sessions/>
-                        </Tab.Pane>
-                    
-                    </Tab.Content>
-                    </Col>
-                </Row>
-            </Tab.Container>
+  }
+  render() {
+    const routes = []
+    lugares.map(r => {
+      routes.push({
+        nombre: r.name,
+        path: '/'+r.name,
+        main: r.name
+      })
+    })
+  
+
+    return (
+      <>
+      <div className={classNames("sidebar", { "is-open": this.props.isOpen })}>
+        <div className="sidebar-header">
+          <Button
+            variant="link"
+            onClick={this.props.toggle}
+            style={{ color: "#fff" }}
+            className="mt-4"
+          >
+          <FontAwesomeIcon icon={faTimes} pull="right" size="xs" />
+          </Button>
+          <h3>react-bootstrap sidebar</h3>
+        </div>
+        <div>
+          <Nav className="flex-column pt-2">
+            <p className="ml-3">Heading</p>
             
-        );
-    }
+            <Nav.Item>
+              
+                <Link to="/">Home</Link>   
+                       
+            </Nav.Item>
+
+            <Nav.Item>
+             
+                <Link to="/place">Profile</Link>
+              
+            </Nav.Item>
+
+            <Nav.Item>
+              
+                <Link to="/settings">Settings</Link>
+              
+            </Nav.Item>
+          </Nav>
+        </div>
+
+        
+      </div>
+        
+      </>
+    );
+  }
 }
+
