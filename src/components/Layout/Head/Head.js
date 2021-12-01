@@ -5,7 +5,7 @@ import Client from 'utils/Client'
 const logOut = () => {
     console.log("logOut")
     Client.session.deleteSession()
-    Client.session.getSession().then(r => console.log(r))
+    Client.session.getAccount().then(r => console.log(r))
 }
 
 
@@ -14,7 +14,7 @@ export function Head() {
     
     useEffect(() => {
         let mounted = true;
-        Client.session.getSession()
+        Client.session.getAccount()
           .then(r => {
             if(mounted) {
                 console.log(r.mail);

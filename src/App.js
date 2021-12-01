@@ -9,7 +9,7 @@ export default function App(){
     
     useEffect(() => {
         let mounted = true;
-        Client.session.getSession()
+        Client.session.getAccount()
           .then(r => {
             if(mounted) {
                 console.log(r.mail);
