@@ -1,29 +1,33 @@
-import React from "react";
+import React, {useEffect} from "react";
 import classNames from "classnames";
+
 import { Container } from "react-bootstrap";
 import { NavBar} from "components";
+import { Route,Routes } from "react-router-dom";
 
-export class Content extends React.Component {
-  constructor(props) {
-    super(props);
+export function Content(props) {
+  var routes = [
+    {
+      path: "/",
+      main: () => <h1>home</h1>
+    }
+  ]
 
-    this.state = {
-        clima: "hola",
-        eventos: "adioas",
-        noticias: "bon dia"
-    };
-  }
-  render() {
-    return (
-      <Container
-        fluid
-        className={classNames("content", { "is-open": this.props.isOpen })}
-        >
-      <NavBar toggle={this.props.toggle} />
-        {this.state.clima}
-        {this.state.eventos}
-        {this.state.noticias}
-      </Container>
-    );
-  }
+  return (
+    <Container
+      fluid
+      className={classNames("content", { "is-open": props.isOpen })}
+      >
+    <NavBar toggle={props.toggle} />
+    <Routes>
+        {routes.map(({ path, main }) => (
+          <Route
+            key={path}
+            path={path}
+            element={main()}
+          />
+        ))}
+      </Routes>
+    </Container>
+  );
 }

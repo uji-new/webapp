@@ -15,11 +15,6 @@ export class Layout extends React.Component {
         isOpen: false,
         isMobile: true,
         
-        lugares:[
-          {coords: "0,1", name: "castellon", alias: "cs"},
-          {coords: "0,2", name: "valencia", alias: "vlc"}
-        ],
-        
         clima: {icon: "URL", description: "string", temp: "number", rain: "number", wind: "number"},
         
         eventos: [
@@ -75,8 +70,9 @@ export class Layout extends React.Component {
             <div className="App wrapper">
                 <Router>
                   <SideBar lugares={this.state.lugares} toggle={this.toggle} isOpen={this.state.isOpen} />
+                  <Content toggle={this.toggle} isOpen={this.state.isOpen} />
                 </Router>
-                <Content toggle={this.toggle} isOpen={this.state.isOpen} />
+
             </div>
         )
     }

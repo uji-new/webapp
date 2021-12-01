@@ -12,10 +12,11 @@ import { Route,Routes,Link } from "react-router-dom";
 import { Nav, Button } from "react-bootstrap";
 import classNames from "classnames";
 
-const Home = () => <h1>Home</h1>;
-const Profile = () => <h1>Profile</h1>;
-const Settings = () => <h1>Settings</h1>;
-
+const lugares = [
+  {coords: "0,1", name: "castellon", alias: "cs"},
+  {coords: "0,2", name: "valencia", alias: "vlc"},
+  {coords: "0,3", name: "alicante", alias: "ali"}
+],
 
 export class SideBar extends React.Component {
   constructor(props) {
@@ -27,16 +28,17 @@ export class SideBar extends React.Component {
       isMobile: true,
       routes: [
         {
+          nombre: 'HOME',
           path: "/",
-          main: () => <h1>home</h1>
         },
       ]
     }
   }
   render() {
     const routes = []
-    this.props.lugares.map(r => {
+    lugares.map(r => {
       routes.push({
+        nombre: r.name,
         path: '/'+r.name,
         main: r.name
       })
@@ -53,7 +55,7 @@ export class SideBar extends React.Component {
             style={{ color: "#fff" }}
             className="mt-4"
           >
-            <FontAwesomeIcon icon={faTimes} pull="right" size="xs" />
+          <FontAwesomeIcon icon={faTimes} pull="right" size="xs" />
           </Button>
           <h3>react-bootstrap sidebar</h3>
         </div>
@@ -69,7 +71,7 @@ export class SideBar extends React.Component {
 
             <Nav.Item>
              
-                <Link to="/profile">Profile</Link>
+                <Link to="/place">Profile</Link>
               
             </Nav.Item>
 
@@ -83,15 +85,7 @@ export class SideBar extends React.Component {
 
         
       </div>
-        <Routes>
-        {this.state.routes.map(({ path, main }) => (
-          <Route
-            key={path}
-            path={path}
-            element={main()}
-          />
-        ))}
-      </Routes>
+        
       </>
     );
   }
