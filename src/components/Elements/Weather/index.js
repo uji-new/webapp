@@ -1,1 +1,1 @@
-export * from './Weather'
+export {Weather} from './Weather'

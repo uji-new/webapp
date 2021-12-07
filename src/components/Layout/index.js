@@ -1,3 +1,4 @@
-export * from './Body'
+export * from './Sidebar'
 export * from './Head'
 export * from './Layout'
+export * from './Content'

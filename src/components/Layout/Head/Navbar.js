@@ -1,28 +1,59 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAlignLeft } from "@fortawesome/free-solid-svg-icons";
-import { Navbar, Button, Nav } from "react-bootstrap";
+import { Navbar, 
+  Button, 
+  Nav, 
+  Offcanvas,
+  NavDropdown, 
+  Form, 
+  FormControl,
+  Container 
+} from "react-bootstrap";
 import { SearchBar } from "features";
+import { UserForm } from "components";
+import { AuthContext } from "App.js";
+import { LogOut } from "components/Form/LogOut";
 
-export class NavBar extends React.Component {
-  render() {
+export const NavBar = (props) => {
     return (
       <Navbar
         bg="light"
         className="ml-auto navbar shadow-sm p-3 mb-5 bg-white rounded"
         sticky="top"
-        expand
+        expand={false}
       >
-        <Button variant="outline-info" onClick={this.props.toggle}>
+        <Button variant="outline-info" onClick={props.toggle}>
           <FontAwesomeIcon icon={faAlignLeft} />
         </Button>
+        
+        <Nav className="ml-auto" navbar>
+            <SearchBar setLugarRender={props.setLugarRender}/>
+        </Nav>
+        
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="ml-auto" navbar>
-            <SearchBar/>
-          </Nav>
-        </Navbar.Collapse>
+        <Session/>
+
       </Navbar>
     );
-  }
+}
+const Session = () => {
+  const { user, setUser} = React.useContext(AuthContext);
+
+  return (
+ 
+    <Navbar.Offcanvas
+      id="offcanvasNavbar"
+      aria-labelledby="offcanvasNavbarLabel"
+      placement="end"
+    >
+      <Offcanvas.Header closeButton>
+        <Offcanvas.Title id="offcanvasNavbarLabel">{user}</Offcanvas.Title>
+      </Offcanvas.Header>
+      
+      <Offcanvas.Body>
+        {!user ? <UserForm setUser={setUser}/>: <LogOut setUser={setUser}/>}
+      </Offcanvas.Body>
+    </Navbar.Offcanvas>
+  )
 }

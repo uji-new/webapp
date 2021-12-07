@@ -1,79 +1,63 @@
 import React from "react";
-import { Head,Menu,NewSideBar } from 'components/Layout'
 import "App.css";
 import { SideBar } from 'components'
 import { Content } from 'components'
-import Clima from "components/Elements/Weather/Weather";
-import { BrowserRouter as Router } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import { NavBar} from "components";
+import Client from "utils/Client";
 
-export class Layout extends React.Component {
-    constructor(props) {
-      super(props);
+export const Layout = () => {
+  const [isOpen, setIsOpen] = React.useState(false)
+  const [isMobile, setIsMobile] = React.useState(true)
+  const [previousWidth, setPreviousWidth] = React.useState(-1)
   
-      // Moblie first
-      this.state = {
-        isOpen: false,
-        isMobile: true,
-        
-        clima: {icon: "URL", description: "string", temp: "number", rain: "number", wind: "number"},
-        
-        eventos: [
-          {title: 'string', date: 'string', location: 'string', author: 'string', url: 'URL', image: 'URL', price: 'number'},
-          {title: 'string', date: 'string', location: 'string', author: 'string', url: 'URL', image: 'URL', price: 'number'}
-        ],
-
-        noticias:[
-          {title: 'string', description: 'string', author: 'string', url: 'URL', image: 'URL'},
-          {title: 'string', description: 'string', author: 'string', url: 'URL', image: 'URL'}
-        ]   
-      };
+  const [lugar, setLugar] = React.useState({})
+  const [lugares, setLugares] = React.useState([])
   
-      this.previousWidth = -1;
+  React.useEffect(() => {
+    const fetchLugares = async () => {
+      const l = await Client.location.getLocations()
+      setLugares(l)
     }
+    fetchLugares();
+  }, [lugar])
   
-    updateWidth() {
+  React.useEffect(()=> {
+    const updateWidth = () => {
       const width = window.innerWidth;
       const widthLimit = 576;
-      const isMobile = width <= widthLimit;
-      const wasMobile = this.previousWidth <= widthLimit;
-  
-      if (isMobile !== wasMobile) {
-        this.setState({
-          isOpen: !isMobile
-        });
+      const isMobileTemp = width <= widthLimit;   
+      const wasMobile = previousWidth <= widthLimit;
+      if (isMobileTemp !== wasMobile) {
+        setIsOpen(!isMobileTemp)
       }
-  
-      this.previousWidth = width;
+      setPreviousWidth(width);
     }
-  
-    /**
-     * Add event listener
-     */
-    componentDidMount() {
-      this.updateWidth();
-      window.addEventListener("resize", this.updateWidth.bind(this));
-    }
-  
-    /**
-     * Remove event listener
-     */
-    componentWillUnmount() {
-      window.removeEventListener("resize", this.updateWidth.bind(this));
-    }
-  
-    toggle = () => {
-      this.setState({ isOpen: !this.state.isOpen });
-    };
-  
-    render() {
-        return(
-            <div className="App wrapper">
-                <Router>
-                  <SideBar lugares={this.state.lugares} toggle={this.toggle} isOpen={this.state.isOpen} />
-                  <Content toggle={this.toggle} isOpen={this.state.isOpen} />
-                </Router>
+    updateWidth();
 
-            </div>
-        )
-    }
+    window.addEventListener("resize", updateWidth.bind(this));
+  })
+
+  const toggle = () => {
+    setIsOpen(!isOpen)
+  };
+
+
+
+  return(
+      <div className="App wrapper">
+            <SideBar toggle={toggle} isOpen={isOpen} lugar={lugar} lugares={lugares} setLugar={setLugar}/>
+            <Content toggle={toggle} isOpen={isOpen} lugar={lugar} lugares={lugares} setLugar={setLugar}/>               
+      </div>
+  )
 }
+
+
+//const ButtonSideBar = (props) => {
+//  const {setLugar} = React.useContext(WizardContext)
+//  return (
+//      <button type="button" onClick={() => setLugar(props.nombre)}>
+//          {props.nombre}
+//      </button>
+//  ) 
+//}

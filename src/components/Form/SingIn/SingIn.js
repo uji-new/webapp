@@ -4,18 +4,19 @@ import PropTypes from 'prop-types';
 import Client from 'utils/Client'
 
 //Inicio de Sesion
-export function SingIn({setUser}) {
+export const SingIn = ({setUser}) => {
     const [mail, setMail] = useState();
     const [password, setPassword] = useState();
     
     const handleSubmit = async e => {
         e.preventDefault();
-        const token = await Client.session.newSession( mail, password );
+        const token = await Client.session.login( mail, password );
         setUser(mail);
       }
     
     return (
             <Container>
+                <h1> INICIAR </h1>
                 <Row className="mt-5">
                         <Form onSubmit={handleSubmit}> 
                             <Form.Group controlId="formBasicEmail">

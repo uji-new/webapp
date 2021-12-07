@@ -1,67 +1,76 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { ListGroup,Form} from "react-bootstrap";
 import { Recomendacion } from 'features';
+import './SearchBar.css'
+import Client from 'utils/Client';
 
-function apiFake(){
-    const data = 
-    [
-        {
-        "coords": "0,1", 
-        "name": "Castellon", 
-        "alias": "Cs"
-        },
-        {
-        "coords": "0,2", 
-        "name": "Valencia", 
-        "alias": "Vl" 
-        }
+export const SearchBar = (props) => {
+    const ulRef = useRef(); //valor fijo para la lista
+    const inputRef = useRef(); //valor fijo para el campo input
+    const [value, setValue] = useState('') //valor del campo input
+    const [options, setOptions] = useState([]) //recomendaciones de la api
 
-    ]
-    return data
-}
-export const SearchBar = () =>{
-    //restriccion de llamadas entre pulsaciones
-    //intentar que solo se llame una vez por palabra
-    //llamada con un segundo de espera
-    //la siguiente pulsacion cancela todas las llamadas en espera
-    //solo se envia si pasa mas de 1 sec
-    const [estado, setEstado] = useState([])
-    const [recomendacion, setRecomendacion] = useState([])
+    //useEffect(() => {
+    //  inputRef.current.addEventListener('click', (event) => {
+    //    event.stopPropagation();
+    //    ulRef.current.style.display = 'flex';
+    //  });
+    //  document.addEventListener('click', (event) => {
+    //    ulRef.current.style.display = 'none';
+    //  });
+    //}, []);
+    //
+    const onInputChange = (event) => {
+      setValue(event.target.value)
+      const filtOptions = options.filter((option) => option.name.includes(event.target.value))
+      filtOptions != options ? setOptions(filtOptions):null   
+    }
     
-    const handleFilter = (event) => {
-        setEstado(event.target.value);
-        estado.length > 3 ? setRecomendacion(apiFake()):setRecomendacion([])
-    };
-
-    const handleSubmit = async e => {
-        e.preventDefault();
-        console.log(estado);
-    };
-    
-    const clearInput = () => {
-        console.log("object");
-    };
-
-    return(
-        <>
-            <Form> 
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Control 
-                        name="mail"
-                        type="text" 
-                        autoComplete="off"
-                        placeholder="Enter email" 
-                        onChange={handleFilter}
-                        value={estado}
-                        />                                 
-                </Form.Group>
-                <ListGroup>
-                    {recomendacion.map(l => <Recomendacion 
-                        setEstado={setEstado} setRecomendacion={setRecomendacion} key={l.name} lugar={l.name}
-                                            />)}
-                </ListGroup>
-            
-            </Form>
-        </>
-    )
-}
+    const enterPress = (event) => {
+      var code = event.keyCode || event.which;
+      if(code === 13) { 
+          const fetchBuscarLugar = async () => {
+            const l = await Client.query.query(value).then( r => {
+              r.length > 0 ? props.setLugarRender(r[0]):null;
+            })
+          }
+          fetchBuscarLugar()
+      } 
+    }
+    console.log(value);
+    return (
+      <div className="search-bar-dropdown">
+        <input
+          id="search-bar"
+          type="text"
+          className="form-control"
+          placeholder="Search"
+          autoComplete="off"
+          onChange={onInputChange}
+          ref={inputRef}
+          value={value}
+          onKeyDownCapture={enterPress}
+        />
+        <ul 
+          id="results" 
+          className="list-group" 
+          ref={ulRef}
+        >
+          {options.map((option, index) => {
+            return (
+              <button
+                type="button"
+                key={index}
+                onClick={(e) => {
+                  setValue(option.name);
+                }}
+                className="list-group-item list-group-item-action"
+              >
+                {option.name}
+              </button>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  };

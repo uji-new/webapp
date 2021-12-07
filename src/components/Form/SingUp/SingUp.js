@@ -4,18 +4,19 @@ import PropTypes from 'prop-types';
 import Client from 'utils/Client'
 
 //Crear una cuenta
-export function SingUp({setUser}) {
+export const SingUp = ({setUser}) => {
     const [mail, setMail] = useState();
     const [password, setPassword] = useState();
     
     const handleSubmit = async e => {
         e.preventDefault();
-        const token = await Client.user.newUser( mail, password );
+        const token = await Client.account.register( mail, password );
         setUser(mail);
       }
     
     return (
             <Container>
+                <h1> CREAR </h1>
                 <Row className="mt-5">
                         <Form onSubmit={handleSubmit}> 
                             <Form.Group controlId="formBasicEmail">
