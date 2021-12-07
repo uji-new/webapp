@@ -34,7 +34,7 @@ export const Sessions = () => {
     }
     const who = () => {
         console.log("QUIEN SOY");
-        Client.session.getSession(r => console.log(r));
+        Client.session.getAccount(r => console.log(r));
     }
    
     return(
