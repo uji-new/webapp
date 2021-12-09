@@ -11,8 +11,8 @@ import T from './T'
 export { AuthContext } from './App'
 
 ReactDOM.render(
-  <React.StrictMode>   
-        <App />  
+  <React.StrictMode>         
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );

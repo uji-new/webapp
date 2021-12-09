@@ -4,15 +4,20 @@ import {Card, Button} from "react-bootstrap";
 //Respuesta: 
 //{icon: URL, description: string, temp: number, rain: number, wind: number}
 export const Weather = (props) => {
-    const event = props.event;
+    const {event, lugar} = props;
     return (
         <Card style={{ width: '18rem' }}>
         <Card.Body>
-            <Card.Title>{event.title}</Card.Title>
-            <Card.Text>
-            Clima
+            <Card.Title>{lugar.name}</Card.Title>
+            <Card.Text>               
+                {event.description + '\n'} 
+                <br />  
+                {`temp = ${event.temp}`}
+                <br />
+                {`rain = ${event.rain}` + '\n'}
+                <br />
+                {`wind = ${event.wind}` + '\n'}   
             </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
         </Card.Body>
         </Card>
     )

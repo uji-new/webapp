@@ -1,8 +1,26 @@
-import * as React from "react";
-import { Route, Routes, Link } from "react-router-dom";
-import { NewSideBar } from 'components'
-export default function T(){
-  return (          
-        <NewSideBar/>
-    );
+import React from "react";
+
+const BotonesServicios = ({children}) => {
+  return (
+    {children}
+  )
 }
+
+export const Usuario = () => {
+  return(
+    <>
+     "Usuario"
+    </>
+  )
+}
+
+export const Cuenta = () => {
+  return(
+    <>
+      "Cuenta"
+    </>
+  )
+}
+BotonesServicios.Usuario = Usuario
+BotonesServicios.Cuenta = Cuenta
+export default BotonesServicios;

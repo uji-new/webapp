@@ -8,9 +8,11 @@ export const New = (props) => {
         <Card.Body>
             <Card.Title>{event.title}</Card.Title>
             <Card.Text>
-            Una Noticia
+                {`date = ${event.description}`}                
+                <br />  
+                {`author = ${event.author}`}
+      
             </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
         </Card.Body>
         </Card>
     )

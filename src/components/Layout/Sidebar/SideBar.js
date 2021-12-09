@@ -33,9 +33,9 @@ export const SideBar = (props) => {
             <p className="ml-3">Lugares Guardados</p>
             
             {lugares.map( (l, index) => {
-                return  <button type="button" key={index} onClick={() => setLugar(l)}>
+                return  <Button type="button" key={index} onClick={() => setLugar(l)}>
                           {l.name}
-                        </button>
+                        </Button>
               })}
             
           </Nav>

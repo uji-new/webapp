@@ -12,6 +12,9 @@ export const Layout = () => {
   const [previousWidth, setPreviousWidth] = React.useState(-1)
   
   const [lugar, setLugar] = React.useState({})
+  const [serviciosLugar, setServiciosLugar] = React.useState({})
+  const [datosLugar, setDatosLugar] = React.useState({})
+
   const [lugares, setLugares] = React.useState([])
   
   React.useEffect(() => {
@@ -20,6 +23,22 @@ export const Layout = () => {
       setLugares(l)
     }
     fetchLugares();
+  }, [lugar])
+
+  React.useEffect(() => {
+    const fetchServicios = async () => {
+      lugar.coords ? await Client.service.getServicesForLocation(lugar.coords).then(s => {
+        let serviciosLugarAux = {}
+        let datosLugarAux = {}
+        s.map(i => {
+          serviciosLugarAux[i.service.type] = {...i.service, enabled:i.enabled}
+          datosLugarAux[i.service.type] = i.data
+        }) 
+        setServiciosLugar(serviciosLugarAux)
+        setDatosLugar(datosLugarAux)
+      }):null
+    }
+    fetchServicios()
   }, [lugar])
   
   React.useEffect(()=> {
@@ -46,8 +65,14 @@ export const Layout = () => {
 
   return(
       <div className="App wrapper">
-            <SideBar toggle={toggle} isOpen={isOpen} lugar={lugar} lugares={lugares} setLugar={setLugar}/>
-            <Content toggle={toggle} isOpen={isOpen} lugar={lugar} lugares={lugares} setLugar={setLugar}/>               
+            <SideBar toggle={toggle}  isOpen={isOpen} 
+                                      lugar={lugar} lugares={lugares} setLugar={setLugar}
+                                      />
+            <Content toggle={toggle}  isOpen={isOpen} 
+                                      lugar={lugar} lugares={lugares} setLugar={setLugar}
+                                      serviciosLugar={serviciosLugar} setServiciosLugar={setServiciosLugar}
+                                      datosLugar={datosLugar} setDatosLugar={setDatosLugar}
+                                      />              
       </div>
   )
 }

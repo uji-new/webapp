@@ -1,18 +1,29 @@
 import React, {useEffect} from "react";
 import classNames from "classnames";
 
+import {  
+  Button
+} from "react-bootstrap";
+
 import { Container } from "react-bootstrap";
 import { NavBar} from "components";
-import { Route,Routes } from "react-router-dom";
 import { WizardContext } from "components";
 import { Event } from 'components';
 import { New } from 'components';
 import { Weather } from 'components';
+import { BotonesServicios } from 'features'
 import Client from "utils/Client";
 
 
 export const Content = (props) => {
-  const {lugares, lugar, setLugar} = props
+  const { 
+    lugares, 
+    lugar, 
+    setLugar, 
+    serviciosLugar, 
+    setServiciosLugar,
+    datosLugar,
+    setDatosLugar } = props
 
   const[lugarRender, setLugarRender] = React.useState({})
   
@@ -25,7 +36,6 @@ export const Content = (props) => {
     setLugarRender(lugar)
   },[lugar])
 
-  let event = {title: 'string', date: 'string', location: 'string', author: 'string', url: 'URL', image: 'URL', price: 'number'}
 
   //BOTON add localizacion
   const handleAddPlace = async e => {
@@ -52,18 +62,44 @@ export const Content = (props) => {
       className={classNames("content", { "is-open": props.isOpen })}
       >
     <NavBar toggle={props.toggle} setLugarRender={setLugarRender} />
-    
-    <h1> {lugarRender.name} </h1>
-    <button onClick={handleAddPlace}>guardar lugar</button>
-    {console.log(lugares)}
-    {console.log(lugarRender)}
-    {!lugares.every((i) => i.coords !== lugarRender.coords) ? (
-      <button onClick={handleDelPlace}>Eliminar lugar</button>
-    ):null}
+    <>
+      <h1> {lugarRender.name} </h1>
+      
+      <br/>
+      <br/>
 
-    <Event event={event}/>
-    <New event={event}/>
-    <Weather event={event}/>
+      <Button onClick={handleAddPlace}>guardar lugar</Button>
+      {!lugares.every((i) => i.coords !== lugarRender.coords) ? (
+        <Button onClick={handleDelPlace}>Eliminar lugar</Button>
+      ):null}
+
+      <br/>
+      <br/>
+
+      {lugarRender.coords ? (
+        <>
+        <BotonesServicios.Lugar 
+          serviosLugar={serviciosLugar} 
+          setServiciosLugar={setServiciosLugar}
+          lugar={lugar}
+        />
+        </>
+        ):null}
+       
+      <br/>
+      <br/>
+      
+      <h1> WEATHER </h1>
+      {datosLugar['WEATHER'] ? <Weather lugar={lugarRender} event={datosLugar['WEATHER']}/>:null}
+   
+      <h1> EVENTS </h1>
+      {datosLugar['EVENTS'] ? datosLugar['EVENTS'].map((e, idx) => <Event key={idx} event={e}/>):null}
+      
+      <h1> NEWS </h1>
+      {datosLugar['NEWS'] ? datosLugar['NEWS'].map((e, idx) => <New key={idx} event={e}/>):null}
+    
+    </>
+
 
     </Container>
   );

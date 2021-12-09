@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAlignLeft } from "@fortawesome/free-solid-svg-icons";
 import { Navbar, 
   Button, 
+  ButtonGroup,
+  ToggleButton,
   Nav, 
   Offcanvas,
   NavDropdown, 
@@ -14,6 +16,8 @@ import { SearchBar } from "features";
 import { UserForm } from "components";
 import { AuthContext } from "App.js";
 import { LogOut } from "components/Form/LogOut";
+import Client from "utils/Client";
+import {BotonesServicios} from "features";
 
 export const NavBar = (props) => {
     return (
@@ -37,9 +41,10 @@ export const NavBar = (props) => {
       </Navbar>
     );
 }
+
 const Session = () => {
   const { user, setUser} = React.useContext(AuthContext);
-
+  
   return (
  
     <Navbar.Offcanvas
@@ -50,9 +55,15 @@ const Session = () => {
       <Offcanvas.Header closeButton>
         <Offcanvas.Title id="offcanvasNavbarLabel">{user}</Offcanvas.Title>
       </Offcanvas.Header>
-      
+
       <Offcanvas.Body>
-        {!user ? <UserForm setUser={setUser}/>: <LogOut setUser={setUser}/>}
+        {!user ? <UserForm setUser={setUser}/>
+        :(<>
+          <LogOut setUser={setUser}/>
+          <br/>
+          <BotonesServicios.Cuenta/>
+          </>
+        )}
       </Offcanvas.Body>
     </Navbar.Offcanvas>
   )

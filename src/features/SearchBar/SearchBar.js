@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { ListGroup,Form} from "react-bootstrap";
-import { Recomendacion } from 'features';
 import './SearchBar.css'
 import Client from 'utils/Client';
 
@@ -9,21 +8,32 @@ export const SearchBar = (props) => {
     const inputRef = useRef(); //valor fijo para el campo input
     const [value, setValue] = useState('') //valor del campo input
     const [options, setOptions] = useState([]) //recomendaciones de la api
+    const [idTime, setIdTime] = useState('')
 
-    //useEffect(() => {
-    //  inputRef.current.addEventListener('click', (event) => {
-    //    event.stopPropagation();
-    //    ulRef.current.style.display = 'flex';
-    //  });
-    //  document.addEventListener('click', (event) => {
-    //    ulRef.current.style.display = 'none';
-    //  });
-    //}, []);
-    //
+    useEffect(() => {
+      inputRef.current.addEventListener('click', (event) => {
+        event.stopPropagation();
+        ulRef.current.style.display = 'flex';
+      });
+      document.addEventListener('click', (event) => {
+        ulRef.current.style.display = 'none';
+      });
+    }, []);
+    
+    const rellenarOpciones = async => {
+      console.log(value);
+      Client.query.query(value).then(setOptions)
+    }
+
+
     const onInputChange = (event) => {
       setValue(event.target.value)
-      const filtOptions = options.filter((option) => option.name.includes(event.target.value))
-      filtOptions != options ? setOptions(filtOptions):null   
+    
+      setIdTime(setTimeout(rellenarOpciones, 1000));
+      clearTimeout(idTime);
+  
+      //const filtOptions = options.filter((option) => option.name.includes(event.target.value))
+      //filtOptions != options ? setOptions(filtOptions):null   
     }
     
     const enterPress = (event) => {
