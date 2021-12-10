@@ -50,7 +50,9 @@ class LocationClient extends BaseClient {
     }
 
     updateLocation(coords, alias) {
-        return this._setupRequest(METHOD.PUT, [':coords'], {coords, alias});
+        let params = {coords, alias};
+        if (!alias) delete params.alias;
+        return this._setupRequest(METHOD.PUT, [':coords'], params);
     }
 
     removeLocation(coords) {
