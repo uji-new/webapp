@@ -1,4 +1,4 @@
-# App (frontend only)
+# Project (frontend only)
 ## Setup
 - Terminal: `git clone URL`
 - IDE: [guide for Visual Studio Code](https://code.visualstudio.com/docs/editor/github#_cloning-a-repository)
