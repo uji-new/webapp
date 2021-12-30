@@ -39,6 +39,7 @@ export const SingIn = ({setUser}) => {
                                     onChange={event => setPassword(event.target.value)}
                                     />
                             </Form.Group>
+                            <br/>
                             <Button variant="success btn-block" type="submit">
                                 Iniciar Sesion
                             </Button>

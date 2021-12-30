@@ -61,7 +61,7 @@ export const Content = (props) => {
       fluid
       className={classNames("content", { "is-open": props.isOpen })}
       >
-    <NavBar toggle={props.toggle} setLugarRender={setLugarRender} />
+    <NavBar toggle={props.toggle} setLugar={setLugar} />
     <>
       <h1> {lugarRender.name} </h1>
       

@@ -26,7 +26,7 @@ export const SideBar = (props) => {
           >
           <FontAwesomeIcon icon={faTimes} pull="right" size="xs" />
           </Button>
-          <h3>Estamos en {lugar.name}</h3>
+          <h3>N.E.W</h3>
         </div>
         <div>
           <Nav className="flex-column pt-2">

@@ -23,7 +23,7 @@ export default function App(){
             if(mounted) {
               setUser(r.mail)
             }
-          }).catch(setUser('INVITADO'))
+          }).catch(Client.session.loginAsGuest())
         return () => mounted = false;
     }, [])
 
@@ -51,7 +51,7 @@ export default function App(){
 
   return (   
     <AuthContext.Provider value={context}> 
-        {!user ? <UserForm setUser={setUser}/>: <Layout servicios={servicios}/>}
+        <Layout servicios={servicios}/>
     </AuthContext.Provider >
     );
 }

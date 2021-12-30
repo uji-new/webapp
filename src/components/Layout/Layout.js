@@ -19,8 +19,7 @@ export const Layout = () => {
   
   React.useEffect(() => {
     const fetchLugares = async () => {
-      const l = await Client.location.getLocations()
-      setLugares(l)
+      await Client.location.getLocations().then(setLugares)    
     }
     fetchLugares();
   }, [lugar])

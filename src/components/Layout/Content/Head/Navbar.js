@@ -1,23 +1,20 @@
-import React from "react";
+import React,{useState, useContext} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAlignLeft } from "@fortawesome/free-solid-svg-icons";
+import { 
+  faAlignLeft,
+  faUser
+} from "@fortawesome/free-solid-svg-icons";
 import { Navbar, 
   Button, 
-  ButtonGroup,
-  ToggleButton,
   Nav, 
-  Offcanvas,
-  NavDropdown, 
-  Form, 
-  FormControl,
-  Container 
+  Offcanvas
 } from "react-bootstrap";
 import { SearchBar } from "features";
 import { UserForm } from "components";
 import { AuthContext } from "App.js";
 import { LogOut } from "components/Form/LogOut";
-import Client from "utils/Client";
 import {BotonesServicios} from "features";
+
 
 export const NavBar = (props) => {
     return (
@@ -32,39 +29,43 @@ export const NavBar = (props) => {
         </Button>
         
         <Nav className="ml-auto" navbar>
-            <SearchBar setLugarRender={props.setLugarRender}/>
+            <SearchBar setLugar={props.setLugar}/>
         </Nav>
         
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Session/>
+        <SessionOffCanvas placement={'end'} name={'end'} />
 
       </Navbar>
     );
 }
 
-const Session = () => {
-  const { user, setUser} = React.useContext(AuthContext);
-  
-  return (
- 
-    <Navbar.Offcanvas
-      id="offcanvasNavbar"
-      aria-labelledby="offcanvasNavbarLabel"
-      placement="end"
-    >
-      <Offcanvas.Header closeButton>
-        <Offcanvas.Title id="offcanvasNavbarLabel">{user}</Offcanvas.Title>
-      </Offcanvas.Header>
+const SessionOffCanvas = ({name, ...props}) => {
+  const { user, setUser} = useContext(AuthContext);
+  const [show, setShow] = useState(false);
 
-      <Offcanvas.Body>
-        {!user ? <UserForm setUser={setUser}/>
-        :(<>
-          <LogOut setUser={setUser}/>
-          <br/>
-          <BotonesServicios.Cuenta/>
-          </>
-        )}
-      </Offcanvas.Body>
-    </Navbar.Offcanvas>
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  return (
+    <>
+      <Button variant="primary" onClick={handleShow} className="me-2">
+        <FontAwesomeIcon icon={faUser} />
+      </Button>
+
+      <Offcanvas show={show} onHide={handleClose} {...props}>
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>{user ? user:'Invitado'}</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          {!user ? <UserForm setUser={setUser}/>
+          : (
+            <>  
+            <LogOut setUser={setUser}/>
+            <br/>
+            <BotonesServicios.Cuenta/>
+            </>
+          )}
+        </Offcanvas.Body>
+      </Offcanvas>
+    </>
   )
 }

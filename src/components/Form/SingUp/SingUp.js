@@ -39,7 +39,7 @@ export const SingUp = ({setUser}) => {
                                     onChange={event => setPassword(event.target.value)}
                                     />
                             </Form.Group>
-
+                            <br/>
                             <Button variant="success btn-block" type="submit">
                                 Crear cuenta
                             </Button>
