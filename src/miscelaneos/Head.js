@@ -4,7 +4,6 @@ import Client from 'utils/Client'
 import { SearchBar } from 'features';
 
 const logOut = () => {
-    console.log("logOut")
     Client.session.deleteSession()
     Client.session.getSession().then(r => console.log(r))
 }

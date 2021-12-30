@@ -83,7 +83,6 @@ export const Lugar = (props) => {
     setServiciosLugar(auxServicios)
   }
   
-  console.log('boton lugar')
 
   return(
     <>

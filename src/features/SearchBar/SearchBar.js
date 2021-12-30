@@ -21,7 +21,6 @@ export const SearchBar = (props) => {
     }, []);
     
     const rellenarOpciones = async => {
-      console.log(value);
       Client.query.query(value).then(setOptions)
     }
 
@@ -29,25 +28,22 @@ export const SearchBar = (props) => {
     const onInputChange = (event) => {
       setValue(event.target.value)
     
-      setIdTime(setTimeout(rellenarOpciones, 1000));
+      value.length > 0 ? setIdTime(setTimeout(rellenarOpciones, 200)):null;
       clearTimeout(idTime);
-  
-      //const filtOptions = options.filter((option) => option.name.includes(event.target.value))
-      //filtOptions != options ? setOptions(filtOptions):null   
+
     }
     
     const enterPress = (event) => {
       var code = event.keyCode || event.which;
       if(code === 13) { 
           const fetchBuscarLugar = async () => {
-            const l = await Client.query.query(value).then( r => {
+              await Client.query.query(value).then( r => {
               r.length > 0 ? props.setLugarRender(r[0]):null;
             })
           }
-          fetchBuscarLugar()
+          value.length > 0 ? fetchBuscarLugar():alert('No Data')
       } 
     }
-    console.log(value);
     return (
       <div className="search-bar-dropdown">
         <input

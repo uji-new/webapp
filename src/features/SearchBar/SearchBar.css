@@ -5,7 +5,6 @@
   #results {
     position: absolute;
     width: inherit;
-    overflow-y: scroll;
     height: 20em;
     /* border-bottom: 1px #eeeeee solid; */
   }

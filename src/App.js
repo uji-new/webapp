@@ -21,10 +21,9 @@ export default function App(){
         Client.session.getAccount()
           .then(r => {
             if(mounted) {
-              console.log(r.mail);
               setUser(r.mail)
             }
-          })
+          }).catch(setUser('INVITADO'))
         return () => mounted = false;
     }, [])
 
@@ -39,7 +38,7 @@ export default function App(){
             })
             setServicios(auxServicios)
           }
-        })
+        }).catch(setServicios({}))
       return () => mounted = false;
   }, [] )
           
