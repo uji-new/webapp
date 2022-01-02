@@ -36,7 +36,7 @@ export const Weather = (props) => {
                 </div>
                 <div className="temp">
                    <img src={event.icon} alt="" width="90"/>
-                   {event.temp}&deg;
+                   {event.temp.toLocaleString(undefined, {minimumFractionDigits: 1, maximumFractionDigits: 1})} &deg;C
                 </div>
             </div>           
         </div>
