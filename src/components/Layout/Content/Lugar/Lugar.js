@@ -95,17 +95,20 @@ export const Lugar = (props) => {
         <>
             <h1> EVENTS </h1>
             <Row xs={2} md={1} className="g-4">
-            {datosLugar['EVENTS'].map((e, idx) => <Event key={idx} event={e}/>)}
+                {datosLugar['EVENTS'].map((e, idx) => <Event key={idx} event={e}/>)}
             </Row>
         </>
         ):null}
         
         
         {datosLugar['NEWS'] ? (
-            <>
+        <>
             <h1> NEWS </h1>
-            {datosLugar['NEWS'].map((e, idx) => <New key={idx} event={e}/>)}
-            </>
+
+            <Row xs={2} md={1} className="g-4">
+                {datosLugar['NEWS'].map((e, idx) => <New key={idx} event={e}/>)}
+            </Row>
+        </>
         ):null}
             
     </>
