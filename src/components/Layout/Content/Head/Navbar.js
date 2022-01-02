@@ -13,6 +13,7 @@ import { Navbar,
   Offcanvas,
   Container
 } from "react-bootstrap";
+import "./Navbar.css";
 import { SearchBar } from "features";
 import { UserForm } from "components";
 import { AuthContext } from "App.js";
