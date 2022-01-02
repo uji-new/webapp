@@ -6,8 +6,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Navbar, 
   Button, 
+  Col,
   Nav, 
-  Offcanvas
+  Row,
+  Stack,
+  Offcanvas,
+  Container
 } from "react-bootstrap";
 import { SearchBar } from "features";
 import { UserForm } from "components";
@@ -18,23 +22,25 @@ import {BotonesServicios} from "features";
 
 export const NavBar = (props) => {
     return (
-      <Navbar
-        bg="light"
-        className="ml-auto navbar shadow-sm p-3 mb-5 bg-white rounded"
-        sticky="top"
-        expand={false}
-      >
-        <Button variant="outline-info" onClick={props.toggle}>
-          <FontAwesomeIcon icon={faAlignLeft} />
-        </Button>
-        
-        <Nav className="ml-auto" navbar>
-            <SearchBar setLugar={props.setLugar}/>
-        </Nav>
-        
-        <SessionOffCanvas placement={'end'} name={'end'} />
+      
+        <Navbar
+          bg="light"
+          className="ml-auto navbar shadow-sm p-3 mb-5 bg-white rounded"
+          expand={false}
+        >
+          <Stack direction="horizontal" gap={3}>
+              
+            <Button variant="outline-info" onClick={props.toggle}>
+              <FontAwesomeIcon icon={faAlignLeft} />
+            </Button>
+            
+            <SearchBar setLugar={props.setLugar} setLugares={props.setLugares}/> 
 
-      </Navbar>
+            <SessionOffCanvas placement={'end'} name={'end'} /> 
+          </Stack>
+          
+        </Navbar>
+    
     );
 }
 
@@ -53,15 +59,22 @@ const SessionOffCanvas = ({name, ...props}) => {
 
       <Offcanvas show={show} onHide={handleClose} {...props}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>{user ? user:'Invitado'}</Offcanvas.Title>
+          <Offcanvas.Title>User: {user ? user:(user === null ? 'invitado': 'error')}</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           {!user ? <UserForm setUser={setUser}/>
           : (
             <>  
-            <LogOut setUser={setUser}/>
-            <br/>
+            <h2>Servicion</h2>
             <BotonesServicios.Cuenta/>
+            <br/>
+            <br/>
+            <h2>Historial</h2>
+
+            <br/>
+            <br/>
+            <h2>Cerrar Session</h2>
+            <LogOut setUser={setUser}/>
             </>
           )}
         </Offcanvas.Body>

@@ -1,13 +1,6 @@
-const s = [   
-    {service: {type: 'string', name: 'string', description: 'string'}, 
-    enabled: true},
-    {service: {type: 'string', name: 'string', description: 'string'}, 
-    enabled: true},
-    {service: {type: 'string', name: 'string', description: 'string'}, 
-    enabled: true},
-    {service: {type: 'string', name: 'string', description: 'string'}, 
-    enabled: true}
-]
-let x = {type: 'string', name: 'string', description: 'string'}
 
-x.map(console.log)
+var h = [1,2,3,4]
+console.log(h)
+
+var b = [5, ...h]
+console.log(b)

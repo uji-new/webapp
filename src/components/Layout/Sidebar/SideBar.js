@@ -1,5 +1,7 @@
 import React from "react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import './SideBar.css'
 import {
   faHome,
   faBriefcase,
@@ -13,7 +15,7 @@ import classNames from "classnames";
 
 
 export const SideBar = (props) => {
-  const {lugares, setLugar, lugar} = props
+  const {lugares, setLugar, lugar, lugaresApi} = props
     return (
       <>
       <div className={classNames("sidebar", { "is-open": props.isOpen })}>
@@ -26,17 +28,20 @@ export const SideBar = (props) => {
           >
           <FontAwesomeIcon icon={faTimes} pull="right" size="xs" />
           </Button>
-          <h3>N.E.W</h3>
+          <h3> N.E.W {lugar.name} </h3>
         </div>
+        
         <div>
           <Nav className="flex-column pt-2">
             <p className="ml-3">Lugares Guardados</p>
             
             {lugares.map( (l, index) => {
-                return  <Button type="button" key={index} onClick={() => setLugar(l)}>
+                return (                    
+                       <Button variant={lugaresApi.indexOf(l)< 0 ? "secondary":'primary'} key={index} onClick={() => setLugar(l)}>
                           {l.name}
                         </Button>
-              })}
+                        )
+            })}
             
           </Nav>
         </div>

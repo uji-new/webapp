@@ -1,17 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from "react-router-dom";
-
 
 import 'bootstrap/dist/css/bootstrap.css';
 
 import App from 'App';
-import T from './T'
-
-export { AuthContext } from './App'
 
 ReactDOM.render(
-  <React.StrictMode>         
+  <React.StrictMode>  
     <App/>
   </React.StrictMode>,
   document.getElementById('root')

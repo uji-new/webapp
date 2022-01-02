@@ -7,16 +7,16 @@ import Client from 'utils/Client'
 export const LogOut = ({setUser}) => {
     const handleDelSession = async e => {
         e.preventDefault();
-        const token = await Client.session.logout();
+        await Client.session.logout();
+        await Client.session.loginAsGuest()
         setUser('');
       }
     
     return (
             <Container>
-                <h1> Cerrar Session </h1>
-                    <Button variant="success btn-block" onClick={handleDelSession}>
-                        Cerrar Session
-                    </Button>        
+                <Button variant="success btn-block" onClick={handleDelSession}>
+                    Cerrar Session
+                </Button>        
             </Container>
     )
 }

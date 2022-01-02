@@ -15,8 +15,7 @@ export const SingIn = ({setUser}) => {
       }
     
     return (
-            <Container>
-                <h1> INICIAR </h1>
+            <>
                 <Row className="mt-5">
                         <Form onSubmit={handleSubmit}> 
                             <Form.Group controlId="formBasicEmail">
@@ -24,6 +23,7 @@ export const SingIn = ({setUser}) => {
                                 <Form.Control 
                                     name="mail"
                                     type="text" 
+                                    autoComplete="off"
                                     placeholder="Enter email" 
                                     onChange={event => setMail(event.target.value)}
                                     />
@@ -45,7 +45,7 @@ export const SingIn = ({setUser}) => {
                             </Button>
                         </Form>
                 </Row>
-            </Container>
+            </>
     )
 }
 

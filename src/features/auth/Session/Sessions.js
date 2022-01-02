@@ -32,10 +32,7 @@ export const Sessions = () => {
         console.log("ANADIR");
         Client.places.newPlace('Valencia', 'vlc');
     }
-    const who = () => {
-        console.log("QUIEN SOY");
-        Client.session.getAccount(r => console.log(r));
-    }
+    
    
     return(
         <>

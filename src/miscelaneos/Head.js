@@ -26,7 +26,7 @@ export function Head() {
 
     return (
       <Navbar bg="light" expand={false}>
-            <Container fluid>
+            <Container >
                 <Navbar.Brand href="#">App</Navbar.Brand>
                 
                 <SearchBar />

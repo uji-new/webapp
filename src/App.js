@@ -1,29 +1,41 @@
 import React, { 
   useState, 
   useEffect,
+  useLayoutEffect,
   useRef } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {Layout} from './components/Layout';
 import Client from 'utils/Client'
-import {UserForm} from 'components/Form'
-
 
 export const AuthContext = React.createContext()
 
 export default function App(){
     const [user, setUser] = useState();
     const [servicios, setServicios] = useState({});
+    
 
     //const servicios = useRef({}) //memoizacion para ahorar renderizados  
+    //Client.session.loginAsGuest()
     
-    useEffect(() => {
+    //useEffect(() => {
+    //  console.log("hola")
+    //  async function xx() {
+    //    x ? await Client.session.getAccount().catch(r => r? Client.session.loginAsGuest():null):null
+    //  }   
+    //  console.log("adios")
+    //  xx()
+    //})
+
+    useEffect(() => {   
         let mounted = true;
         Client.session.getAccount()
           .then(r => {
             if(mounted) {
+              console.log('mail ' +r.mail)
               setUser(r.mail)
             }
-          }).catch(Client.session.loginAsGuest())
+          }).catch((r) => {
+            console.log(r)
+            r => r? Client.session.loginAsGuest():null})   
         return () => mounted = false;
     }, [])
 
