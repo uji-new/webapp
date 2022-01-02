@@ -1,5 +1,4 @@
 import React from "react";
-import './Events.css'
 import { Button, Card } from "react-bootstrap";
 
 //title date location author url image price
@@ -7,22 +6,20 @@ export const Event = (props) => {
     const { event } = props;
     return (
         <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src={event.image} />
-        <Card.Body>
-        <Card.Title>{event.title}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">{event.author}</Card.Subtitle>
-        <Card.Text>
-        {`date = ${event.date}`}                
-        <br />  
-        {`location = ${event.location}`}
-        <br />
-        {`author = ${event.author}` + '\n'}
-        <br />
-        {`price = ${event.price}` + '\n'}
-        </Card.Text>
-        <Button href={event.url} variant="primary">Go somewhere</Button>
-        </Card.Body>
-      </Card>
+            {event.image ? <Card.Img variant="top" src={event.image} /> : ''}
+            <Card.Body>
+                <Card.Title>{event.title}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{event.author}</Card.Subtitle>
+                <Card.Text>
+                    {new Date(event.date).toLocaleString()}
+                    <br />
+                    {event.location}
+                    <br />
+                    {event.price ? event.price.toLocaleString(undefined, {style: 'currency', currency: 'EUR'}) : 'No disponible'} 
+                </Card.Text>
+                <Button href={event.url} target="_blank" variant="primary">Reservar</Button>
+            </Card.Body>
+        </Card>
     )
 }
 

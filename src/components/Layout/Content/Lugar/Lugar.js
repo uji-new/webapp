@@ -33,7 +33,7 @@ export const Lugar = (props) => {
     const handleAddPlace = async e => {
         e.preventDefault();
         lugarRender.name ? (
-        await Client.location.addLocation(lugarRender.coords, '')
+        await Client.location.addLocation(lugarRender.name)
         .then(setLugaresApi(old => [lugarRender, ...old]))
         .catch(setLugaresApi(old => [lugarRender, ...old]))
         ):setLugar({})
@@ -94,18 +94,21 @@ export const Lugar = (props) => {
         {datosLugar['EVENTS'] ? ( 
         <>
             <h1> EVENTS </h1>
-            <Row xs={1} md={2} className="g-4">
-            {datosLugar['EVENTS'].map((e, idx) => <Event key={idx} event={e}/>)}
+            <Row xs={2} md={1} className="g-4">
+                {datosLugar['EVENTS'].map((e, idx) => <Event key={idx} event={e}/>)}
             </Row>
         </>
         ):null}
         
         
         {datosLugar['NEWS'] ? (
-            <>
+        <>
             <h1> NEWS </h1>
-            {datosLugar['NEWS'].map((e, idx) => <New key={idx} event={e}/>)}
-            </>
+
+            <Row xs={2} md={1} className="g-4">
+                {datosLugar['NEWS'].map((e, idx) => <New key={idx} event={e}/>)}
+            </Row>
+        </>
         ):null}
             
     </>

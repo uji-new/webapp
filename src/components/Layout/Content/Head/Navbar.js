@@ -13,6 +13,7 @@ import { Navbar,
   Offcanvas,
   Container
 } from "react-bootstrap";
+import "./Navbar.css";
 import { SearchBar } from "features";
 import { UserForm } from "components";
 import { AuthContext } from "App.js";
@@ -26,7 +27,7 @@ export const NavBar = (props) => {
         <Navbar
           bg="light"
           className="ml-auto navbar shadow-sm p-3 mb-5 bg-white rounded"
-          expand={false}
+          expand={false} sticky="top"
         >
           <Stack direction="horizontal" gap={3}>
               
