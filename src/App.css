@@ -13,6 +13,8 @@
     font-family: 'Nunito Sans', sans-serif;
     /*background: #fafafa;*/
     background-color: #f5f9fc;
+    overflow: auto;
+    -webkit-overflow-scrolling: auto;
   }
   
   h1 {
