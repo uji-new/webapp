@@ -11,7 +11,7 @@ export const New = (props) => {
                 <Card.Title>{event.title}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{event.author}</Card.Subtitle>
                 <Card.Text>{event.description}</Card.Text>
-                <Button href={event.url} variant="primary">Seguir leyendo</Button>
+                <Button href={event.url} target="_blank" variant="primary">Seguir leyendo</Button>
             </Card.Body>
         </Card>
     )

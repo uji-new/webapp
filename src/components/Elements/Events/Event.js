@@ -17,7 +17,7 @@ export const Event = (props) => {
                     <br />
                     {event.price ? event.price.toLocaleString(undefined, {style: 'currency', currency: 'EUR'}) : 'No disponible'} 
                 </Card.Text>
-                <Button href={event.url} variant="primary">Reservar</Button>
+                <Button href={event.url} target="_blank" variant="primary">Reservar</Button>
             </Card.Body>
         </Card>
     )
