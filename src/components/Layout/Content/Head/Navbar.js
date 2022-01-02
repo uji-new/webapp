@@ -26,7 +26,7 @@ export const NavBar = (props) => {
         <Navbar
           bg="light"
           className="ml-auto navbar shadow-sm p-3 mb-5 bg-white rounded"
-          expand={false}
+          expand={false} sticky="top"
         >
           <Stack direction="horizontal" gap={3}>
               
