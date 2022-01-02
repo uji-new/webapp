@@ -44,11 +44,11 @@ export const Lugar = (props) => {
         lugarRender.name ? (
         await Client.location.removeLocation(lugarRender.coords)
         .then( () => {
-            setLugar({})
+            setLugar(lugares[0] ? lugares[0]: {})
             setLugares(lugares.filter(item => item !== lugarRender))
         })
         .catch( () => {
-            setLugar({})
+            setLugar(lugares[0] ? lugares[0]: {})
             setLugares(lugares.filter(item => item !== lugarRender))
         })
         ):null

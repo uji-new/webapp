@@ -17,6 +17,8 @@ import { Weather } from 'components';
 import { BotonesServicios } from 'features'
 import Client from "utils/Client";
 import { Bienvenida } from "./Bienvenida";
+import { Historial } from "./Historial";
+
 import { Lugar } from "./Lugar";
 
 
@@ -36,8 +38,6 @@ export const Content = (props) => {
 
   const[lugarRender, setLugarRender] = useState({})
 
-  
-
   useEffect(() => {
     setLugarRender(lugar)
   },[lugar])
@@ -52,9 +52,14 @@ export const Content = (props) => {
       
       className={classNames("content", { "is-open": props.isOpen })}
       >
-      <NavBar toggle={props.toggle} setLugar={setLugar} setLugares={setLugares}/>
+    <NavBar 
+      toggle={props.toggle} 
+      setLugar={setLugar} 
+      setLugares={setLugares}
+      setLugarRender={setLugarRender}
+    />
     
-      {lugarRender.name ? <Lugar lugarRender={lugarRender} {...props}/>:<Bienvenida/>}
+    {lugarRender.name ? (lugarRender.name === 'historial' ? <Historial setLugaresApi={setLugaresApi} setLugar={setLugar}/>:<Lugar lugarRender={lugarRender}{...props}/>):<Bienvenida/>}
 
     </div>
   );

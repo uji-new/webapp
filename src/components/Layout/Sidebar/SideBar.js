@@ -16,6 +16,11 @@ import classNames from "classnames";
 
 export const SideBar = (props) => {
   const {lugares, setLugar, lugar, lugaresApi} = props
+
+  const handleHist = async e => {
+    e.preventDefault();
+    setLugarRender({name : 'historial'})
+  }
     return (
       <>
       <div className={classNames("sidebar", { "is-open": props.isOpen })}>
@@ -42,11 +47,14 @@ export const SideBar = (props) => {
                         </Button>
                         )
             })}
+            <br/>
+            <p className="ml-3">Historial Lugares</p>
+            <Button variant="dark" onClick={() => setLugar({name : 'historial'})}>
+                Ver Historial
+            </Button>
             
           </Nav>
-        </div>
-
-        
+        </div>    
       </div>
         
       </>

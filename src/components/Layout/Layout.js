@@ -31,7 +31,7 @@ export const Layout = () => {
       }).catch(setLugares([]))
     }
     if(mount) {
-      if(lugar.name){
+      if(lugar.coords){
         lugares.indexOf(lugar) < 0 ? setLugares(old => [lugar, ...old]):null
       }
     } else {

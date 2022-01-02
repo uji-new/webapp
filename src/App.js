@@ -30,7 +30,6 @@ export default function App(){
         Client.session.getAccount()
           .then(r => {
             if(mounted) {
-              console.log('mail ' +r.mail)
               setUser(r.mail)
             }
           }).catch((r) => {

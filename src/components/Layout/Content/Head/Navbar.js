@@ -36,7 +36,9 @@ export const NavBar = (props) => {
             
             <SearchBar setLugar={props.setLugar} setLugares={props.setLugares}/> 
 
-            <SessionOffCanvas placement={'end'} name={'end'} /> 
+            <SessionOffCanvas 
+              setLugarRender={props.setLugarRender}
+              placement={'end'} name={'end'} /> 
           </Stack>
           
         </Navbar>
@@ -50,6 +52,8 @@ const SessionOffCanvas = ({name, ...props}) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const {setLugarRender} = props
 
   return (
     <>
@@ -67,10 +71,6 @@ const SessionOffCanvas = ({name, ...props}) => {
             <>  
             <h2>Servicion</h2>
             <BotonesServicios.Cuenta/>
-            <br/>
-            <br/>
-            <h2>Historial</h2>
-
             <br/>
             <br/>
             <h2>Cerrar Session</h2>
