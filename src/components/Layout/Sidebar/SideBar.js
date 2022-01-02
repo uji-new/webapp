@@ -33,12 +33,12 @@ export const SideBar = (props) => {
           >
           <FontAwesomeIcon icon={faTimes} pull="right" size="xs" />
           </Button>
-          <h3> N.E.W {lugar.name} </h3>
+          <h3> N.E.W </h3>
         </div>
         
         <div>
           <Nav className="flex-column pt-2">
-            <p className="ml-3">Lugares Guardados</p>
+            <strong className="ml-3 sidebar-section">Ubicaciones</strong>
             
             {lugares.map( (l, index) => {
                 return (                    
@@ -48,7 +48,7 @@ export const SideBar = (props) => {
                         )
             })}
             <br/>
-            <p className="ml-3">Historial Lugares</p>
+            <strong className="ml-3 sidebar-section">Historial</strong>
             <Button variant="dark" onClick={() => setLugar({name : 'historial'})}>
                 Ver Historial
             </Button>
