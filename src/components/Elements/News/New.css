@@ -1,4 +1,4 @@
-.card-img-top, .news-card-button {
+.news-card .card-img-top, .news-card-button {
     transition: 0.2s;
 }
 
