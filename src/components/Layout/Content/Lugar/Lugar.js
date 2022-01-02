@@ -33,7 +33,7 @@ export const Lugar = (props) => {
     const handleAddPlace = async e => {
         e.preventDefault();
         lugarRender.name ? (
-        await Client.location.addLocation(lugarRender.coords, '')
+        await Client.location.addLocation(lugarRender.name)
         .then(setLugaresApi(old => [lugarRender, ...old]))
         .catch(setLugaresApi(old => [lugarRender, ...old]))
         ):setLugar({})
