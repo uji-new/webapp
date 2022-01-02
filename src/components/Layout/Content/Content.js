@@ -56,7 +56,6 @@ export const Content = (props) => {
       toggle={props.toggle} 
       setLugar={setLugar} 
       setLugares={setLugares}
-      setLugarRender={setLugarRender}
     />
     
     {lugarRender.name ? (lugarRender.name === 'historial' ? <Historial setLugaresApi={setLugaresApi} setLugar={setLugar}/>:<Lugar lugarRender={lugarRender}{...props}/>):<Bienvenida/>}

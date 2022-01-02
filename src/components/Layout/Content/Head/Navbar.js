@@ -37,7 +37,6 @@ export const NavBar = (props) => {
             <SearchBar setLugar={props.setLugar} setLugares={props.setLugares}/> 
 
             <SessionOffCanvas 
-              setLugarRender={props.setLugarRender}
               placement={'end'} name={'end'} /> 
           </Stack>
           
@@ -52,8 +51,6 @@ const SessionOffCanvas = ({name, ...props}) => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  const {setLugarRender} = props
 
   return (
     <>
