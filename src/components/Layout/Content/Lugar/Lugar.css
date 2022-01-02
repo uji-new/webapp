@@ -1,0 +1,34 @@
+#events, #news {
+    position: relative;
+    color: rgb(38, 38, 38);
+    font-family: "Averta", helvetica, arial, sans-serif;
+    font-size: 23px;
+    padding-bottom: 4px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+#events::before, #news::before {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    display: block;
+    width: 40px;
+    border-bottom: 4px solid rgb(197, 107, 255);
+    left: 50%;
+    margin-left: -20px;
+}
+
+.events-section, .news-section {
+    padding: 24px 0px;
+}
+.news-section {
+    border-top: 1px solid rgb(191, 191, 191);
+}
+
+.events-cards {
+    padding: 24px  0;
+}
+.news-cards {
+    padding: 24px 0 0;
+}

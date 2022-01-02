@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useContext} from "react";
-
+import './Lugar.css'
 import classNames from "classnames";
 
 import {  
@@ -93,21 +93,25 @@ export const Lugar = (props) => {
     
         {datosLugar['EVENTS'] ? ( 
         <>
-            <h1> EVENTS </h1>
-            <Row xs={2} md={1} className="g-4">
-                {datosLugar['EVENTS'].map((e, idx) => <Event key={idx} event={e}/>)}
-            </Row>
+            <section className="events-section" data-testid="events">
+                <h1 id="events"> EVENTS </h1>
+                <Row xs={2} md={1} className="events-cards g-4">
+                    {datosLugar['EVENTS'].map((e, idx) => <Event key={idx} event={e}/>)}
+                </Row>
+            </section>
         </>
         ):null}
         
         
         {datosLugar['NEWS'] ? (
         <>
-            <h1> NEWS </h1>
+            <section className="news-section" data-testid="news">
+                <h1 id="news"> NEWS </h1>
 
-            <Row xs={2} md={1} className="g-4">
-                {datosLugar['NEWS'].map((e, idx) => <New key={idx} event={e}/>)}
-            </Row>
+                <Row xs={2} md={1} className="news-cards g-4">
+                    {datosLugar['NEWS'].map((e, idx) => <New key={idx} event={e}/>)}
+                </Row>
+            </section>
         </>
         ):null}
             

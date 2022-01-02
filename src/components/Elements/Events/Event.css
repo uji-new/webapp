@@ -1,0 +1,24 @@
+.events-card {
+    margin: 0.8rem;
+    border: 0;
+    background-color: inherit;
+}
+.events-card:hover .card-img-top, .events-card:hover .events-card-button {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: 0.2s;
+}
+
+.events-card .card-img-top {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    border-radius: 0.25rem;
+}
+
+.row > * {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.events-card-button {
+    margin-bottom: 1rem;
+}

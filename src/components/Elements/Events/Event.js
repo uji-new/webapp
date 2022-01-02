@@ -1,11 +1,12 @@
 import React from "react";
+import './Event.css';
 import { Button, Card } from "react-bootstrap";
 
 //title date location author url image price
 export const Event = (props) => {
     const { event } = props;
     return (
-        <Card style={{ width: '18rem' }}>
+        <Card className="events-card" style={{ width: '18rem' }}>
             {event.image ? <Card.Img variant="top" src={event.image} /> : ''}
             <Card.Body>
                 <Card.Title>{event.title}</Card.Title>
@@ -17,7 +18,7 @@ export const Event = (props) => {
                     <br />
                     {event.price ? event.price.toLocaleString(undefined, {style: 'currency', currency: 'EUR'}) : 'No disponible'} 
                 </Card.Text>
-                <Button href={event.url} target="_blank" variant="primary">Reservar</Button>
+                <Button className="events-card-button" href={event.url} target="_blank" variant="primary">Reservar</Button>
             </Card.Body>
         </Card>
     )
