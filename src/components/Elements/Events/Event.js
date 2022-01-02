@@ -11,7 +11,7 @@ export const Event = (props) => {
                 <Card.Title>{event.title}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{event.author}</Card.Subtitle>
                 <Card.Text>
-                    {new Date(event.date).toLocaleString()}
+                    {new Date(event.date).toLocaleString(undefined, {dateStyle: 'short', timeStyle: 'short'})}
                     <br />
                     {event.location}
                     <br />
