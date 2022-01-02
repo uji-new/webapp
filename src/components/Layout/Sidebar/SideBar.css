@@ -2,6 +2,11 @@
       SIDEBAR STYLE
   ----------------------------------------------------- */
   .sidebar {
+    position: fixed;
+    
+    top: 0;
+    bottom: 0;
+  
     min-width: 250px;
     max-width: 250px;
     
@@ -12,14 +17,7 @@
   }
   
   .sidebar.is-open {
-    position: -webkit-sticky;
-    position: sticky;
-    
-    top: 0;
-    left: 0;
-
     margin-left: 0;
-    transition: .5s;
   }
   
   
