@@ -1,5 +1,5 @@
 .search-bar-dropdown {
-    width: 10em;
+  flex-grow: 2;
   }
   
   #results {
@@ -34,8 +34,4 @@
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
-  }
-  
-  #search-bar {
-    width: inherit;
   }

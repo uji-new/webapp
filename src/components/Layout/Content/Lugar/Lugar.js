@@ -94,7 +94,7 @@ export const Lugar = (props) => {
         {datosLugar['EVENTS'] ? ( 
         <>
             <h1> EVENTS </h1>
-            <Row xs={1} md={2} className="g-4">
+            <Row xs={2} md={1} className="g-4">
             {datosLugar['EVENTS'].map((e, idx) => <Event key={idx} event={e}/>)}
             </Row>
         </>
