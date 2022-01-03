@@ -58,14 +58,14 @@ export const SideBar = (props) => {
       <div>
           <Nav className="flex-column pt-2">
             
-            <strong className="ml-3 sidebar-section">Ubicaciones Temporales</strong>
+            <strong className="ml-3 sidebar-section">Busquedas</strong>
             
             {lugaresNoG.map( (l, index) => {
                 return (
                     <ButtonGroup key={l.coords+'A'} aria-label="Basic example">
                       <Button variant="secondary" key={index+'f'} onClick={() => setLugar(l)} >{l.alias}</Button>
                       <Button  sm={1} size="sm" variant="outline-secondary" key={index+"a"} onClick={(e) => handleGuardar(e,l)} >
-                        V
+                        +
                       </Button>
                       <Button  sm={1} size="sm" variant="outline-secondary" key={index+"b"} onClick={(e) => handleEliminar(e,l)} >
                         X
@@ -74,7 +74,7 @@ export const SideBar = (props) => {
                         )
             })}
            
-            <strong className="ml-3 sidebar-section">Ubicaciones Guardados</strong>
+            <strong className="ml-3 sidebar-section">Ubicaciones</strong>
             
             {lugares.map( (l, index) => {
                 return (

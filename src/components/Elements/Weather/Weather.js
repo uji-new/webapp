@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import './Weather.css'
 import {Card, Button} from "react-bootstrap";
 
-var days = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
 //icon description temp rain wind
 export const Weather = (props) => {
     const {event, lugar} = props;
