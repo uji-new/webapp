@@ -38,7 +38,10 @@ export const SearchBar = (props) => {
       if(code === 13) { 
           const fetchBuscarLugar = async () => {
               await Client.query.query(value).then( r => {
-              r.length > 0 ? props.setLugar(r[0]):null;
+              r.length > 0 ? ( 
+                props.setLugar(r[0]),
+                props.setLugaresNoG((old) => [r[0], ...old])
+                ):null;
             })
           }
           value.length > 0 ? fetchBuscarLugar():alert('No Data')
@@ -71,6 +74,7 @@ export const SearchBar = (props) => {
                   setValue(option.name);
                   console.log(option)
                   props.setLugar(option)
+                  props.setLugaresNoG((old) => [option, ...old])
                 }}
                 className="list-group-item list-group-item-action"
               >

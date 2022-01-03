@@ -35,7 +35,11 @@ export const NavBar = (props) => {
               <FontAwesomeIcon icon={faAlignLeft} />
             </Button>
             
-            <SearchBar setLugar={props.setLugar} setLugares={props.setLugares}/> 
+            <SearchBar 
+              setLugar={props.setLugar} 
+              setLugares={props.setLugares}
+              setLugaresNoG={props.setLugaresNoG}
+            /> 
 
             <SessionOffCanvas 
               placement={'end'} name={'end'} /> 

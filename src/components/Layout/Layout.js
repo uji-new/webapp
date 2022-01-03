@@ -18,8 +18,7 @@ export const Layout = () => {
   const [datosLugar, setDatosLugar] = useState({})
 
   const [lugares, setLugares] = useState([])
-  const [lugaresApi, setLugaresApi] = useState([])
-  const [mount, setMount] = useState(false)
+  const [lugaresNoG, setLugaresNoG] = useState([])
   
 
   useEffect(() => {
@@ -27,18 +26,9 @@ export const Layout = () => {
       await Client.location.getLocations()
         .then(r => {
           setLugares(r)
-          setLugaresApi(r)
       }).catch(setLugares([]))
     }
-    if(mount) {
-      if(lugar.coords){
-        lugares.indexOf(lugar) < 0 ? setLugares(old => [lugar, ...old]):null
-      }
-    } else {
-      setMount(true)
-      fetchLugares()
-    }
-
+    fetchLugares()
   }, [lugar, user])
 
   useEffect(() => {
@@ -52,7 +42,7 @@ export const Layout = () => {
             serviciosLugarAux[i.service.type] = {...i.service, enabled:i.enabled}
             datosLugarAux[i.service.type] = i.data
           }) 
-        
+        console.log("fetch servicios lugar")
         setServiciosLugar(serviciosLugarAux)
         setDatosLugar(datosLugarAux)
       })):null
@@ -85,13 +75,14 @@ export const Layout = () => {
   return(
       <div className="App wrapper">
             <SideBar toggle={toggle}  isOpen={isOpen} 
-                                      lugar={lugar} lugares={lugares} setLugar={setLugar}
-                                      lugaresApi={lugaresApi}
+                                      lugar={lugar} setLugar={setLugar}
+                                      lugares={lugares}
+                                      lugaresNoG={lugaresNoG} setLugaresNoG={setLugaresNoG}
                                       />
             <Content toggle={toggle}  isOpen={isOpen} 
                                       lugar={lugar} setLugar={setLugar}
                                       lugares={lugares} setLugares={setLugares}
-                                      setLugaresApi={setLugaresApi}
+                                      setLugaresNoG={setLugaresNoG}
                                       serviciosLugar={serviciosLugar} setServiciosLugar={setServiciosLugar}
                                       datosLugar={datosLugar} setDatosLugar={setDatosLugar}
                                       />              

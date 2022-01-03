@@ -20,7 +20,6 @@ export default function App(){
               setUser(r.mail)
             }
           }).catch((r) => { 
-            console.log(r)
             Client.session.loginAsGuest()
           })
         return () => mounted = false;

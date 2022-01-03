@@ -1,10 +1,12 @@
 import React, {useEffect, useState, useContext} from "react";
 
+import './Lugar.css'
 import classNames from "classnames";
 
 import {  
   Button,
-  Row
+  Row,
+  Form
 } from "react-bootstrap";
 
 import { Container } from "react-bootstrap";
@@ -15,6 +17,8 @@ import { New } from 'components';
 import { Weather } from 'components';
 import { BotonesServicios } from 'features'
 import Client from "utils/Client";
+import { Render } from "features";
+
 
 
 export const Lugar = (props) => {  
@@ -28,48 +32,19 @@ export const Lugar = (props) => {
         setServiciosLugar,
         datosLugar,
         setDatosLugar,
-        lugarRender } = props
-        
-    const handleAddPlace = async e => {
-        e.preventDefault();
-        lugarRender.name ? (
-        await Client.location.addLocation(lugarRender.name)
-        .then(setLugaresApi(old => [lugarRender, ...old]))
-        .catch(setLugaresApi(old => [lugarRender, ...old]))
-        ):setLugar({})
-    }
-
-    const handleDelPlace = async e => {
-        e.preventDefault();
-        lugarRender.name ? (
-        await Client.location.removeLocation(lugarRender.coords)
-        .then( () => {
-            setLugar(lugares[0] ? lugares[0]: {})
-            setLugares(lugares.filter(item => item !== lugarRender))
-        })
-        .catch( () => {
-            setLugar(lugares[0] ? lugares[0]: {})
-            setLugares(lugares.filter(item => item !== lugarRender))
-        })
-        ):null
-    }
-
+        lugarRender } = props    
+    
+    const [w,sW] = useState(true)
+    
+        useEffect(() => {
+            serviciosLugar['WEATHER'] ? (
+            sW(serviciosLugar['WEATHER'].enabled),
+            console.log(w) 
+            ):console.log("malament")
+        }, [])     
     return (
-        <>    
+        <>   
         <h1> {lugar.name} </h1>
-        
-        <br/>
-        <br/>
-
-        {lugarRender.name ? <Button onClick={handleAddPlace}>guardar lugar</Button>: null}
-        
-        {!lugares.every((i) => i.coords !== lugarRender.coords) ? (
-            <Button onClick={handleDelPlace}>Eliminar lugar</Button>
-        ):null}
-
-        <br/>
-        <br/>
-
         {lugarRender.coords ? (
             <>
             <BotonesServicios.Lugar 
@@ -80,13 +55,20 @@ export const Lugar = (props) => {
             </>
             ):null}
         
-        <br/>
-        <br/>
-        
-        
         {datosLugar['WEATHER'] ? (
         <>
-            <h1> WEATHER </h1>
+            
+            <h1> {serviciosLugar['WEATHER'].name} </h1>
+            <Form>
+            <Form.Check 
+                type="switch"
+                id="custom-switch"
+                size='lg'
+                checked={w}
+                isValid={true}
+                onChange={() => sW((old) => !old )}
+            />
+        </Form>
             <Weather lugar={lugarRender} event={datosLugar['WEATHER']}/>
         </>
         ):null}

@@ -41,7 +41,7 @@ export const Historial = (props) => {
                             <td>{<Button variant="success" onClick={() => {
                                 Client.history.restoreLocation(l.coords)
                                 setLugar(l)
-                                setLugaresApi((old) => [l, ...old])
+                                
                             }}> X </Button>}</td>
                             <td>{<Button variant="danger" onClick={() => Client.history.removeLocation(l.coords)}> X </Button>}</td>
                         </tr>

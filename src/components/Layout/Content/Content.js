@@ -31,6 +31,7 @@ export const Content = (props) => {
     setLugar, 
     setLugares,
     setLugaresApi,
+    setLugaresNoG,
     serviciosLugar, 
     setServiciosLugar,
     datosLugar,
@@ -46,6 +47,7 @@ export const Content = (props) => {
     setLugarRender({})
   },[user])
 
+  
 
   return (
     <div className='content'
@@ -56,6 +58,7 @@ export const Content = (props) => {
       toggle={props.toggle} 
       setLugar={setLugar} 
       setLugares={setLugares}
+      setLugaresNoG={setLugaresNoG}
     />
     
     {lugarRender.name ? (lugarRender.name === 'historial' ? <Historial setLugaresApi={setLugaresApi} setLugar={setLugar}/>:<Lugar lugarRender={lugarRender}{...props}/>):<Bienvenida/>}
