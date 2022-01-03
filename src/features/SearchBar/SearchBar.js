@@ -18,7 +18,6 @@ export const SearchBar = (props) => {
     useEffect(() => {
       inputRef.current.addEventListener('click', (event) => {
         event.stopPropagation();
-        console.log(options)
         ulRef.current.style.display = 'flex';
       });
       document.addEventListener('click', (event) => {
@@ -52,8 +51,10 @@ export const SearchBar = (props) => {
         ):(
           setLugar(lugar),
           setLugaresNoG((old) => {
+            console.log(old)
             let i = []
             old.every((x) => x.coords !== lugar.coords) ? i = [lugar, ...old]:i=[...old] 
+            console.log(i)
             return i
           })
         )

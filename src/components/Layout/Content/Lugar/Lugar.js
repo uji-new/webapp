@@ -13,6 +13,7 @@ import { Event } from 'components';
 import { New } from 'components';
 import { Weather } from 'components';
 import Client from "utils/Client";
+import { ModalService } from 'features'
 
 export const Lugar = (props) => {  
     const { 
@@ -26,7 +27,11 @@ export const Lugar = (props) => {
         datosLugar,
         setDatosLugar,
         setActializarServicios,
-        lugarRender } = props    
+        lugarRender } = props  
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     
     const [w,sW] = useState('')
     const [e,sE] = useState('')
@@ -90,6 +95,10 @@ export const Lugar = (props) => {
     
     return (
         <>
+        <Button variant="primary" onClick={handleShow}>
+            Launch demo modal
+        </Button>
+        <ModalService show={show} onHide={handleClose}/>
         {
         //NOMBRE
         }
