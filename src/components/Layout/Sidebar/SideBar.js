@@ -53,6 +53,7 @@ export const SideBar = (props) => {
           <FontAwesomeIcon icon={faTimes} pull="right" size="xs" />
           </Button>
           <h3> N.E.W {lugar.alias} </h3>
+          <h3> N.E.W </h3>
         </div>
         
         <div>
@@ -69,6 +70,8 @@ export const SideBar = (props) => {
             })}
            
             <p className="ml-3">Ubicaciones Guardados</p> 
+            <strong className="ml-3 sidebar-section">Ubicaciones</strong>
+            
             {lugares.map( (l, index) => {
                 return (
                       <ButtonGroup key={l.coords+'B'}aria-label="Basic example">
@@ -78,8 +81,8 @@ export const SideBar = (props) => {
 
                         )
             })}
-      
-            <p className="ml-3">Historial Ubicaciones</p>
+            <br/>
+            <strong className="ml-3 sidebar-section">Historial</strong>
             <Button variant="dark" onClick={() => setLugar({name : 'historial'})}>
                 Ver Historial
             </Button>

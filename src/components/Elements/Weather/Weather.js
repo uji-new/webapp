@@ -3,24 +3,6 @@ import React, { Component } from 'react';
 import './Weather.css'
 import {Card, Button} from "react-bootstrap";
 
-var today = new Date();
-var dd = String(today.getDate()).padStart(2, "0");
-var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-var months = [
-"Enero",
-"Febrero",
-"Marzo",
-"Abril",
-"Mayo",
-"Junio",
-"Julio",
-"Agosto",
-"Septiembre",
-"Octubre",
-"Noviembre",
-"Diciembre",
-];
-
 var days = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
 //icon description temp rain wind
 export const Weather = (props) => {
@@ -29,14 +11,14 @@ export const Weather = (props) => {
         <div className="widget">            
             <div className="left-panel panel">
                 <div className="date">
-                    {days[today.getDay()]} {today.getDate()} de {months[mm - 1]}
+                    {new Date().toLocaleDateString(undefined, {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}
                 </div>
                 <div className="city">
                     {lugar.name}
                 </div>
                 <div className="temp">
                    <img src={event.icon} alt="" width="90"/>
-                   {event.temp.toLocaleString(undefined, {maximumFractionDigits: 1})} &deg;C
+                   {event.temp.toLocaleString(undefined, {maximumFractionDigits: 1, style: 'unit', unit: 'celsius'})}
                 </div>
             </div>           
         </div>
