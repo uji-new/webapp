@@ -34,9 +34,9 @@ export const Lugar = (props) => {
         setDatosLugar,
         lugarRender } = props    
     
-    const [w,sW] = useState(true)
-    const [e,sE] = useState(true)
-    const [n,sN] = useState(true)
+    const [w,sW] = useState()
+    const [e,sE] = useState()
+    const [n,sN] = useState()
 
     
     useEffect(() => {
@@ -45,29 +45,31 @@ export const Lugar = (props) => {
         serviciosLugar['NEWS'] ? sN(serviciosLugar['NEWS'].enabled):console.log("malament")
     }, [serviciosLugar])   
 
-    const handleEventInvertir = async(e, tipo) => {
-        e.preventDefault()
+    const handleEventInvertir = async(event, tipo) => {
+        event.preventDefault()
         switch (tipo) {
             case 'WEATHER':
-                sW((old) => !old)
-                !w ? (
+                w ? (
                     Client.service.disableServiceForLocation(lugar.coords, tipo) 
                     ):Client.service.enableServiceForLocation(lugar.coords, tipo)              
-            break;
+                sW((old) => !old)
+                break;
             case 'EVENTS':
-                console.log('hola')
+                console.log(e)
+                e ? (
+                    Client.service.disableServiceForLocation(lugar.coords, tipo)
+                    ):(
+                        Client.service.enableServiceForLocation(lugar.coords, tipo)
+                    )       
                 sE((old) => !old) 
-                !e ? (
-                    Client.service.disableServiceForLocation(lugar.coords, tipo) 
-                    ):Client.service.enableServiceForLocation(lugar.coords, tipo)        
-            break;
+                break;
             case 'NEWS':
-                sN((old) => !old)
-                !n ? (
+                n ? (
                     Client.service.disableServiceForLocation(lugar.coords, tipo) 
                     ):Client.service.enableServiceForLocation(lugar.coords, tipo)  
-            break;
-        
+                sN((old) => !old)
+
+                break;
             default:
                 break;
         }
@@ -120,7 +122,7 @@ export const Lugar = (props) => {
                         id="custom-switch"
                         size='lg'
                         checked={e}
-                        onChange={(e) => handleEventInvertir(e, 'EVENTS')}
+                        onChange={(event) => handleEventInvertir(event, 'EVENTS')}
                     />
                     </Form>
                 </>

@@ -64,10 +64,10 @@ export const SideBar = (props) => {
                 return (
                     <ButtonGroup key={l.coords+'A'} aria-label="Basic example">
                       <Button variant="secondary" key={index+'f'} onClick={() => setLugar(l)} >{l.name}</Button>
-                      <Button  xs={0} size="sm" variant="outline-secondary" key={index+"a"} onClick={(e) => handleGuardar(e,l)} >
+                      <Button  sm={1} size="sm" variant="outline-secondary" key={index+"a"} onClick={(e) => handleGuardar(e,l)} >
                         V
                       </Button>
-                      <Button  xs={0} size="sm" variant="outline-secondary" key={index+"b"} onClick={(e) => handleEliminar(e,l)} >
+                      <Button  sm={1} size="sm" variant="outline-secondary" key={index+"b"} onClick={(e) => handleEliminar(e,l)} >
                         X
                       </Button>
                     </ButtonGroup>                                        
