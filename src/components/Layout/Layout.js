@@ -37,11 +37,9 @@ export const Layout = () => {
       lugar.coords ? (
         await Client.service.getServicesForLocation(lugar.coords)
         .then(s => {
-          console.log(s)
           let serviciosLugarAux = {}
           let datosLugarAux = {}
           s.map(i => {
-            console.log(i)
             serviciosLugarAux[i.service.type] = {...i.service, enabled:i.enabled}
             datosLugarAux[i.service.type] = i.data
           }) 

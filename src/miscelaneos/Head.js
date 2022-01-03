@@ -17,7 +17,6 @@ export function Head() {
         Client.session.getSession()
           .then(r => {
             if(mounted) {
-                console.log(r.mail);
               setUser(r.mail)
             }
           })

@@ -136,7 +136,6 @@ class SessionClient extends BaseClient {
     }
 
     loginAsGuest() {
-        console.log('invitado')
         return this._setupRequest(METHOD.POST, ['guest']);
     }
 

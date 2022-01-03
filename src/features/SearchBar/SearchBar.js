@@ -10,9 +10,15 @@ export const SearchBar = (props) => {
     const [options, setOptions] = useState([]) //recomendaciones de la api
     const [idTime, setIdTime] = useState('')
 
+    const {
+      lugares,
+      setLugar,
+      setLugaresNoG
+    } = props
     useEffect(() => {
       inputRef.current.addEventListener('click', (event) => {
         event.stopPropagation();
+        console.log(options)
         ulRef.current.style.display = 'flex';
       });
       document.addEventListener('click', (event) => {
@@ -24,15 +30,33 @@ export const SearchBar = (props) => {
       Client.query.query(value).then(setOptions)
     }
 
-
     const onInputChange = (event) => {
       event.preventDefault()
-      console.log("hola")
       setValue(event.target.value)
     
       value.length > 0 ? setIdTime(setTimeout(rellenarOpciones, 100)):setOptions([]);
       clearTimeout(idTime);
 
+    }
+
+    const handleGuardar = (e, lugar) => {
+      e.preventDefault() 
+      setValue(lugar.name);
+      setLugar(lugar)
+      
+      let lugarAux = lugares.filter((x) => x.coords === lugar.coords)
+      console.log(lugarAux)
+      
+      lugarAux.length ? (
+        setLugar(lugarAux[0])
+        ):(
+          setLugar(lugar),
+          setLugaresNoG((old) => {
+            let i = []
+            old.every((x) => x.coords !== lugar.coords) ? i = [lugar, ...old]:i=[...old] 
+            return i
+          })
+        )
     }
     
     const enterPress = (event) => {
@@ -41,14 +65,14 @@ export const SearchBar = (props) => {
           const fetchBuscarLugar = async () => {
               await Client.query.query(value).then( r => {
               r.length > 0 ? ( 
-                props.setLugar(r[0]),
-                props.setLugaresNoG((old) => [r[0], ...old])
+                handleGuardar(event, r[0])
                 ):null;
             })
           }
           value.length > 1 ? fetchBuscarLugar():alert('No Data')
       } 
     }
+    
     return (
       <div className="search-bar-dropdown">
         <input
@@ -72,11 +96,7 @@ export const SearchBar = (props) => {
               <button
                 type="button"
                 key={index}
-                onClick={(e) => {
-                  setValue(option.name);
-                  props.setLugar(option)
-                  props.setLugaresNoG((old) => [option, ...old])
-                }}
+                onClick={(e) => handleGuardar(e, option)}
                 className="list-group-item list-group-item-action"
               >
                 {option.name}

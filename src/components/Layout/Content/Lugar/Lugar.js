@@ -9,17 +9,10 @@ import {
   Form
 } from "react-bootstrap";
 
-import { Container } from "react-bootstrap";
-import { AuthContext } from "App.js";
-import { NavBar} from "components";
 import { Event } from 'components';
 import { New } from 'components';
 import { Weather } from 'components';
-import { BotonesServicios } from 'features'
 import Client from "utils/Client";
-import { Render } from "features";
-
-
 
 export const Lugar = (props) => {  
     const { 
@@ -38,8 +31,14 @@ export const Lugar = (props) => {
     const [w,sW] = useState('')
     const [e,sE] = useState('')
     const [n,sN] = useState('')
-
     
+    const [b, sB] = useState(false)
+    const [alias, setAlias] = useState('')
+    
+    useEffect(() => {
+        lugar.alias ? setAlias(lugar.alias):null   
+    },[lugar]) 
+
     useEffect(() => {
         serviciosLugar['WEATHER'] ? sW(serviciosLugar['WEATHER'].enabled):null,
         serviciosLugar['EVENTS'] ? sE(serviciosLugar['EVENTS'].enabled):null,
@@ -57,7 +56,6 @@ export const Lugar = (props) => {
                 sW((old) => !old)
                 break;
             case 'EVENTS':
-                console.log(e)
                 e ? (
                     Client.service.disableServiceForLocation(lugar.coords, tipo)
                     ):(
@@ -76,14 +74,35 @@ export const Lugar = (props) => {
         }
 
     }
+    const hadleActualizarAlias = async(event) => {
+        event.preventDefault()
+        
+        b ? Client.location.updateLocation(lugar.coords, alias):console.log("mostrar")
+        setLugar((old) => {
+            let x = {...old}
+            console.log(old)
+            x.alias = alias
+            console.log(x)
+            return x
+        })
+        sB((old) => !old)
+    }
     
     return (
         <>
         {
         //NOMBRE
         }
-        <h1> {lugar.name} </h1>     
-        
+        <>
+            <h1> {!b ? alias:(
+            <input
+                onChange={(e) => setAlias(e.target.value)}
+                value={alias}
+            />) 
+            } </h1>  
+            {!lugares.every((l) => l.coords !== lugar.coords) ? <Button onClick={(e) => hadleActualizarAlias(e)}></Button>:null
+            }
+        </>
         {
         //WEATHER
         }

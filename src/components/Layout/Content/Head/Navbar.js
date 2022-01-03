@@ -39,6 +39,7 @@ export const NavBar = (props) => {
               setLugar={props.setLugar} 
               setLugares={props.setLugares}
               setLugaresNoG={props.setLugaresNoG}
+              lugares={props.lugares}
             /> 
 
             <SessionOffCanvas 

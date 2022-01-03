@@ -63,7 +63,7 @@ export const SideBar = (props) => {
             {lugaresNoG.map( (l, index) => {
                 return (
                     <ButtonGroup key={l.coords+'A'} aria-label="Basic example">
-                      <Button variant="secondary" key={index+'f'} onClick={() => setLugar(l)} >{l.name}</Button>
+                      <Button variant="secondary" key={index+'f'} onClick={() => setLugar(l)} >{l.alias}</Button>
                       <Button  sm={1} size="sm" variant="outline-secondary" key={index+"a"} onClick={(e) => handleGuardar(e,l)} >
                         V
                       </Button>
@@ -79,7 +79,7 @@ export const SideBar = (props) => {
             {lugares.map( (l, index) => {
                 return (
                       <ButtonGroup key={l.coords+'B'}aria-label="Basic example">
-                        <Button variant="primary" key={index+'q'} onClick={() => setLugar(l)} >{l.name}</Button>
+                        <Button variant="primary" key={index+'q'} onClick={() => setLugar(l)} >{l.alias}</Button>
                         <Button variant="outline-primary" key={index+'z'} onClick={(e) => handleEliminarGuardado(e,l)} >
                           X
                         </Button>
