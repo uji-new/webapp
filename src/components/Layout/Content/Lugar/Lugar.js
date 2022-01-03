@@ -115,79 +115,62 @@ export const Lugar = (props) => {
         {
         //WEATHER
         }
-        <section className="weather-section" data-testid="weather">
+        <section className="service-section weather-section" data-testid="weather">
             { serviciosLugar['WEATHER'] ? (
-                    <>
-                        <h1 id="weather"> {serviciosLugar['WEATHER'].name} </h1>
-                        <Form.Check 
-                            type="switch"
-                            id="custom-switch"
-                            size='lg'
-                            checked={w}
-                            onChange={(e) => handleEventInvertir(e, 'WEATHER')}
-                        />
-                    </>
-                ):null}
+                <>
+                    <Form.Switch
+                        size='lg'
+                        checked={w}
+                        onChange={(e) => handleEventInvertir(e, 'WEATHER')}/>
+                    <h1 id="weather">{serviciosLugar['WEATHER'].name}</h1>
+                    {datosLugar['WEATHER'] && w ? (
+                        <Weather lugar={lugarRender} event={datosLugar['WEATHER']}/>
+                    ):null}
+                </>
+            ) : null}
             
-            {datosLugar['WEATHER'] && w ? (
-            <> 
-                <Weather lugar={lugarRender} event={datosLugar['WEATHER']}/>
-            </>
-            ):null}
+
         </section>
 
         {
         //EVENTS
         }
-        <section className="events-section" data-testid="events">
+        <section className="service-section events-section" data-testid="events">
             { serviciosLugar['EVENTS'] ? (
                 <>
-                    <h1 id="events"> {serviciosLugar['EVENTS'].name} </h1>
-                    <Form>
-                    <Form.Check 
-                        type="switch"
-                        id="custom-switch"
+                    <Form.Switch 
                         size='lg'
                         checked={e}
-                        onChange={(event) => handleEventInvertir(event, 'EVENTS')}
-                    />
-                    </Form>
+                        onChange={(event) => handleEventInvertir(event, 'EVENTS')}/>
+                    <h1 id="events"> {serviciosLugar['EVENTS'].name}</h1>
+                    {datosLugar['EVENTS'] && e ? ( 
+                        <Row xs={2} md={1} className="events-cards g-4">
+                            {datosLugar['EVENTS'].map((e, idx) => <Event key={idx} event={e}/>)}
+                        </Row>
+                    ):null}
                 </>
                 ):null}
-            {datosLugar['EVENTS'] && e ? ( 
-            <>
-                <Row xs={2} md={1} className="events-cards g-4">
-                    {datosLugar['EVENTS'].map((e, idx) => <Event key={idx} event={e}/>)}
-                </Row>
-            </>
-            ):null}
         </section> 
         
         {
         //NEWS
         }
-        <section className="news-section" data-testid="news">
+        <section className="service-section news-section" data-testid="news">
             { serviciosLugar['NEWS'] ? (
                     <>
-                        <h1 id="news"> {serviciosLugar['NEWS'].name} </h1>
-                        <Form>
-                        <Form.Check 
-                            type="switch"
-                            id="custom-switch"
+                        <Form.Switch 
                             size='lg'
                             checked={n}
                             onChange={(e) => handleEventInvertir(e, 'NEWS')}
                         />
-                        </Form>
+                        <h1 id="news">{serviciosLugar['NEWS'].name}</h1>
+                        {datosLugar['NEWS'] && n ? (
+                            <Row xs={2} md={1} className="news-cards g-4">
+                                {datosLugar['NEWS'].map((e, idx) => <New key={idx} event={e}/>)}
+                            </Row>
+                        ):null}
                     </>
                 ):null}
-            {datosLugar['NEWS'] && n ? (
-            <>
-                <Row xs={2} md={1} className="news-cards g-4">
-                    {datosLugar['NEWS'].map((e, idx) => <New key={idx} event={e}/>)}
-                </Row>
-            </>
-            ):null}
 
         </section>        
     </>

@@ -1,14 +1,20 @@
-#events, #news, #weather {
+.service-section h1 {
     position: relative;
     color: rgb(38, 38, 38);
     font-family: "Averta", helvetica, arial, sans-serif;
     font-size: 23px;
-    padding-bottom: 4px;
+    margin-bottom: 2em;
     font-weight: 900;
     text-transform: uppercase;
 }
 
-#events::before, #news::before , #weather::before {
+.service-section .form-switch input {
+    position: absolute;
+    right: 1rem;
+    margin-top: 1rem;
+}
+
+.service-section h1::before {
     content: "";
     position: absolute;
     bottom: 0px;
@@ -16,19 +22,10 @@
     width: 40px;
     border-bottom: 4px solid rgb(197, 107, 255);
     left: 50%;
-    margin-left: -20px;
+    transform: translateX(-50%);
 }
 
-.events-section, .news-section {
-    padding: 24px 0px;
-}
-.news-section {
-    border-top: 1px solid rgb(191, 191, 191);
-}
-
-.events-cards {
-    padding: 24px  0;
-}
-.news-cards {
-    padding: 24px 0 0;
+.service-section {
+    border-top: 1px solid rgba(191, 191, 191, 0.2);
+    margin-top: 24px;
 }
