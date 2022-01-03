@@ -26,9 +26,11 @@ export const SearchBar = (props) => {
 
 
     const onInputChange = (event) => {
+      event.preventDefault()
+      console.log("hola")
       setValue(event.target.value)
     
-      value.length > 0 ? setIdTime(setTimeout(rellenarOpciones, 200)):null;
+      value.length > 0 ? setIdTime(setTimeout(rellenarOpciones, 100)):setOptions([]);
       clearTimeout(idTime);
 
     }
@@ -44,7 +46,7 @@ export const SearchBar = (props) => {
                 ):null;
             })
           }
-          value.length > 0 ? fetchBuscarLugar():alert('No Data')
+          value.length > 1 ? fetchBuscarLugar():alert('No Data')
       } 
     }
     return (
@@ -72,7 +74,6 @@ export const SearchBar = (props) => {
                 key={index}
                 onClick={(e) => {
                   setValue(option.name);
-                  console.log(option)
                   props.setLugar(option)
                   props.setLugaresNoG((old) => [option, ...old])
                 }}

@@ -35,6 +35,7 @@ export const Content = (props) => {
     serviciosLugar, 
     setServiciosLugar,
     datosLugar,
+    setActializarServicios,
     setDatosLugar } = props
 
   const[lugarRender, setLugarRender] = useState({})

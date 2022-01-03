@@ -18,7 +18,7 @@ import { SearchBar } from "features";
 import { UserForm } from "components";
 import { AuthContext } from "App.js";
 import { LogOut } from "components/Form/LogOut";
-import {BotonesServicios} from "features";
+import { BotonesServiciosCuenta } from "features";
 
 
 export const NavBar = (props) => {
@@ -71,12 +71,12 @@ const SessionOffCanvas = ({name, ...props}) => {
           {!user ? <UserForm setUser={setUser}/>
           : (
             <>  
-            <h2>Servicion</h2>
-            <BotonesServicios.Cuenta/>
-            <br/>
-            <br/>
-            <h2>Cerrar Session</h2>
-            <LogOut setUser={setUser}/>
+              <h2>Servicion</h2>
+              <BotonesServiciosCuenta/>
+              <br/>
+              <br/>
+              <h2>Cerrar Session</h2>
+              <LogOut setUser={setUser}/>
             </>
           )}
         </Offcanvas.Body>

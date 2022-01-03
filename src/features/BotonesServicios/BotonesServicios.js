@@ -14,24 +14,11 @@ import {
 import { AuthContext } from "App.js";
 import Client from "utils/Client";
 
-const dominio = {
-  USUARIO: 'USUARIO',
-  CUENTA: 'CUENTA'
-}
-
-
-
-export const BotonesServicios = ({children}) => {
-  return (
-    ''
-  )
-}
-
 //por ahora codigo repetido pero en un futuro
 //supongo que los botones seran c.u distinto
-export const Cuenta = () => {
+export const BotonesServiciosCuenta = () => {
   const { servicios, setServicios } = React.useContext(AuthContext);
-
+  
   const handleButton = (event) => {
     event.preventDefault()
     const {value} = event.target;
@@ -40,11 +27,10 @@ export const Cuenta = () => {
     estado ? (
       Client.service.disableService(value)
       ):Client.service.enableService(value)
-  
-    //un poco cutre creo q habra alguna manera de hacer padando una funcion al setServicios
+          
     let auxServicios = {...servicios}
     auxServicios[value].enabled = !auxServicios[value].enabled
-    setServicios(auxServicios)
+    setServicios(auxServicios) 
   }
   
   return(
@@ -64,43 +50,3 @@ export const Cuenta = () => {
     </>
   )
 }
-
-export const Lugar = (props) => {
-  const { serviosLugar, lugar, setServiciosLugar} = props
-
-  const handleButton = (event) => {
-    event.preventDefault()
-    const {value} = event.target;
-    const estado = serviosLugar[value].enabled;
-    
-    estado ? (
-      Client.service.disableServiceForLocation(lugar.coords, value) 
-      ):Client.service.enableServiceForLocation(lugar.coords, value)
-  
-    //un poco cutre creo q habra alguna manera de hacer padando una funcion al setServicios
-    let auxServicios = {...serviosLugar}
-    auxServicios[value].enabled = !auxServicios[value].enabled
-    setServiciosLugar(auxServicios)
-  }
-  
-
-  return(
-    <>
-      <ButtonGroup>
-        {Object.keys(serviosLugar).map((radio, idx) => (
-          <Button
-            key={radio}
-            variant={serviosLugar[radio].enabled ? "success":"secondary"}
-            onClick={handleButton}
-            value={radio} 
-          >
-            {radio}
-          </Button>
-        ))}
-      </ButtonGroup>
-    </>
-  )
-}
-
-BotonesServicios.Lugar = Lugar
-BotonesServicios.Cuenta = Cuenta

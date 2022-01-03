@@ -1,1 +1,1 @@
-export { BotonesServicios } from './BotonesServicios'
+export { BotonesServiciosCuenta } from './BotonesServicios'

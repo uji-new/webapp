@@ -32,21 +32,23 @@ export const Lugar = (props) => {
         setServiciosLugar,
         datosLugar,
         setDatosLugar,
+        setActializarServicios,
         lugarRender } = props    
     
-    const [w,sW] = useState()
-    const [e,sE] = useState()
-    const [n,sN] = useState()
+    const [w,sW] = useState('')
+    const [e,sE] = useState('')
+    const [n,sN] = useState('')
 
     
     useEffect(() => {
-        serviciosLugar['WEATHER'] ? sW(serviciosLugar['WEATHER'].enabled):console.log("malament"),
-        serviciosLugar['EVENTS'] ? sE(serviciosLugar['EVENTS'].enabled):console.log("malament"),
-        serviciosLugar['NEWS'] ? sN(serviciosLugar['NEWS'].enabled):console.log("malament")
+        serviciosLugar['WEATHER'] ? sW(serviciosLugar['WEATHER'].enabled):null,
+        serviciosLugar['EVENTS'] ? sE(serviciosLugar['EVENTS'].enabled):null,
+        serviciosLugar['NEWS'] ? sN(serviciosLugar['NEWS'].enabled):null
     }, [serviciosLugar])   
 
     const handleEventInvertir = async(event, tipo) => {
         event.preventDefault()
+        setActializarServicios((old) => !old)
         switch (tipo) {
             case 'WEATHER':
                 w ? (
@@ -68,7 +70,6 @@ export const Lugar = (props) => {
                     Client.service.disableServiceForLocation(lugar.coords, tipo) 
                     ):Client.service.enableServiceForLocation(lugar.coords, tipo)  
                 sN((old) => !old)
-
                 break;
             default:
                 break;

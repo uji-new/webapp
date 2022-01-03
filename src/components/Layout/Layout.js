@@ -7,7 +7,7 @@ import { AuthContext } from "App.js";
 import Client from "utils/Client";
 
 export const Layout = () => {
-  const { user, setUser} = useContext(AuthContext);
+  const { user, setUser, servicios} = useContext(AuthContext);
 
   const [isOpen, setIsOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(true)
@@ -16,6 +16,7 @@ export const Layout = () => {
   const [lugar, setLugar] = useState({})
   const [serviciosLugar, setServiciosLugar] = useState({})
   const [datosLugar, setDatosLugar] = useState({})
+  const [actializarServicios, setActializarServicios] = useState(true)
 
   const [lugares, setLugares] = useState([])
   const [lugaresNoG, setLugaresNoG] = useState([])
@@ -36,19 +37,20 @@ export const Layout = () => {
       lugar.coords ? (
         await Client.service.getServicesForLocation(lugar.coords)
         .then(s => {
+          console.log(s)
           let serviciosLugarAux = {}
           let datosLugarAux = {}
           s.map(i => {
+            console.log(i)
             serviciosLugarAux[i.service.type] = {...i.service, enabled:i.enabled}
             datosLugarAux[i.service.type] = i.data
           }) 
-        console.log("fetch servicios lugar")
         setServiciosLugar(serviciosLugarAux)
         setDatosLugar(datosLugarAux)
       })):null
     }
     fetchServicios()
-  }, [lugar])
+  }, [lugar, actializarServicios, servicios])
   
   useEffect(()=> {
     const updateWidth = () => {
@@ -78,6 +80,7 @@ export const Layout = () => {
                                       lugar={lugar} setLugar={setLugar}
                                       lugares={lugares}
                                       lugaresNoG={lugaresNoG} setLugaresNoG={setLugaresNoG}
+                                      setActializarServicios={setActializarServicios}
                                       />
             <Content toggle={toggle}  isOpen={isOpen} 
                                       lugar={lugar} setLugar={setLugar}
@@ -85,6 +88,7 @@ export const Layout = () => {
                                       setLugaresNoG={setLugaresNoG}
                                       serviciosLugar={serviciosLugar} setServiciosLugar={setServiciosLugar}
                                       datosLugar={datosLugar} setDatosLugar={setDatosLugar}
+                                      setActializarServicios={setActializarServicios}
                                       />              
       </div>
   )
