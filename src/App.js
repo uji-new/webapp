@@ -1,8 +1,7 @@
 import React, { 
   useState, 
   useEffect,
-  useLayoutEffect,
-  useRef } from 'react';
+  } from 'react';
 import {Layout} from './components/Layout';
 import Client from 'utils/Client'
 
@@ -16,17 +15,20 @@ export default function App(){
         let mounted = true;
         Client.session.getAccount()
           .then(r => {
+            console.log("then")
             if(mounted) {
               setUser(r.mail)
             }
           }).catch((r) => { 
-            Client.session.loginAsGuest()
+            console.log(r)
+            Client.session.loginAsGuest().then(setUser)   
           })
         return () => mounted = false;
     }, [])
 
     useEffect(() => {
       let mounted = true;
+      user ? (
       Client.service.getServices()
         .then(r => {
           if(mounted) {
@@ -37,8 +39,9 @@ export default function App(){
             setServicios(auxServicios)
           }
         }).catch(setServicios({}))
+      ):null
       return () => mounted = false;
-  }, [] )
+  }, [user] )
           
   const context = {
     user,
@@ -49,7 +52,7 @@ export default function App(){
 
   return (   
     <AuthContext.Provider value={context}> 
-        <Layout servicios={servicios}/>
+        {user || user === null ? <Layout servicios={servicios}/>:null}
     </AuthContext.Provider >
     );
 }

@@ -119,7 +119,6 @@ export const Lugar = (props) => {
             { serviciosLugar['WEATHER'] ? (
                     <>
                         <h1 id="weather"> {serviciosLugar['WEATHER'].name} </h1>
-                        <Form>
                         <Form.Check 
                             type="switch"
                             id="custom-switch"
@@ -127,7 +126,6 @@ export const Lugar = (props) => {
                             checked={w}
                             onChange={(e) => handleEventInvertir(e, 'WEATHER')}
                         />
-                        </Form>
                     </>
                 ):null}
             

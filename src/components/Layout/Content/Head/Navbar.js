@@ -1,24 +1,27 @@
-import React,{useState, useContext} from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React,{useState, useEffect, useContext} from "react";
+
+import "./Navbar.css";
+import { 
+  FontAwesomeIcon 
+} from "@fortawesome/react-fontawesome";
 import { 
   faAlignLeft,
   faUser
 } from "@fortawesome/free-solid-svg-icons";
-import { Navbar, 
+import { 
+  Navbar, 
   Button, 
-  Col,
-  Nav, 
-  Row,
   Stack,
   Offcanvas,
-  Container
+  Form
 } from "react-bootstrap";
-import "./Navbar.css";
+
 import { SearchBar } from "features";
 import { UserForm } from "components";
 import { AuthContext } from "App.js";
 import { LogOut } from "components/Form/LogOut";
 import { BotonesServiciosCuenta } from "features";
+import Client from "utils/Client";
 
 
 export const NavBar = (props) => {
@@ -43,7 +46,8 @@ export const NavBar = (props) => {
             /> 
 
             <SessionOffCanvas 
-              placement={'end'} name={'end'} /> 
+              setLugaresNoG={props.setLugaresNoG}
+            /> 
           </Stack>
           
         </Navbar>
@@ -51,20 +55,74 @@ export const NavBar = (props) => {
     );
 }
 
-const SessionOffCanvas = ({name, ...props}) => {
-  const { user, setUser} = useContext(AuthContext);
+const SessionOffCanvas = ({setLugaresNoG}) => {
+  const { user, setUser, servicios, setServicios} = useContext(AuthContext);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const [w,sW] = useState('')
+  const [e,sE] = useState('')
+  const [n,sN] = useState('')
+    
+
+  useEffect(() => {
+    servicios['WEATHER'] ? sW(servicios['WEATHER'].enabled):null,
+    servicios['EVENTS'] ? sE(servicios['EVENTS'].enabled):null,
+    servicios['NEWS'] ? sN(servicios['NEWS'].enabled):null
+  }, [servicios])   
+  
+  const handleEventInvertir = async(event, tipo) => {
+    event.preventDefault()
+    let auxServicios
+    switch (tipo) {
+        case 'WEATHER':
+            w ? (
+              Client.service.disableService(tipo)
+              ):Client.service.enableService(tipo)
+            
+            sW((old) => !old)
+
+            auxServicios = {...servicios}
+            auxServicios[tipo].enabled = !auxServicios[tipo].enabled
+            setServicios(auxServicios) 
+            break;
+        case 'EVENTS':
+            e ? (
+              Client.service.disableService(tipo)
+              ):Client.service.enableService(tipo)      
+            
+              sE((old) => !old) 
+
+            auxServicios = {...servicios}
+            auxServicios[tipo].enabled = !auxServicios[tipo].enabled
+            setServicios(auxServicios) 
+            break;
+        case 'NEWS':
+            n ? (
+              Client.service.disableService(tipo)
+              ):Client.service.enableService(tipo)
+            
+            sN((old) => !old)
+            
+            auxServicios = {...servicios}
+            auxServicios[tipo].enabled = !auxServicios[tipo].enabled
+            setServicios(auxServicios) 
+            
+            break;
+        default:
+            break;
+    }
+
+}
   return (
     <>
       <Button variant="primary" onClick={handleShow} className="me-2">
         <FontAwesomeIcon icon={faUser} />
       </Button>
 
-      <Offcanvas show={show} onHide={handleClose} {...props}>
+      <Offcanvas show={show} onHide={handleClose} placement={'end'} name={'end'}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>User: {user ? user:(user === null ? 'invitado': 'error')}</Offcanvas.Title>
         </Offcanvas.Header>
@@ -72,12 +130,60 @@ const SessionOffCanvas = ({name, ...props}) => {
           {!user ? <UserForm setUser={setUser}/>
           : (
             <>  
-              <h2>Servicion</h2>
-              <BotonesServiciosCuenta/>
+              <h1>Servicios</h1>
+              {
+              //WEATHER
+              }
+              {servicios['WEATHER'] ? (
+                <>
+                  <h2> {servicios['WEATHER'].name} </h2>
+                  <p>{servicios['WEATHER'].description}</p>
+                  <Form.Check 
+                      type="switch"
+                      id="custom-switch"
+                      size='lg'
+                      checked={w}
+                      onChange={(e)=>handleEventInvertir(e, 'WEATHER')}
+                  />
+                </>):null}
+              {
+              //EVENTS
+              }
+              {servicios['EVENTS'] ? (
+                <>
+                  <h2> {servicios['EVENTS'].name} </h2>
+                  <p>{servicios['EVENTS'].description}</p>
+                  <Form.Check 
+                      type="switch"
+                      id="custom-switch"
+                      size='lg'
+                      checked={e}
+                      onChange={(e)=>handleEventInvertir(e, 'EVENTS')}
+                  />
+                </>):null}
+              {
+              //NEWS
+              }
+              {servicios['NEWS'] ? (
+                <>
+                  <h2> {servicios['NEWS'].name} </h2>
+                  <p>{servicios['NEWS'].description}</p>
+                  <Form.Check 
+                      type="switch"
+                      id="custom-switch"
+                      size='lg'
+                      checked={n}
+                      onChange={(e)=>handleEventInvertir(e, 'NEWS')}
+                  />
+                </>):null}
+              
               <br/>
-              <br/>
-              <h2>Cerrar Session</h2>
-              <LogOut setUser={setUser}/>
+              <h1>Cerrar Session
+              <LogOut 
+                setLugaresNoG={setLugaresNoG}
+                setUser={setUser}
+              />
+              </h1>
             </>
           )}
         </Offcanvas.Body>
