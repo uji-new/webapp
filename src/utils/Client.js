@@ -10,7 +10,7 @@ const METHOD = {
 class BaseClient {
     _setupRequest(method, paths=[], params={}) {
         return new Promise((resolve, reject) => {
-            window.fetch(urlcat(['', ...paths].join('/'), params), {method, credentials: 'same-origin'}).catch(reject)
+            fetch(urlcat(['', ...paths].join('/'), params), {method, credentials: 'same-origin'}).catch(reject)
                 .then(response => response.ok ? response.json().then(resolve).catch(() => resolve(null)) : reject(response));
         })
     }
