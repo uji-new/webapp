@@ -29,8 +29,8 @@ export const Historial = (props) => {
                     <tr>
                     <th>#</th>
                     <th>Nombre</th>
-                    <th>Activar</th>
-                    <th>Desactivar</th>
+                    <th>Restaurar</th>
+                    <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>

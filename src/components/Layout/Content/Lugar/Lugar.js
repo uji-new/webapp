@@ -1,8 +1,5 @@
 import React, {useEffect, useState, useContext} from "react";
-<<<<<<< HEAD
 
-=======
->>>>>>> c4e9d63e65d7f3a7ac8bceac9f45384070924dd1
 import './Lugar.css'
 import classNames from "classnames";
 
@@ -38,69 +35,142 @@ export const Lugar = (props) => {
         lugarRender } = props    
     
     const [w,sW] = useState(true)
+    const [e,sE] = useState(true)
+    const [n,sN] = useState(true)
+
     
-        useEffect(() => {
-            serviciosLugar['WEATHER'] ? (
-            sW(serviciosLugar['WEATHER'].enabled),
-            console.log(w) 
-            ):console.log("malament")
-        }, [])     
+    useEffect(() => {
+        serviciosLugar['WEATHER'] ? sW(serviciosLugar['WEATHER'].enabled):console.log("malament"),
+        serviciosLugar['EVENTS'] ? sE(serviciosLugar['EVENTS'].enabled):console.log("malament"),
+        serviciosLugar['NEWS'] ? sN(serviciosLugar['NEWS'].enabled):console.log("malament")
+    }, [serviciosLugar])   
+
+    const handleEventInvertir = async(e, tipo) => {
+        e.preventDefault()
+        switch (tipo) {
+            case 'WEATHER':
+                sW((old) => !old)
+                !w ? (
+                    Client.service.disableServiceForLocation(lugar.coords, tipo) 
+                    ):Client.service.enableServiceForLocation(lugar.coords, tipo)              
+            break;
+            case 'EVENTS':
+                console.log('hola')
+                sE((old) => !old) 
+                !e ? (
+                    Client.service.disableServiceForLocation(lugar.coords, tipo) 
+                    ):Client.service.enableServiceForLocation(lugar.coords, tipo)        
+            break;
+            case 'NEWS':
+                sN((old) => !old)
+                !n ? (
+                    Client.service.disableServiceForLocation(lugar.coords, tipo) 
+                    ):Client.service.enableServiceForLocation(lugar.coords, tipo)  
+            break;
+        
+            default:
+                break;
+        }
+
+    }
+    
     return (
-        <>   
-        <h1> {lugar.name} </h1>
-        {lugarRender.coords ? (
-            <>
-            <BotonesServicios.Lugar 
-            serviosLugar={serviciosLugar} 
-            setServiciosLugar={setServiciosLugar}
-            lugar={lugar}
-            />
+        <>
+        {
+        //NOMBRE
+        }
+        <h1> {lugar.name} </h1>     
+        
+        {
+        //WEATHER
+        }
+        <section className="weather-section" data-testid="weather">
+            { serviciosLugar['WEATHER'] ? (
+                    <>
+                        <h1 id="weather"> {serviciosLugar['WEATHER'].name} </h1>
+                        <Form>
+                        <Form.Check 
+                            type="switch"
+                            id="custom-switch"
+                            size='lg'
+                            checked={w}
+                            onChange={(e) => handleEventInvertir(e, 'WEATHER')}
+                        />
+                        </Form>
+                    </>
+                ):null}
+            
+            {datosLugar['WEATHER'] && w ? (
+            <> 
+                <Weather lugar={lugarRender} event={datosLugar['WEATHER']}/>
             </>
             ):null}
-        
-        {datosLugar['WEATHER'] ? (
-        <>
-            
-            <h1> {serviciosLugar['WEATHER'].name} </h1>
-            <Form>
-            <Form.Check 
-                type="switch"
-                id="custom-switch"
-                size='lg'
-                checked={w}
-                isValid={true}
-                onChange={() => sW((old) => !old )}
-            />
-        </Form>
-            <Weather lugar={lugarRender} event={datosLugar['WEATHER']}/>
-        </>
-        ):null}
-    
-        {datosLugar['EVENTS'] ? ( 
-        <>
-            <section className="events-section" data-testid="events">
-                <h1 id="events"> EVENTS </h1>
+        </section>
+
+        {
+        //EVENTS
+        }
+        <section className="events-section" data-testid="events">
+            { serviciosLugar['EVENTS'] ? (
+                <>
+                    <h1 id="events"> {serviciosLugar['EVENTS'].name} </h1>
+                    <Form>
+                    <Form.Check 
+                        type="switch"
+                        id="custom-switch"
+                        size='lg'
+                        checked={e}
+                        onChange={(e) => handleEventInvertir(e, 'EVENTS')}
+                    />
+                    </Form>
+                </>
+                ):null}
+            {datosLugar['EVENTS'] && e ? ( 
+            <>
                 <Row xs={2} md={1} className="events-cards g-4">
                     {datosLugar['EVENTS'].map((e, idx) => <Event key={idx} event={e}/>)}
                 </Row>
-            </section>
-        </>
-        ):null}
+            </>
+            ):null}
+        </section> 
         
-        
-        {datosLugar['NEWS'] ? (
-        <>
-            <section className="news-section" data-testid="news">
-                <h1 id="news"> NEWS </h1>
-
+        {
+        //NEWS
+        }
+        <section className="news-section" data-testid="news">
+            { serviciosLugar['NEWS'] ? (
+                    <>
+                        <h1 id="news"> {serviciosLugar['NEWS'].name} </h1>
+                        <Form>
+                        <Form.Check 
+                            type="switch"
+                            id="custom-switch"
+                            size='lg'
+                            checked={n}
+                            onChange={(e) => handleEventInvertir(e, 'NEWS')}
+                        />
+                        </Form>
+                    </>
+                ):null}
+            {datosLugar['NEWS'] && n ? (
+            <>
                 <Row xs={2} md={1} className="news-cards g-4">
                     {datosLugar['NEWS'].map((e, idx) => <New key={idx} event={e}/>)}
                 </Row>
-            </section>
-        </>
-        ):null}
-            
+            </>
+            ):null}
+
+        </section>        
     </>
     
     )
 }
+//{lugarRender.coords ? (
+//    <>
+//    <BotonesServicios.Lugar 
+//    serviosLugar={serviciosLugar} 
+//    setServiciosLugar={setServiciosLugar}
+//    lugar={lugar}
+//    />
+//    </>
+//    ):null}  

@@ -1,4 +1,4 @@
-#events, #news {
+#events, #news, #weather {
     position: relative;
     color: rgb(38, 38, 38);
     font-family: "Averta", helvetica, arial, sans-serif;
@@ -8,7 +8,7 @@
     text-transform: uppercase;
 }
 
-#events::before, #news::before {
+#events::before, #news::before , #weather::before {
     content: "";
     position: absolute;
     bottom: 0px;

@@ -30,13 +30,14 @@ export const SideBar = (props) => {
   }
   const handleEliminar = async (e,l) => {
     e.preventDefault();
-    
     setLugaresNoG(lugaresNoG.filter(item => item !== l))
+    setLugar({})
   }
   const handleEliminarGuardado = async (e,l) => {
     e.preventDefault();
-    lugares ? setLugar(lugares[0]):setLugar({})
+    //lugares ? setLugar(lugares[0]):setLugar({})
     Client.location.removeLocation(l.coords)
+    setLugar({})
   }
 
 
@@ -53,37 +54,42 @@ export const SideBar = (props) => {
           <FontAwesomeIcon icon={faTimes} pull="right" size="xs" />
           </Button>
           <h3> N.E.W {lugar.alias} </h3>
-          <h3> N.E.W </h3>
-        </div>
-        
-        <div>
+        </div>  
+      <div>
           <Nav className="flex-column pt-2">
-            <p className="ml-3">Ubicaciones Buscadas</p>
+            
+            <strong className="ml-3 sidebar-section">Ubicaciones Temporales</strong>
+            
             {lugaresNoG.map( (l, index) => {
                 return (
                     <ButtonGroup key={l.coords+'A'} aria-label="Basic example">
                       <Button variant="secondary" key={index+'f'} onClick={() => setLugar(l)} >{l.name}</Button>
-                      <Button  size="sm" variant="outline-secondary" key={index+"a"} onClick={(e) => handleGuardar(e,l)} >V</Button>
-                      <Button  size="sm" variant="outline-secondary" key={index+"b"} onClick={(e) => handleEliminar(e,l)} >X</Button>
+                      <Button  xs={0} size="sm" variant="outline-secondary" key={index+"a"} onClick={(e) => handleGuardar(e,l)} >
+                        V
+                      </Button>
+                      <Button  xs={0} size="sm" variant="outline-secondary" key={index+"b"} onClick={(e) => handleEliminar(e,l)} >
+                        X
+                      </Button>
                     </ButtonGroup>                                        
                         )
             })}
            
-            <p className="ml-3">Ubicaciones Guardados</p> 
-            <strong className="ml-3 sidebar-section">Ubicaciones</strong>
+            <strong className="ml-3 sidebar-section">Ubicaciones Guardados</strong>
             
             {lugares.map( (l, index) => {
                 return (
                       <ButtonGroup key={l.coords+'B'}aria-label="Basic example">
                         <Button variant="primary" key={index+'q'} onClick={() => setLugar(l)} >{l.name}</Button>
-                        <Button variant="outline-primary" key={index+'z'} onClick={(e) => handleEliminarGuardado(e,l)} >X</Button>
+                        <Button variant="outline-primary" key={index+'z'} onClick={(e) => handleEliminarGuardado(e,l)} >
+                          X
+                        </Button>
                       </ButtonGroup>                      
 
                         )
             })}
-            <br/>
+            
             <strong className="ml-3 sidebar-section">Historial</strong>
-            <Button variant="dark" onClick={() => setLugar({name : 'historial'})}>
+            <Button variant="dark" onClick={() => setLugar({name : 'historial',alias : 'Historial'})}>
                 Ver Historial
             </Button>
             
