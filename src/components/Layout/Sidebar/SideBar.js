@@ -64,10 +64,10 @@ export const SideBar = (props) => {
                 return (
                     <ButtonGroup key={l.coords+'A'} aria-label="Basic example">
                       <Button variant="secondary" key={index+'f'} onClick={() => setLugar(l)} >{l.alias}</Button>
-                      <Button  sm={1} size="sm" variant="outline-secondary" key={index+"a"} onClick={(e) => handleGuardar(e,l)} >
+                      <Button  sm={1} size="sm" className="sidebar-action" variant="outline-secondary" key={index+"a"} onClick={(e) => handleGuardar(e,l)} >
                         +
                       </Button>
-                      <Button  sm={1} size="sm" variant="outline-secondary" key={index+"b"} onClick={(e) => handleEliminar(e,l)} >
+                      <Button  sm={1} size="sm" className="sidebar-action" variant="outline-secondary" key={index+"b"} onClick={(e) => handleEliminar(e,l)} >
                         X
                       </Button>
                     </ButtonGroup>                                        
@@ -80,7 +80,7 @@ export const SideBar = (props) => {
                 return (
                       <ButtonGroup key={l.coords+'B'}aria-label="Basic example">
                         <Button variant="primary" key={index+'q'} onClick={() => setLugar(l)} >{l.alias}</Button>
-                        <Button variant="outline-primary" key={index+'z'} onClick={(e) => handleEliminarGuardado(e,l)} >
+                        <Button sm={1} className="sidebar-action" variant="outline-primary" key={index+'z'} onClick={(e) => handleEliminarGuardado(e,l)} >
                           X
                         </Button>
                       </ButtonGroup>                      

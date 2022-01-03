@@ -82,10 +82,14 @@
     cursor: pointer;
     display: none;
   }
-  
+
   .sidebar .btn, .sidebar-section {
     margin: .5em;
     margin-top: 0;
+  }
+
+  .sidebar-action {
+    max-width: fit-content;
   }
 
   /* ---------------------------------------------------
