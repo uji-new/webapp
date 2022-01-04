@@ -108,6 +108,7 @@ export const Lugar = (props) => {
                 </h1>
                 {!lugares.every((l) => l.coords !== lugar.coords) ? <Button onClick={(e) => hadleActualizarAlias(e)}>+</Button>:null}
             </Stack>
+            <h5>{lugar.name}</h5>
 
             {/* WEATHER */}
             { serviciosLugar[Client.service.TYPE.WEATHER] ? (

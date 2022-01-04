@@ -10,9 +10,6 @@ export const Weather = (props) => {
         <div className="widget">
             <Card>
                 <Card.Body>
-                    <Card.Title className="city">
-                        {lugar.name}
-                    </Card.Title>
                     <Card.Subtitle className="date mb-2 text-muted">
                         {new Date().toLocaleDateString(undefined, {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}
                     </Card.Subtitle>
