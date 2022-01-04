@@ -36,6 +36,13 @@
     color: #fff;
     padding: 10px;
   }
+
+  .brand-icon {
+    display: inline-block;
+    height: 2em;
+    margin: -0.5em;
+    margin-right: 0em;
+  }
   
   .collapse.show, 
   .collapsing {
