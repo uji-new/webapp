@@ -129,7 +129,7 @@ const LugarGuardado = (props) => {
                     checked={w}
                     onChange={(e) => handleEventInvertir(e, Client.service.TYPE.WEATHER)}/>
                 <h1 id="weather">{serviciosLugar[Client.service.TYPE.WEATHER].name}</h1>
-                {datosLugar[Client.service.TYPE.WEATHER] && w ? (
+                {datosLugar[Client.service.TYPE.WEATHER] === undefined && w ? (
                     <Weather lugar={lugarRender} event={datosLugar[Client.service.TYPE.WEATHER]}/>
                 ):null}
             </section>
@@ -195,7 +195,7 @@ const LugarNoGuardado = (props) => {
         { serviciosLugar[Client.service.TYPE.WEATHER] ? (
             <section className="service-section weather-section" data-testid="weather">
                 <h1 id="weather">{serviciosLugar[Client.service.TYPE.WEATHER].name}</h1>
-                {datosLugar[Client.service.TYPE.WEATHER] ? (
+                {datosLugar[Client.service.TYPE.WEATHER] === undefined ? (
                     <Weather lugar={lugarRender} event={datosLugar[Client.service.TYPE.WEATHER]}/>
                 ):null}
             </section>
@@ -205,11 +205,13 @@ const LugarNoGuardado = (props) => {
         { serviciosLugar[Client.service.TYPE.EVENTS] ? (
             <section className="service-section events-section" data-testid="events">
                 <h1 id="events"> {serviciosLugar[Client.service.TYPE.EVENTS].name}</h1>
-                    {datosLugar[Client.service.TYPE.EVENTS] === false ? (
+                {datosLugar[Client.service.TYPE.EVENTS] === undefined ? ( 
+                    datosLugar[Client.service.TYPE.EVENTS] === false ? (
                         <h4 className="subtitle">Intentelo mas tarde</h4>
                     ):<Row xs={2} md={1} className="events-cards g-4">
                         {datosLugar[Client.service.TYPE.EVENTS].length ? datosLugar[Client.service.TYPE.EVENTS].map((e, idx) => <Event key={idx} event={e}/>) : <h4 className="subtitle">No hay ningun evento</h4>}
-                    </Row>}
+                    </Row>
+                ):null}
             </section> 
         ):null}
         
@@ -217,11 +219,13 @@ const LugarNoGuardado = (props) => {
         { serviciosLugar[Client.service.TYPE.NEWS] ? (
             <section className="service-section news-section" data-testid="news">
                 <h1 id="news">{serviciosLugar[Client.service.TYPE.NEWS].name}</h1>
-                    {datosLugar[Client.service.TYPE.NEWS] === false ? (
+                {datosLugar[Client.service.TYPE.NEWS] === undefined ? (
+                    datosLugar[Client.service.TYPE.NEWS] === false ? (
                         <h4 className="subtitle">Intentelo mas tarde</h4>
                     ):<Row xs={2} md={1} className="news-cards g-4">
                         {datosLugar[Client.service.TYPE.NEWS].length ? datosLugar[Client.service.TYPE.NEWS].map((e, idx) => <New key={idx} event={e}/>) : <h4 className="subtitle">No hay ninguna noticia</h4>}
-                    </Row>}
+                    </Row>
+                ):null}
             </section>
         ):null}
     </>
