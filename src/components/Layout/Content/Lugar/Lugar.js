@@ -6,7 +6,8 @@ import classNames from "classnames";
 import {  
   Button,
   Row,
-  Form
+  Form,
+  Stack
 } from "react-bootstrap";
 
 import { Event } from 'components';
@@ -95,21 +96,18 @@ export const Lugar = (props) => {
     
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
-                Launch demo modal
-            </Button>
-            <ModalService show={show} onHide={handleClose}/>
-
             {/* NOMBRE */}
-            <h1>
-                {!b ? alias:(
-                    <input
-                        onChange={(e) => setAlias(e.target.value)}
-                        value={alias}
-                    />
-                )}
-            </h1>
-            {!lugares.every((l) => l.coords !== lugar.coords) ? <Button onClick={(e) => hadleActualizarAlias(e)}></Button>:null}
+            <Stack className="location-name" direction="horizontal" gap={2}>
+                <h1>
+                    {!b ? alias:(
+                        <input
+                            onChange={(e) => setAlias(e.target.value)}
+                            value={alias}
+                        />
+                    )}
+                </h1>
+                {!lugares.every((l) => l.coords !== lugar.coords) ? <Button onClick={(e) => hadleActualizarAlias(e)}>+</Button>:null}
+            </Stack>
 
             {/* WEATHER */}
             { serviciosLugar[Client.service.TYPE.WEATHER] ? (
