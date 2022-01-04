@@ -11,7 +11,7 @@ export const ModalError = (props) => {
     <>
         <Modal show={show} onHide={onHide}>
             <Modal.Header closeButton>
-                <Modal.Title>Error Cuenta</Modal.Title>
+                <Modal.Title>Error</Modal.Title>
             </Modal.Header>
                 <Modal.Body>{text}</Modal.Body>
             <Modal.Footer>
