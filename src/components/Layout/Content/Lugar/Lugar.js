@@ -147,7 +147,7 @@ const LugarGuardado = (props) => {
                     checked={e}
                     onChange={(event) => handleEventInvertir(event, Client.service.TYPE.EVENTS)}/>
                 <h1 id="events"> {serviciosLugar[Client.service.TYPE.EVENTS].name}</h1>
-                {e ? ( 
+                {datosLugar[Client.service.TYPE.EVENTS] !== undefined && e ? ( 
                     datosLugar[Client.service.TYPE.EVENTS] === false ? (
                         <h4 className="subtitle">Intentelo mas tarde</h4>
                     ):<Row xs={2} md={1} className="events-cards g-4">
@@ -165,7 +165,7 @@ const LugarGuardado = (props) => {
                     checked={n}
                     onChange={(e) => handleEventInvertir(e, Client.service.TYPE.NEWS)}/>
                 <h1 id="news">{serviciosLugar[Client.service.TYPE.NEWS].name}</h1>
-                {n ? (
+                {datosLugar[Client.service.TYPE.NEWS] !== undefined && n ? (
                     datosLugar[Client.service.TYPE.NEWS] === false ? (
                         <h4 className="subtitle">Intentelo mas tarde</h4>
                     ):<Row xs={2} md={1} className="news-cards g-4">

@@ -17,7 +17,7 @@ const ERROR = {
 }
 
 
-export function UserForm({setUser}) {
+export function UserForm({setUser, setLugaresNoG}) {
     const [mail, setMail] = useState();
     const [password, setPassword] = useState();
 
@@ -30,15 +30,15 @@ export function UserForm({setUser}) {
     const handleSubmitIn = async e => {
         e.preventDefault();
         await Client.session.login( mail, password )
-            .then(() => setUser(mail))
+            .then(() => setUser(mail, setLugaresNoG([])))
                 .catch(() => handleShow(), setText(ERROR.LOGIN));
         
       }
-
+    //Error entra en el then y en el catch a la vez cuando hay una escepcion
     const handleSubmitUp = async e => {
         e.preventDefault();
         await Client.account.register( mail, password )
-            .then(console.log("then"))
+            .then(setUser(mail, setLugaresNoG([])))
                 .catch(() => handleShow(), setText(ERROR.REGISTER));
     }
 

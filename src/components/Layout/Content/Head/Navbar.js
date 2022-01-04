@@ -129,7 +129,7 @@ const SessionOffCanvas = ({setLugaresNoG}) => {
               <Offcanvas.Header closeButton>
               <Offcanvas.Title><h1>Cuenta</h1></Offcanvas.Title>
               </Offcanvas.Header>
-              <Offcanvas.Body><UserForm setUser={setUser}/></Offcanvas.Body>
+              <Offcanvas.Body><UserForm setLugaresNoG={setLugaresNoG} setUser={setUser}/></Offcanvas.Body>
             </>
           ) : (
             <>  
