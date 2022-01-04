@@ -153,7 +153,7 @@ const LugarGuardado = (props) => {
                 <h1 id="events"> {serviciosLugar[Client.service.TYPE.EVENTS].name}</h1>
                 {datosLugar[Client.service.TYPE.EVENTS] && e ? ( 
                     <Row xs={2} md={1} className="events-cards g-4">
-                        {datosLugar[Client.service.TYPE.EVENTS].map((e, idx) => <Event key={idx} event={e}/>)}
+                        {datosLugar[Client.service.TYPE.EVENTS].length ? datosLugar[Client.service.TYPE.EVENTS].map((e, idx) => <Event key={idx} event={e}/>) : <p>No hay ningun evento</p>}
                     </Row>
                 ):null}
             </section> 
@@ -170,7 +170,7 @@ const LugarGuardado = (props) => {
                 <h1 id="news">{serviciosLugar[Client.service.TYPE.NEWS].name}</h1>
                 {datosLugar[Client.service.TYPE.NEWS] && n ? (
                     <Row xs={2} md={1} className="news-cards g-4">
-                        {datosLugar[Client.service.TYPE.NEWS].map((e, idx) => <New key={idx} event={e}/>)}
+                        {datosLugar[Client.service.TYPE.NEWS].length ? datosLugar[Client.service.TYPE.NEWS].map((e, idx) => <New key={idx} event={e}/>) : <p>No hay ninguna noticia</p>}
                     </Row>
                 ):null}
             </section>

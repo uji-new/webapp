@@ -27,7 +27,7 @@ export const Historial = (props) => {
         
         <>
             <ListGroup as="ul">
-                    {historial.map( (l, index) => {                                 
+                    {historial.length ? historial.map( (l, index) => {                                 
                         return <ListGroup.Item>
                             <ButtonGroup aria-label="Basic example" className="history-buttons">
                                 <Button variant="success" onClick={() => {Client.history.restoreLocation(l.coords); setLugar(l)}}> + </Button>
@@ -35,7 +35,7 @@ export const Historial = (props) => {
                             </ButtonGroup>
                             <p>{l.alias} ({l.name})</p>
                         </ListGroup.Item>
-                    })
+                    }) : <ListGroup.Item>Ninguna ubicacion</ListGroup.Item>
                     }
             </ListGroup> 
             
