@@ -124,7 +124,12 @@ const SessionOffCanvas = ({setLugaresNoG}) => {
 
       <Offcanvas show={show} onHide={handleClose} placement={'end'} name={'end'}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>User: {user ? user:(user === null ? 'invitado': 'error')}</Offcanvas.Title>
+          <Offcanvas.Title>{user ? user : 'Invitado'}</Offcanvas.Title>
+          {user ? 
+          <LogOut 
+                setLugaresNoG={setLugaresNoG}
+                setUser={setUser}
+              /> : null}
         </Offcanvas.Header>
         <Offcanvas.Body>
           {!user ? <UserForm setUser={setUser}/>
@@ -138,9 +143,7 @@ const SessionOffCanvas = ({setLugaresNoG}) => {
                 <>
                   <h2> {servicios['WEATHER'].name} </h2>
                   <p>{servicios['WEATHER'].description}</p>
-                  <Form.Check 
-                      type="switch"
-                      id="custom-switch"
+                  <Form.Switch 
                       size='lg'
                       checked={w}
                       onChange={(e)=>handleEventInvertir(e, 'WEATHER')}
@@ -153,9 +156,7 @@ const SessionOffCanvas = ({setLugaresNoG}) => {
                 <>
                   <h2> {servicios['EVENTS'].name} </h2>
                   <p>{servicios['EVENTS'].description}</p>
-                  <Form.Check 
-                      type="switch"
-                      id="custom-switch"
+                  <Form.Switch 
                       size='lg'
                       checked={e}
                       onChange={(e)=>handleEventInvertir(e, 'EVENTS')}
@@ -168,22 +169,12 @@ const SessionOffCanvas = ({setLugaresNoG}) => {
                 <>
                   <h2> {servicios['NEWS'].name} </h2>
                   <p>{servicios['NEWS'].description}</p>
-                  <Form.Check 
-                      type="switch"
-                      id="custom-switch"
+                  <Form.Switch 
                       size='lg'
                       checked={n}
                       onChange={(e)=>handleEventInvertir(e, 'NEWS')}
                   />
                 </>):null}
-              
-              <br/>
-              <h1>Cerrar Session
-              <LogOut 
-                setLugaresNoG={setLugaresNoG}
-                setUser={setUser}
-              />
-              </h1>
             </>
           )}
         </Offcanvas.Body>
