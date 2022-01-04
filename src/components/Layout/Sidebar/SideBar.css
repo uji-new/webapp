@@ -3,6 +3,7 @@
   ----------------------------------------------------- */
   .sidebar {
     position: fixed;
+    z-index: 1030;
     
     top: 0;
     bottom: 0;
@@ -104,12 +105,6 @@
   @media only screen and (max-width: 575.98px) {
     body {
       overflow:  hidden;
-    }
-    
-    .content.is-open {
-      /*margin-left: 100%;*/
-      display: none;
-      transition: all 0.5s;
     }
     
     .sidebar.is-open {
