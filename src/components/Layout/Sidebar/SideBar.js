@@ -88,7 +88,7 @@ export const SideBar = (props) => {
                       <Button  sm={1} size="sm" className="sidebar-action" variant="outline-secondary" key={index+"b"} onClick={(e) => handleEliminar(e,l)} >
                         X
                       </Button>
-                    </ButtonGroup>                                        
+                    </ButtonGroup>
                         )
             })}
            
@@ -101,7 +101,7 @@ export const SideBar = (props) => {
                         <Button sm={1} className="sidebar-action" variant="outline-primary" key={index+'z'} onClick={(e) => handleEliminarGuardado(e,l)} >
                           X
                         </Button>
-                      </ButtonGroup>                      
+                      </ButtonGroup>
 
                         )
             })}

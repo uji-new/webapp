@@ -160,8 +160,7 @@ const LugarGuardado = (props) => {
                 <Form.Switch 
                     size='lg'
                     checked={n}
-                    onChange={(e) => handleEventInvertir(e, Client.service.TYPE.NEWS)}
-                />
+                    onChange={(e) => handleEventInvertir(e, Client.service.TYPE.NEWS)}/>
                 <h1 id="news">{serviciosLugar[Client.service.TYPE.NEWS].name}</h1>
                 {n ? (
                     datosLugar[Client.service.TYPE.NEWS] === false ? (
@@ -190,54 +189,42 @@ const LugarNoGuardado = (props) => {
         setActializarServicios,
         lugarRender } = props  
 
-    
     return(
     <>
-    <h1> {lugar.name} </h1>  
-    
-    
-    <section className="service-section weather-section" data-testid="weather">
-        { serviciosLugar['WEATHER'] ? (
-            <>
-                <h1 id="weather">{serviciosLugar['WEATHER'].name}</h1>
-                {datosLugar['WEATHER']? (
-                    <Weather lugar={lugarRender} event={datosLugar['WEATHER']}/>
+        <h1> {lugar.name} </h1>  
+        {/* WEATHER */}
+        { serviciosLugar[Client.service.TYPE.WEATHER] ? (
+            <section className="service-section weather-section" data-testid="weather">
+                <h1 id="weather">{serviciosLugar[Client.service.TYPE.WEATHER].name}</h1>
+                {datosLugar[Client.service.TYPE.WEATHER] ? (
+                    <Weather lugar={lugarRender} event={datosLugar[Client.service.TYPE.WEATHER]}/>
                 ):null}
-            </>
+            </section>
         ) : null}
-        
 
-    </section>
-
-    
-    <section className="service-section events-section" data-testid="events">
-        { serviciosLugar['EVENTS'] ? (
-            <>
-                <h1 id="events"> {serviciosLugar['EVENTS'].name}</h1>
-                {datosLugar['EVENTS'] ? ( 
-                    <Row xs={2} md={1} className="events-cards g-4">
-                        {datosLugar['EVENTS'].map((e, idx) => <Event key={idx} event={e}/>)}
+        {/* EVENTS */}
+        { serviciosLugar[Client.service.TYPE.EVENTS] ? (
+            <section className="service-section events-section" data-testid="events">
+                <h1 id="events"> {serviciosLugar[Client.service.TYPE.EVENTS].name}</h1>
+                    datosLugar[Client.service.TYPE.EVENTS] === false ? (
+                        <h4 className="subtitle">Intentelo mas tarde</h4>
+                    ):<Row xs={2} md={1} className="events-cards g-4">
+                        {datosLugar[Client.service.TYPE.EVENTS].length ? datosLugar[Client.service.TYPE.EVENTS].map((e, idx) => <Event key={idx} event={e}/>) : <h4 className="subtitle">No hay ningun evento</h4>}
                     </Row>
-                ):null}
-            </>
-            ):null}
-    </section> 
-    
-    
-    <section className="service-section news-section" data-testid="news">
-        { serviciosLugar['NEWS'] ? (
-                <>
-                    <h1 id="news">{serviciosLugar['NEWS'].name}</h1>
-                    {datosLugar['NEWS']? (
-                        <Row xs={2} md={1} className="news-cards g-4">
-                            {datosLugar['NEWS'].map((e, idx) => <New key={idx} event={e}/>)}
-                        </Row>
-                    ):null}
-                </>
-            ):null}
-
-    </section>        
-
+            </section> 
+        ):null}
+        
+        {/* NEWS */}
+        { serviciosLugar[Client.service.TYPE.NEWS] ? (
+            <section className="service-section news-section" data-testid="news">
+                <h1 id="news">{serviciosLugar[Client.service.TYPE.NEWS].name}</h1>
+                    datosLugar[Client.service.TYPE.NEWS] === false ? (
+                        <h4 className="subtitle">Intentelo mas tarde</h4>
+                    ):<Row xs={2} md={1} className="news-cards g-4">
+                        {datosLugar[Client.service.TYPE.NEWS].length ? datosLugar[Client.service.TYPE.NEWS].map((e, idx) => <New key={idx} event={e}/>) : <h4 className="subtitle">No hay ninguna noticia</h4>}
+                    </Row>
+            </section>
+        ):null}
     </>
     )
 }
