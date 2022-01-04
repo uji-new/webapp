@@ -86,10 +86,9 @@ const LugarGuardado = (props) => {
     const hadleActualizarAlias = async(event) => {
         event.preventDefault()
         if (b) {
-            alias ? null:alias = lugar.name
             Client.location.updateLocation(lugar.coords, alias)
+            alias ? null:alias = lugar.name
         }
-        b ? Client.location.updateLocation(lugar.coords, alias):console.log("mostrar")
         sB((old) => !old)
         setLugar((old) => {
             let x = {...old}
