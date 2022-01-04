@@ -128,52 +128,55 @@ const SessionOffCanvas = ({setLugaresNoG}) => {
             <>  
               <Offcanvas.Title><h1>Servicios</h1></Offcanvas.Title>
               <Offcanvas.Body>
-              {/* WEATHER */}
-              {servicios[Client.service.TYPE.WEATHER] ? (
-                <>
+                {/* WEATHER */}
+                {servicios[Client.service.TYPE.WEATHER] ? (
+                  <>
+                    <Stack direction="horizontal" gap={2}>
+                      <h2> {servicios[Client.service.TYPE.WEATHER].name} </h2>
+                      <Form.Switch 
+                          size='lg'
+                          checked={w}
+                          className="ms-auto"
+                          onChange={(e)=>handleEventInvertir(e, Client.service.TYPE.WEATHER)}
+                      />
+                    </Stack>
+                    <p>{servicios[Client.service.TYPE.WEATHER].description}</p>
+                  </>):null}
+                {/* EVENTS */}
+                {servicios[Client.service.TYPE.EVENTS] ? (
+                  <>
+                    <Stack direction="horizontal" gap={2}>
+                      <h2> {servicios[Client.service.TYPE.EVENTS].name} </h2>
+                      <Form.Switch 
+                          size='lg'
+                          checked={e}
+                          className="ms-auto"
+                          onChange={(e)=>handleEventInvertir(e, Client.service.TYPE.EVENTS)}
+                      />
+                    </Stack>
+                    <p>{servicios[Client.service.TYPE.EVENTS].description}</p>
+                  </>):null}
+                {/* NEWS */}
+                {servicios[Client.service.TYPE.NEWS] ? (
+                  <>
+                    <Stack direction="horizontal" gap={2}>
+                      <h2> {servicios[Client.service.TYPE.NEWS].name} </h2>
+                      <Form.Switch 
+                          size='lg'
+                          checked={n}
+                          className="ms-auto"
+                          onChange={(e)=>handleEventInvertir(e, Client.service.TYPE.NEWS)}
+                      />
+                    </Stack>
+                    <p>{servicios[Client.service.TYPE.NEWS].description}</p>
+                  </>):null}
                   <Stack direction="horizontal" gap={2}>
-                    <h2> {servicios[Client.service.TYPE.WEATHER].name} </h2>
-                    <Form.Switch 
-                        size='lg'
-                        checked={w}
-                        onChange={(e)=>handleEventInvertir(e, Client.service.TYPE.WEATHER)}
+                    <strong className="username">{user}</strong>
+                    <LogOut 
+                      setLugaresNoG={setLugaresNoG}
+                      setUser={setUser}
                     />
                   </Stack>
-                  <p>{servicios[Client.service.TYPE.WEATHER].description}</p>
-                </>):null}
-              {/* EVENTS */}
-              {servicios[Client.service.TYPE.EVENTS] ? (
-                <>
-                  <Stack direction="horizontal" gap={2}>
-                    <h2> {servicios[Client.service.TYPE.EVENTS].name} </h2>
-                    <Form.Switch 
-                        size='lg'
-                        checked={e}
-                        onChange={(e)=>handleEventInvertir(e, Client.service.TYPE.EVENTS)}
-                    />
-                  </Stack>
-                  <p>{servicios[Client.service.TYPE.EVENTS].description}</p>
-                </>):null}
-              {/* NEWS */}
-              {servicios[Client.service.TYPE.NEWS] ? (
-                <>
-                  <Stack direction="horizontal" gap={2}>
-                    <h2> {servicios[Client.service.TYPE.NEWS].name} </h2>
-                    <Form.Switch 
-                        size='lg'
-                        checked={n}
-                        onChange={(e)=>handleEventInvertir(e, Client.service.TYPE.NEWS)}
-                    />
-                  </Stack>
-                  <p>{servicios[Client.service.TYPE.NEWS].description}</p>
-                </>):null}
-                <Stack direction="horizontal" gap={2}>
-                  {user}
-                  <LogOut 
-                    setLugaresNoG={setLugaresNoG}
-                    setUser={setUser}
-                  />
-                </Stack>
                 </Offcanvas.Body>
             </>
           )}

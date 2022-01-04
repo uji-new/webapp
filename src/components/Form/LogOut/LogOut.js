@@ -14,11 +14,9 @@ export const LogOut = ({setUser, setLugaresNoG}) => {
       }
     
     return (
-            <Container>
-                <Button variant="primary" onClick={handleDelSession}>
-                    Cerrar Session
-                </Button>        
-            </Container>
+            <Button variant="primary" onClick={handleDelSession}>
+                Cerrar session
+            </Button>
     )
 }
 

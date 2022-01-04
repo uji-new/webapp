@@ -50,7 +50,7 @@ export function UserForm({setUser}) {
                             onChange={event => setPassword(event.target.value)}
                             />
                     </Form.Group>
-                    <ButtonGroup aria-label="Basic example">
+                    <ButtonGroup aria-label="Basic example" className="user-form">
                     <Button sm={1} variant="success btn-block" onClick={handleSubmitIn}>
                         Iniciar sesion
                     </Button>
