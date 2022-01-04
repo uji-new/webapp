@@ -44,17 +44,14 @@ export const SearchBar = (props) => {
       setLugar(lugar)
       
       let lugarAux = lugares.filter((x) => x.coords === lugar.coords)
-      console.log(lugarAux)
       
       lugarAux.length ? (
         setLugar(lugarAux[0])
         ):(
           setLugar(lugar),
           setLugaresNoG((old) => {
-            console.log(old)
             let i = []
             old.every((x) => x.coords !== lugar.coords) ? i = [lugar, ...old]:i=[...old] 
-            console.log(i)
             return i
           })
         )

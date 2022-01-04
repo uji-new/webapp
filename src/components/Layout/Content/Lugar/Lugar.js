@@ -85,13 +85,24 @@ export const Lugar = (props) => {
         b ? Client.location.updateLocation(lugar.coords, alias):console.log("mostrar")
         setLugar((old) => {
             let x = {...old}
-            console.log(old)
             x.alias = alias
-            console.log(x)
             return x
         })
         sB((old) => !old)
     }
+    const enterPress = (event) => {
+        var code = event.keyCode || event.which;
+        if(code === 13) { 
+            const fetchBuscarLugar = async () => {
+                await Client.query.query(value).then( r => {
+                r.length > 0 ? ( 
+                  handleGuardar(event, r[0])
+                  ):null;
+              })
+            }
+            value.length > 1 ? fetchBuscarLugar():alert('No Data')
+        } 
+      }
     
     return (
         <>
@@ -107,6 +118,8 @@ export const Lugar = (props) => {
             <input
                 onChange={(e) => setAlias(e.target.value)}
                 value={alias}
+                onKeyDownCapture={enterPress}
+
             />) 
             } </h1>  
             {!lugares.every((l) => l.coords !== lugar.coords) ? <Button onClick={(e) => hadleActualizarAlias(e)}></Button>:null

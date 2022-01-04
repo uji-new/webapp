@@ -15,12 +15,10 @@ export default function App(){
         let mounted = true;
         Client.session.getAccount()
           .then(r => {
-            console.log("then")
             if(mounted) {
               setUser(r.mail)
             }
           }).catch((r) => { 
-            console.log(r)
             Client.session.loginAsGuest().then(setUser)   
           })
         return () => mounted = false;

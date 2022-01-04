@@ -13,13 +13,14 @@ export const Layout = () => {
   const [isMobile, setIsMobile] = useState(true)
   const [previousWidth, setPreviousWidth] = useState(-1)
   
-  const [lugar, setLugar] = useState({})
   const [serviciosLugar, setServiciosLugar] = useState({})
   const [datosLugar, setDatosLugar] = useState({})
   const [actializarServicios, setActializarServicios] = useState(true)
-
+  
+  const [lugar, setLugar] = useState({})
   const [lugares, setLugares] = useState([])
   const [lugaresNoG, setLugaresNoG] = useState([])
+  const [actualizarLugares, setActualizarLugares] = useState(true)
   
 
   useEffect(() => {
@@ -30,7 +31,7 @@ export const Layout = () => {
       }).catch(setLugares([]))
     }
     fetchLugares()
-  }, [lugar, user])
+  }, [lugar, user, actualizarLugares])
 
   useEffect(() => {
     const fetchServicios = async () => {
@@ -78,7 +79,7 @@ export const Layout = () => {
                                       lugar={lugar} setLugar={setLugar}
                                       lugares={lugares}
                                       lugaresNoG={lugaresNoG} setLugaresNoG={setLugaresNoG}
-                                      setActializarServicios={setActializarServicios}
+                                      setActualizarLugares={setActualizarLugares}
                                       />
             <Content toggle={toggle}  isOpen={isOpen} 
                                       lugar={lugar} setLugar={setLugar}

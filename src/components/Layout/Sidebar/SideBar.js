@@ -20,24 +20,41 @@ import Client from "utils/Client";
 
 
 export const SideBar = (props) => {
-  const {lugares, setLugar, lugar, lugaresNoG, setLugaresNoG} = props
+  const {lugares, setLugar, lugar, lugaresNoG, setLugaresNoG, setActualizarLugares} = props
   
   const handleGuardar = async (e,l) => {
     e.preventDefault();
+    
     Client.location.addLocation(l.coords)
+    setActualizarLugares((old) => !old)
+
     setLugaresNoG(lugaresNoG.filter(item => item !== l))
-    setLugar({})
+    setLugar(l)
   }
   const handleEliminar = async (e,l) => {
     e.preventDefault();
     setLugaresNoG(lugaresNoG.filter(item => item !== l))
-    setLugar({})
+    
+    if(lugar.coords === l.coords){
+      if(lugaresNoG.length > 1){
+        setLugar(lugaresNoG[0])
+      }else if(lugares.length){
+        setLugar(lugares[0])
+      }else{
+        setLugar({})
+      }
+    }    
   }
+  
   const handleEliminarGuardado = async (e,l) => {
     e.preventDefault();
-    //lugares ? setLugar(lugares[0]):setLugar({})
+    
     Client.location.removeLocation(l.coords)
-    setLugar({})
+    setActualizarLugares((old) => !old)
+    
+    if(lugar.coords === l.coords){
+      lugares.length > 1 ? setLugar(lugares[0]):setLugar({})
+    }   
   }
 
 
