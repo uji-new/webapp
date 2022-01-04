@@ -45,22 +45,22 @@ export const Lugar = (props) => {
     },[lugar]) 
 
     useEffect(() => {
-        serviciosLugar['WEATHER'] ? sW(serviciosLugar['WEATHER'].enabled):null,
-        serviciosLugar['EVENTS'] ? sE(serviciosLugar['EVENTS'].enabled):null,
-        serviciosLugar['NEWS'] ? sN(serviciosLugar['NEWS'].enabled):null
+        serviciosLugar[Client.service.TYPE.WEATHER] ? sW(serviciosLugar[Client.service.TYPE.WEATHER].enabled):null,
+        serviciosLugar[Client.service.TYPE.EVENTS] ? sE(serviciosLugar[Client.service.TYPE.EVENTS].enabled):null,
+        serviciosLugar[Client.service.TYPE.NEWS] ? sN(serviciosLugar[Client.service.TYPE.NEWS].enabled):null
     }, [serviciosLugar])   
 
     const handleEventInvertir = async(event, tipo) => {
         event.preventDefault()
         setActializarServicios((old) => !old)
         switch (tipo) {
-            case 'WEATHER':
+            case Client.service.TYPE.WEATHER:
                 w ? (
                     Client.service.disableServiceForLocation(lugar.coords, tipo) 
                     ):Client.service.enableServiceForLocation(lugar.coords, tipo)              
                 sW((old) => !old)
                 break;
-            case 'EVENTS':
+            case Client.service.TYPE.EVENTS:
                 e ? (
                     Client.service.disableServiceForLocation(lugar.coords, tipo)
                     ):(
@@ -68,7 +68,7 @@ export const Lugar = (props) => {
                     )       
                 sE((old) => !old) 
                 break;
-            case 'NEWS':
+            case Client.service.TYPE.NEWS:
                 n ? (
                     Client.service.disableServiceForLocation(lugar.coords, tipo) 
                     ):Client.service.enableServiceForLocation(lugar.coords, tipo)  
@@ -95,86 +95,69 @@ export const Lugar = (props) => {
     
     return (
         <>
-        <Button variant="primary" onClick={handleShow}>
-            Launch demo modal
-        </Button>
-        <ModalService show={show} onHide={handleClose}/>
-        {
-        //NOMBRE
-        }
-        <>
-            <h1> {!b ? alias:(
-            <input
-                onChange={(e) => setAlias(e.target.value)}
-                value={alias}
-            />) 
-            } </h1>  
-            {!lugares.every((l) => l.coords !== lugar.coords) ? <Button onClick={(e) => hadleActualizarAlias(e)}></Button>:null
-            }
-        </>
-        {
-        //WEATHER
-        }
-        <section className="service-section weather-section" data-testid="weather">
-            { serviciosLugar['WEATHER'] ? (
-                <>
+            <Button variant="primary" onClick={handleShow}>
+                Launch demo modal
+            </Button>
+            <ModalService show={show} onHide={handleClose}/>
+
+            {/* NOMBRE */}
+            <h1>
+                {!b ? alias:(
+                    <input
+                        onChange={(e) => setAlias(e.target.value)}
+                        value={alias}
+                    />
+                )}
+            </h1>
+            {!lugares.every((l) => l.coords !== lugar.coords) ? <Button onClick={(e) => hadleActualizarAlias(e)}></Button>:null}
+
+            {/* WEATHER */}
+            { serviciosLugar[Client.service.TYPE.WEATHER] ? (
+                <section className="service-section weather-section" data-testid="weather">
                     <Form.Switch
                         size='lg'
                         checked={w}
-                        onChange={(e) => handleEventInvertir(e, 'WEATHER')}/>
-                    <h1 id="weather">{serviciosLugar['WEATHER'].name}</h1>
-                    {datosLugar['WEATHER'] && w ? (
-                        <Weather lugar={lugarRender} event={datosLugar['WEATHER']}/>
+                        onChange={(e) => handleEventInvertir(e, Client.service.TYPE.WEATHER)}/>
+                    <h1 id="weather">{serviciosLugar[Client.service.TYPE.WEATHER].name}</h1>
+                    {datosLugar[Client.service.TYPE.WEATHER] && w ? (
+                        <Weather lugar={lugarRender} event={datosLugar[Client.service.TYPE.WEATHER]}/>
                     ):null}
-                </>
+                </section>
             ) : null}
-            
 
-        </section>
-
-        {
-        //EVENTS
-        }
-        <section className="service-section events-section" data-testid="events">
-            { serviciosLugar['EVENTS'] ? (
-                <>
+            {/* EVENTS */}
+            { serviciosLugar[Client.service.TYPE.EVENTS] ? (
+                <section className="service-section events-section" data-testid="events">
                     <Form.Switch 
                         size='lg'
                         checked={e}
-                        onChange={(event) => handleEventInvertir(event, 'EVENTS')}/>
-                    <h1 id="events"> {serviciosLugar['EVENTS'].name}</h1>
-                    {datosLugar['EVENTS'] && e ? ( 
+                        onChange={(event) => handleEventInvertir(event, Client.service.TYPE.EVENTS)}/>
+                    <h1 id="events"> {serviciosLugar[Client.service.TYPE.EVENTS].name}</h1>
+                    {datosLugar[Client.service.TYPE.EVENTS] && e ? ( 
                         <Row xs={2} md={1} className="events-cards g-4">
-                            {datosLugar['EVENTS'].map((e, idx) => <Event key={idx} event={e}/>)}
+                            {datosLugar[Client.service.TYPE.EVENTS].map((e, idx) => <Event key={idx} event={e}/>)}
                         </Row>
                     ):null}
-                </>
-                ):null}
-        </section> 
-        
-        {
-        //NEWS
-        }
-        <section className="service-section news-section" data-testid="news">
-            { serviciosLugar['NEWS'] ? (
-                    <>
-                        <Form.Switch 
-                            size='lg'
-                            checked={n}
-                            onChange={(e) => handleEventInvertir(e, 'NEWS')}
-                        />
-                        <h1 id="news">{serviciosLugar['NEWS'].name}</h1>
-                        {datosLugar['NEWS'] && n ? (
-                            <Row xs={2} md={1} className="news-cards g-4">
-                                {datosLugar['NEWS'].map((e, idx) => <New key={idx} event={e}/>)}
-                            </Row>
-                        ):null}
-                    </>
-                ):null}
-
-        </section>        
-    </>
-    
+                </section> 
+            ):null}
+            
+            {/* NEWS */}
+            { serviciosLugar[Client.service.TYPE.NEWS] ? (
+                <section className="service-section news-section" data-testid="news">
+                    <Form.Switch 
+                        size='lg'
+                        checked={n}
+                        onChange={(e) => handleEventInvertir(e, Client.service.TYPE.NEWS)}
+                    />
+                    <h1 id="news">{serviciosLugar[Client.service.TYPE.NEWS].name}</h1>
+                    {datosLugar[Client.service.TYPE.NEWS] && n ? (
+                        <Row xs={2} md={1} className="news-cards g-4">
+                            {datosLugar[Client.service.TYPE.NEWS].map((e, idx) => <New key={idx} event={e}/>)}
+                        </Row>
+                    ):null}
+                </section>
+            ):null}
+        </>
     )
 }
 //{lugarRender.coords ? (

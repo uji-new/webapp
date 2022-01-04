@@ -68,16 +68,16 @@ const SessionOffCanvas = ({setLugaresNoG}) => {
     
 
   useEffect(() => {
-    servicios['WEATHER'] ? sW(servicios['WEATHER'].enabled):null,
-    servicios['EVENTS'] ? sE(servicios['EVENTS'].enabled):null,
-    servicios['NEWS'] ? sN(servicios['NEWS'].enabled):null
+    servicios[Client.service.TYPE.WEATHER] ? sW(servicios[Client.service.TYPE.WEATHER].enabled):null,
+    servicios[Client.service.TYPE.EVENTS] ? sE(servicios[Client.service.TYPE.EVENTS].enabled):null,
+    servicios[Client.service.TYPE.NEWS] ? sN(servicios[Client.service.TYPE.NEWS].enabled):null
   }, [servicios])   
   
   const handleEventInvertir = async(event, tipo) => {
     event.preventDefault()
     let auxServicios
     switch (tipo) {
-        case 'WEATHER':
+        case Client.service.TYPE.WEATHER:
             w ? (
               Client.service.disableService(tipo)
               ):Client.service.enableService(tipo)
@@ -88,7 +88,7 @@ const SessionOffCanvas = ({setLugaresNoG}) => {
             auxServicios[tipo].enabled = !auxServicios[tipo].enabled
             setServicios(auxServicios) 
             break;
-        case 'EVENTS':
+        case Client.service.TYPE.EVENTS:
             e ? (
               Client.service.disableService(tipo)
               ):Client.service.enableService(tipo)      
@@ -99,7 +99,7 @@ const SessionOffCanvas = ({setLugaresNoG}) => {
             auxServicios[tipo].enabled = !auxServicios[tipo].enabled
             setServicios(auxServicios) 
             break;
-        case 'NEWS':
+        case Client.service.TYPE.NEWS:
             n ? (
               Client.service.disableService(tipo)
               ):Client.service.enableService(tipo)
@@ -139,40 +139,40 @@ const SessionOffCanvas = ({setLugaresNoG}) => {
               {
               //WEATHER
               }
-              {servicios['WEATHER'] ? (
+              {servicios[Client.service.TYPE.WEATHER] ? (
                 <>
-                  <h2> {servicios['WEATHER'].name} </h2>
-                  <p>{servicios['WEATHER'].description}</p>
+                  <h2> {servicios[Client.service.TYPE.WEATHER].name} </h2>
+                  <p>{servicios[Client.service.TYPE.WEATHER].description}</p>
                   <Form.Switch 
                       size='lg'
                       checked={w}
-                      onChange={(e)=>handleEventInvertir(e, 'WEATHER')}
+                      onChange={(e)=>handleEventInvertir(e, Client.service.TYPE.WEATHER)}
                   />
                 </>):null}
               {
               //EVENTS
               }
-              {servicios['EVENTS'] ? (
+              {servicios[Client.service.TYPE.EVENTS] ? (
                 <>
-                  <h2> {servicios['EVENTS'].name} </h2>
-                  <p>{servicios['EVENTS'].description}</p>
+                  <h2> {servicios[Client.service.TYPE.EVENTS].name} </h2>
+                  <p>{servicios[Client.service.TYPE.EVENTS].description}</p>
                   <Form.Switch 
                       size='lg'
                       checked={e}
-                      onChange={(e)=>handleEventInvertir(e, 'EVENTS')}
+                      onChange={(e)=>handleEventInvertir(e, Client.service.TYPE.EVENTS)}
                   />
                 </>):null}
               {
               //NEWS
               }
-              {servicios['NEWS'] ? (
+              {servicios[Client.service.TYPE.NEWS] ? (
                 <>
-                  <h2> {servicios['NEWS'].name} </h2>
-                  <p>{servicios['NEWS'].description}</p>
+                  <h2> {servicios[Client.service.TYPE.NEWS].name} </h2>
+                  <p>{servicios[Client.service.TYPE.NEWS].description}</p>
                   <Form.Switch 
                       size='lg'
                       checked={n}
-                      onChange={(e)=>handleEventInvertir(e, 'NEWS')}
+                      onChange={(e)=>handleEventInvertir(e, Client.service.TYPE.NEWS)}
                   />
                 </>):null}
             </>
