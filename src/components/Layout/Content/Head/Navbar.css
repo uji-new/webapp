@@ -6,14 +6,17 @@
     flex-grow: 2;
   }
 
-  .offcanvas .user-form {
+  .offcanvas .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .offcanvas .form-buttons {
     display: flex;
     flex-direction: row;
-    margin-top: 1rem;
     justify-content: space-evenly;
   }
 
-  .offcanvas .user-form .btn {
+  .offcanvas .form-buttons .btn {
     max-width: fit-content;
     border-radius: 0.25rem !important;
   }

@@ -29,7 +29,7 @@ export function UserForm({setUser}) {
     return (    
         <>
                 <Form> 
-                    <Form.Group controlId="formBasicEmail">
+                    <Form.Group className="form-group" controlId="formBasicEmail">
                         <Form.Label>Mail</Form.Label>
                         <Form.Control 
                             name="mail"
@@ -41,7 +41,7 @@ export function UserForm({setUser}) {
                             
                     </Form.Group>
 
-                    <Form.Group controlId="formBasicPassword">
+                    <Form.Group className="form-group" controlId="formBasicPassword">
                         <Form.Label>Password</Form.Label>
                         <Form.Control 
                             name="password"                                    
@@ -50,7 +50,7 @@ export function UserForm({setUser}) {
                             onChange={event => setPassword(event.target.value)}
                             />
                     </Form.Group>
-                    <ButtonGroup aria-label="Basic example" className="user-form">
+                    <ButtonGroup aria-label="Basic example" className="form-buttons">
                     <Button sm={1} variant="success btn-block" onClick={handleSubmitIn}>
                         Iniciar sesion
                     </Button>
