@@ -99,7 +99,7 @@ export const SideBar = (props) => {
             })}
             
             <strong className="ml-3 sidebar-section">Historial</strong>
-            <Button variant="dark" onClick={() => setLugar({name : 'historial',alias : 'Historial'})}>
+            <Button variant="secondary" onClick={() => setLugar({name : 'historial',alias : 'Historial'})}>
                 Ver Historial
             </Button>
             
