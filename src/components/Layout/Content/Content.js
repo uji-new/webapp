@@ -63,7 +63,11 @@ export const Content = (props) => {
       lugares={lugares}
     />
     
-    {lugarRender.name ? (lugarRender.name === 'historial' ? <Historial setLugaresApi={setLugaresApi} setLugar={setLugar}/>:<Lugar lugarRender={lugarRender}{...props}/>):<Bienvenida/>}
+    {lugarRender.name ? (
+      lugarRender.name === 'historial' ? (
+        <Historial setLugaresApi={setLugaresApi} setLugar={setLugar}/>
+        ):<Lugar lugarRender={lugarRender}{...props}/>
+        ):<Bienvenida/>}
 
     </div>
   );

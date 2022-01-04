@@ -15,6 +15,7 @@ export const SearchBar = (props) => {
       setLugar,
       setLugaresNoG
     } = props
+    
     useEffect(() => {
       inputRef.current.addEventListener('click', (event) => {
         event.stopPropagation();
@@ -25,15 +26,15 @@ export const SearchBar = (props) => {
       });
     }, []);
     
-    const rellenarOpciones = async => {
-      Client.query.query(value).then(setOptions)
+    const rellenarOpciones = (v) => {
+      Client.query.query(v).then(setOptions)
     }
 
     const onInputChange = (event) => {
       event.preventDefault()
       setValue(event.target.value)
     
-      value.length > 0 ? setIdTime(setTimeout(rellenarOpciones, 100)):setOptions([]);
+      event.target.value.length > 0 ? setIdTime(setTimeout(rellenarOpciones(event.target.value), 500)):setOptions([]);
       clearTimeout(idTime);
 
     }
@@ -79,7 +80,7 @@ export const SearchBar = (props) => {
           className="form-control"
           placeholder="Search"
           autoComplete="off"
-          onChange={onInputChange}
+          onInput={onInputChange}
           ref={inputRef}
           value={value}
           onKeyDownCapture={enterPress}
