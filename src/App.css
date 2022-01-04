@@ -41,3 +41,7 @@
   .row {
     justify-content: center;
   }
+
+  .subtitle {
+      text-align: center;
+  }
