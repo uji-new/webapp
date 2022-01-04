@@ -33,7 +33,7 @@ export function UserForm({setUser}) {
                         <Form.Label>Mail</Form.Label>
                         <Form.Control 
                             name="mail"
-                            type="text" 
+                            type="mail" 
                             autoComplete="off"
                             placeholder="mail@example.org" 
                             onChange={event => setMail(event.target.value)}
@@ -51,10 +51,10 @@ export function UserForm({setUser}) {
                             />
                     </Form.Group>
                     <ButtonGroup aria-label="Basic example" className="form-buttons">
-                    <Button sm={1} variant="success btn-block" onClick={handleSubmitIn}>
+                    <Button sm={1} variant="primary" onClick={handleSubmitIn}>
                         Iniciar sesion
                     </Button>
-                    <Button sm={1} variant="success btn-block" onClick={handleSubmitUp}>
+                    <Button sm={1} variant="primary" onClick={handleSubmitUp}>
                         Crear cuenta
                     </Button>
                     </ButtonGroup>

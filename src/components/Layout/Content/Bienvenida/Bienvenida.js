@@ -5,7 +5,10 @@ import React from 'react';
 export const Bienvenida = () => {    
     return (
             <>
-              <h3>Hola, explicaciones</h3>      
+              <h1>¡Bienvenido a N.E.W!</h1>
+              <h4 className="subtitle">Busca una ubicacion para empezar tu aventura</h4>
+              <p className="subtitle">Puedes editar tus preferencias desde la pagina de tu perfil<br/>Despues podras personalizar las incluso por ubicacion</p>
+              <p className="subtitle"></p>
             </>
     )
 }

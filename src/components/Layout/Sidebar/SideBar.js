@@ -64,14 +64,14 @@ export const SideBar = (props) => {
       <div className={classNames("sidebar", { "is-open": props.isOpen })}>
         <div className="sidebar-header">
           <Button
-            variant="link"
-            onClick={props.toggle}
-            style={{ color: "#fff" }}
-            className="mt-4"
-          >
-          <FontAwesomeIcon icon={faTimes} pull="right" size="xs" />
+              variant="link"
+              onClick={props.toggle}
+              style={{ color: "#fff" }}
+              className="mt-4"
+            >
+            <FontAwesomeIcon icon={faTimes} pull="right" size="xs" />
           </Button>
-          <h3> N.E.W </h3>
+          <h3><img className="brand-icon" src="/favicon.ico"/> N.E.W </h3>
         </div>  
       <div>
           <Nav className="flex-column pt-2">
@@ -107,7 +107,7 @@ export const SideBar = (props) => {
             })}
             
             <strong className="ml-3 sidebar-section">Historial</strong>
-            <Button variant="dark" onClick={() => setLugar({name : 'historial',alias : 'Historial'})}>
+            <Button variant="secondary" onClick={() => setLugar({name : 'historial',alias : 'Historial'})}>
                 Ver Historial
             </Button>
             

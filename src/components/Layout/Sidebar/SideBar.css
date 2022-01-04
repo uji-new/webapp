@@ -3,6 +3,7 @@
   ----------------------------------------------------- */
   .sidebar {
     position: fixed;
+    z-index: 1030;
     
     top: 0;
     bottom: 0;
@@ -34,6 +35,13 @@
   .sidebar ul p {
     color: #fff;
     padding: 10px;
+  }
+
+  .brand-icon {
+    display: inline-block;
+    height: 2em;
+    margin: -0.5em;
+    margin-right: 0em;
   }
   
   .collapse.show, 
@@ -104,12 +112,6 @@
   @media only screen and (max-width: 575.98px) {
     body {
       overflow:  hidden;
-    }
-    
-    .content.is-open {
-      /*margin-left: 100%;*/
-      display: none;
-      transition: all 0.5s;
     }
     
     .sidebar.is-open {

@@ -34,7 +34,7 @@ export const NavBar = (props) => {
         >
           <Stack direction="horizontal" gap={3}>
               
-            <Button variant="outline-info" onClick={props.toggle}>
+            <Button className="sidebar-icon" variant="outline-info" onClick={props.toggle}>
               <FontAwesomeIcon icon={faAlignLeft} />
             </Button>
             
