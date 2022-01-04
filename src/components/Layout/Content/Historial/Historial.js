@@ -28,7 +28,7 @@ export const Historial = (props) => {
         <>
             <ListGroup as="ul">
                     {historial.length ? historial.map( (l, index) => {                                 
-                        return <ListGroup.Item>
+                        return <ListGroup.Item key={l.coords}>
                             <ButtonGroup aria-label="Basic example" className="history-buttons">
                                 <Button variant="outline-primary" onClick={() => {Client.history.restoreLocation(l.coords); setLugar(l)}}> + </Button>
                                 <Button variant="outline-primary" onClick={() => Client.history.removeLocation(l.coords)}> X </Button>
