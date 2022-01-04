@@ -123,61 +123,60 @@ const SessionOffCanvas = ({setLugaresNoG}) => {
       </Button>
 
       <Offcanvas show={show} onHide={handleClose} placement={'end'} name={'end'}>
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title>{user ? user : 'Invitado'}</Offcanvas.Title>
-          {user ? 
-          <LogOut 
-                setLugaresNoG={setLugaresNoG}
-                setUser={setUser}
-              /> : null}
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-          {!user ? <UserForm setUser={setUser}/>
+          {!user ? <><Offcanvas.Title><h1>Cuenta</h1></Offcanvas.Title><Offcanvas.Body><UserForm setUser={setUser}/></Offcanvas.Body></>
           : (
             <>  
-              <h1>Servicios</h1>
-              {
-              //WEATHER
-              }
+              <Offcanvas.Title><h1>Servicios</h1></Offcanvas.Title>
+              <Offcanvas.Body>
+              {/* WEATHER */}
               {servicios[Client.service.TYPE.WEATHER] ? (
                 <>
-                  <h2> {servicios[Client.service.TYPE.WEATHER].name} </h2>
+                  <Stack direction="horizontal" gap={2}>
+                    <h2> {servicios[Client.service.TYPE.WEATHER].name} </h2>
+                    <Form.Switch 
+                        size='lg'
+                        checked={w}
+                        onChange={(e)=>handleEventInvertir(e, Client.service.TYPE.WEATHER)}
+                    />
+                  </Stack>
                   <p>{servicios[Client.service.TYPE.WEATHER].description}</p>
-                  <Form.Switch 
-                      size='lg'
-                      checked={w}
-                      onChange={(e)=>handleEventInvertir(e, Client.service.TYPE.WEATHER)}
-                  />
                 </>):null}
-              {
-              //EVENTS
-              }
+              {/* EVENTS */}
               {servicios[Client.service.TYPE.EVENTS] ? (
                 <>
-                  <h2> {servicios[Client.service.TYPE.EVENTS].name} </h2>
+                  <Stack direction="horizontal" gap={2}>
+                    <h2> {servicios[Client.service.TYPE.EVENTS].name} </h2>
+                    <Form.Switch 
+                        size='lg'
+                        checked={e}
+                        onChange={(e)=>handleEventInvertir(e, Client.service.TYPE.EVENTS)}
+                    />
+                  </Stack>
                   <p>{servicios[Client.service.TYPE.EVENTS].description}</p>
-                  <Form.Switch 
-                      size='lg'
-                      checked={e}
-                      onChange={(e)=>handleEventInvertir(e, Client.service.TYPE.EVENTS)}
-                  />
                 </>):null}
-              {
-              //NEWS
-              }
+              {/* NEWS */}
               {servicios[Client.service.TYPE.NEWS] ? (
                 <>
-                  <h2> {servicios[Client.service.TYPE.NEWS].name} </h2>
+                  <Stack direction="horizontal" gap={2}>
+                    <h2> {servicios[Client.service.TYPE.NEWS].name} </h2>
+                    <Form.Switch 
+                        size='lg'
+                        checked={n}
+                        onChange={(e)=>handleEventInvertir(e, Client.service.TYPE.NEWS)}
+                    />
+                  </Stack>
                   <p>{servicios[Client.service.TYPE.NEWS].description}</p>
-                  <Form.Switch 
-                      size='lg'
-                      checked={n}
-                      onChange={(e)=>handleEventInvertir(e, Client.service.TYPE.NEWS)}
-                  />
                 </>):null}
+                <Stack direction="horizontal" gap={2}>
+                  {user}
+                  <LogOut 
+                    setLugaresNoG={setLugaresNoG}
+                    setUser={setUser}
+                  />
+                </Stack>
+                </Offcanvas.Body>
             </>
           )}
-        </Offcanvas.Body>
       </Offcanvas>
     </>
   )

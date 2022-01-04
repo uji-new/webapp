@@ -28,7 +28,6 @@ export function UserForm({setUser}) {
 
     return (    
         <>
-            <Row className="mt-5">
                 <Form> 
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Mail</Form.Label>
@@ -36,7 +35,7 @@ export function UserForm({setUser}) {
                             name="mail"
                             type="text" 
                             autoComplete="off"
-                            placeholder="Enter email" 
+                            placeholder="mail@example.org" 
                             onChange={event => setMail(event.target.value)}
                             />
                             
@@ -47,18 +46,19 @@ export function UserForm({setUser}) {
                         <Form.Control 
                             name="password"                                    
                             type="password" 
-                            placeholder="Password" 
+                            placeholder="password" 
                             onChange={event => setPassword(event.target.value)}
                             />
                     </Form.Group>
-                    <Button variant="success btn-block" onClick={handleSubmitIn}>
+                    <ButtonGroup aria-label="Basic example">
+                    <Button sm={1} variant="success btn-block" onClick={handleSubmitIn}>
                         Iniciar sesion
                     </Button>
-                    <Button variant="success btn-block" onClick={handleSubmitUp}>
+                    <Button sm={1} variant="success btn-block" onClick={handleSubmitUp}>
                         Crear cuenta
                     </Button>
+                    </ButtonGroup>
                 </Form>
-            </Row>
         </>
          
     )
