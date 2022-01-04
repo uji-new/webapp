@@ -30,8 +30,8 @@ export const Historial = (props) => {
                     {historial.length ? historial.map( (l, index) => {                                 
                         return <ListGroup.Item>
                             <ButtonGroup aria-label="Basic example" className="history-buttons">
-                                <Button variant="success" onClick={() => {Client.history.restoreLocation(l.coords); setLugar(l)}}> + </Button>
-                                <Button variant="danger" onClick={() => Client.history.removeLocation(l.coords)}> X </Button>
+                                <Button variant="outline-primary" onClick={() => {Client.history.restoreLocation(l.coords); setLugar(l)}}> + </Button>
+                                <Button variant="outline-primary" onClick={() => Client.history.removeLocation(l.coords)}> X </Button>
                             </ButtonGroup>
                             <p>{l.alias} ({l.name})</p>
                         </ListGroup.Item>
