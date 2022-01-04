@@ -33,7 +33,7 @@ export function UserForm({setUser}) {
                         <Form.Label>Mail</Form.Label>
                         <Form.Control 
                             name="mail"
-                            type="text" 
+                            type="mail" 
                             autoComplete="off"
                             placeholder="mail@example.org" 
                             onChange={event => setMail(event.target.value)}
