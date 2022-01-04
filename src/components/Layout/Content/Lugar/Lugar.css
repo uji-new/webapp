@@ -33,3 +33,7 @@
 .location-name {
     justify-content: center;
 }
+
+.location-name-edit {
+    max-width: 10em;
+}

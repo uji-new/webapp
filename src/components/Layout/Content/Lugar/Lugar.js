@@ -110,7 +110,7 @@ const LugarGuardado = (props) => {
         <Stack className="location-name" direction="horizontal" gap={2}>
         <h1>
             {!b ? alias:(
-                <input
+                <input className="location-name-edit"
                     onChange={(e) => setAlias(() => e.target.value)}
                     value={alias}
                     onKeyDownCapture={(e) => enterPress(e)}
