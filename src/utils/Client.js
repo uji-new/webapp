@@ -66,6 +66,7 @@ class QueryClient extends BaseClient {
     }
 
     query(query) {
+        console.log(query);
         return this._setupRequest(METHOD.GET, [':query'], {query});
     }
 }

@@ -6,7 +6,7 @@ import Client from 'utils/Client';
 export const SearchBar = (props) => {
     const ulRef = useRef(); //valor fijo para la lista
     const inputRef = useRef(); //valor fijo para el campo input
-    const [value, setValue] = useState('') //valor del campo input
+    let [value, setValue] = useState('') //valor del campo input
     const [options, setOptions] = useState([]) //recomendaciones de la api
     const [idTime, setIdTime] = useState('')
 
@@ -31,7 +31,8 @@ export const SearchBar = (props) => {
 
     const onInputChange = (event) => {
       event.preventDefault()
-      setValue(event.target.value)
+      value = event.target.value;
+      setValue(value);
     
       value.length > 0 ? setIdTime(setTimeout(rellenarOpciones, 100)):setOptions([]);
       clearTimeout(idTime);
