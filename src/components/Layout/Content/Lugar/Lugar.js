@@ -120,7 +120,7 @@ const LugarGuardado = (props) => {
         </h1>
         {!lugares.every((l) => l.coords !== lugar.coords) ? <Button onClick={(e) => hadleActualizarAlias(e)}>+</Button>:null}
         </Stack>
-        {lugar.name === alias ? null:<h5>{lugar.name}</h5>}
+        {lugar.name === alias ? null:<h4 className="serice-subtitle">{lugar.name}</h4>}
 
         {/* WEATHER */}
         { serviciosLugar[Client.service.TYPE.WEATHER] ? (
@@ -146,9 +146,9 @@ const LugarGuardado = (props) => {
                 <h1 id="events"> {serviciosLugar[Client.service.TYPE.EVENTS].name}</h1>
                 {e ? ( 
                     datosLugar[Client.service.TYPE.EVENTS] === false ? (
-                        <p>Intentelo mas tarde</p>
+                        <h4 className="serice-subtitle">Intentelo mas tarde</h4>
                     ):<Row xs={2} md={1} className="events-cards g-4">
-                        {datosLugar[Client.service.TYPE.EVENTS].length ? datosLugar[Client.service.TYPE.EVENTS].map((e, idx) => <Event key={idx} event={e}/>) : <p>No hay ningun evento</p>}
+                        {datosLugar[Client.service.TYPE.EVENTS].length ? datosLugar[Client.service.TYPE.EVENTS].map((e, idx) => <Event key={idx} event={e}/>) : <h4 className="serice-subtitle">No hay ningun evento</h4>}
                     </Row>
                 ):null}
             </section> 
@@ -165,9 +165,9 @@ const LugarGuardado = (props) => {
                 <h1 id="news">{serviciosLugar[Client.service.TYPE.NEWS].name}</h1>
                 {n ? (
                     datosLugar[Client.service.TYPE.NEWS] === false ? (
-                        <p>Intentelo mas tarde</p>
+                        <h4 className="serice-subtitle">Intentelo mas tarde</h4>
                     ):<Row xs={2} md={1} className="news-cards g-4">
-                        {datosLugar[Client.service.TYPE.NEWS].length ? datosLugar[Client.service.TYPE.NEWS].map((e, idx) => <New key={idx} event={e}/>) : <p>No hay ninguna noticia</p>}
+                        {datosLugar[Client.service.TYPE.NEWS].length ? datosLugar[Client.service.TYPE.NEWS].map((e, idx) => <New key={idx} event={e}/>) : <h4 className="serice-subtitle">No hay ninguna noticia</h4>}
                     </Row>
                 ):null}
             </section>
