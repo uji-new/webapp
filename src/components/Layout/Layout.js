@@ -88,6 +88,7 @@ export const Layout = () => {
                                       serviciosLugar={serviciosLugar} setServiciosLugar={setServiciosLugar}
                                       datosLugar={datosLugar} setDatosLugar={setDatosLugar}
                                       setActializarServicios={setActializarServicios}
+                                      setActualizarLugares={setActualizarLugares}
                                       />              
       </div>
   )

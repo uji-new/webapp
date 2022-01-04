@@ -14,13 +14,14 @@ import { Event } from 'components';
 import { New } from 'components';
 import { Weather } from 'components';
 import Client from "utils/Client";
-import { ModalService } from 'features'
 
 export const Lugar = (props) => {  
+    const [b, sB] = useState(false)
+    
     const {lugares, lugar} = props  
     return (
         <>
-            {!lugares.every((i) => i.coords !== lugar.coords) ? <LugarGuardado {...props}/>:<LugarNoGuardado {...props}/>}       
+            {!lugares.every((i) => i.coords !== lugar.coords) ? <LugarGuardado {...props} b={b} sB={sB} />:<LugarNoGuardado {...props}/>}       
         </>
     )
 }
@@ -30,24 +31,17 @@ const LugarGuardado = (props) => {
         lugares, 
         lugar, 
         setLugar, 
-        setLugares,
-        setLugaresApi,
         serviciosLugar, 
-        setServiciosLugar,
         datosLugar,
-        setDatosLugar,
         setActializarServicios,
-        lugarRender } = props  
-
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+        lugarRender,
+        b, sB
+    } = props  
     
     const [w,sW] = useState('')
     const [e,sE] = useState('')
     const [n,sN] = useState('')
     
-    const [b, sB] = useState(false)
     const [alias, setAlias] = useState('')
     
     useEffect(() => {
@@ -91,28 +85,20 @@ const LugarGuardado = (props) => {
     }
     const hadleActualizarAlias = async(event) => {
         event.preventDefault()
-        
+        if (b) {
+            alias ? null:alias = lugar.name
+            Client.location.updateLocation(lugar.coords, alias)
+        }
         b ? Client.location.updateLocation(lugar.coords, alias):console.log("mostrar")
+        sB((old) => !old)
         setLugar((old) => {
             let x = {...old}
             x.alias = alias
             return x
         })
-        sB((old) => !old)
+        
     }
-    const enterPress = (event) => {
-        var code = event.keyCode || event.which;
-        if(code === 13) { 
-            const fetchBuscarLugar = async () => {
-                await Client.query.query(value).then( r => {
-                r.length > 0 ? ( 
-                  handleGuardar(event, r[0])
-                  ):null;
-              })
-            }
-            value.length > 1 ? fetchBuscarLugar():alert('No Data')
-        } 
-      }
+
     return (
         <>
         {/* NOMBRE */}
@@ -120,7 +106,7 @@ const LugarGuardado = (props) => {
         <h1>
             {!b ? alias:(
                 <input
-                    onChange={(e) => setAlias(e.target.value)}
+                    onChange={(e) => setAlias(() => e.target.value)}
                     value={alias}
                 />
             )}

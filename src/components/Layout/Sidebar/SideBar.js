@@ -33,11 +33,12 @@ export const SideBar = (props) => {
   }
   const handleEliminar = async (e,l) => {
     e.preventDefault();
-    setLugaresNoG(lugaresNoG.filter(item => item !== l))
+    let lugaresNoGAux = lugaresNoG.filter(item => item !== l)
+    setLugaresNoG(lugaresNoGAux)
     
     if(lugar.coords === l.coords){
-      if(lugaresNoG.length > 1){
-        setLugar(lugaresNoG[0])
+      if(lugaresNoGAux.length > 1){
+        setLugar(lugaresNoGAux[0])
       }else if(lugares.length){
         setLugar(lugares[0])
       }else{
@@ -52,11 +53,11 @@ export const SideBar = (props) => {
     Client.location.removeLocation(l.coords)
     setActualizarLugares((old) => !old)
     
+    let lugaresAux = lugares.filter(item => item.coords !== l.coords)
     if(lugar.coords === l.coords){
-      lugares.length > 1 ? setLugar(lugares[0]):setLugar({})
+      lugaresAux.length >= 1 ? setLugar(lugaresAux[0]):setLugar({})
     }   
   }
-
 
     return (
       <>
