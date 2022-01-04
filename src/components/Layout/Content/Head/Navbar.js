@@ -8,6 +8,7 @@ import {
   faAlignLeft,
   faUser
 } from "@fortawesome/free-solid-svg-icons";
+
 import { 
   Navbar, 
   Button, 

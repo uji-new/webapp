@@ -4,22 +4,19 @@ import {
     Button
 } from "react-bootstrap";
 
-export const ModalService = ({show, handleClose}) => {
+export const ModalError = (props) => {
+    const {show, text, onHide} = props
 
-  
   return(
     <>
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} >
             <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
+                <Modal.Title>Error Cuenta</Modal.Title>
             </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <Modal.Body>{text}</Modal.Body>
             <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-                Close
-            </Button>
-            <Button variant="primary" onClick={handleClose}>
-                Save Changes
+            <Button variant="primary" onClick={() => onHide()}>
+                Cerrar
             </Button>
             </Modal.Footer>
         </Modal>

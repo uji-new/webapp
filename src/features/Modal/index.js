@@ -1,2 +1,2 @@
-export { ModalService } from './Modal'
+export { ModalError } from './Modal'
 

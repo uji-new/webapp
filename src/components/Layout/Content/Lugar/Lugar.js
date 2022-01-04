@@ -121,7 +121,7 @@ const LugarGuardado = (props) => {
                 />
             )}
         </h1>
-        {!lugares.every((l) => l.coords !== lugar.coords) ? <Button onClick={(e) => hadleActualizarAlias(e)}> <FontAwesomeIcon icon={faEdit} /></Button>:null}
+        {!lugares.every((l) => l.coords !== lugar.coords) ? <Button onClick={(e) => hadleActualizarAlias(e)} variant="outline-primary"> <FontAwesomeIcon icon={faEdit} /></Button>:null}
         </Stack>
         {lugar.name === alias ? null:<h4 className="subtitle">{lugar.name}</h4>}
 

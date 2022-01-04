@@ -9,25 +9,42 @@ import {
  } from "react-bootstrap";
 import PropTypes from 'prop-types';
 import Client from 'utils/Client'
+import { ModalError } from 'features'
+
+const ERROR = {
+    LOGIN: 'La cuenta introducida no existe',
+    REGISTER: 'El correo ya esta siendo utilizado',
+}
+
 
 export function UserForm({setUser}) {
     const [mail, setMail] = useState();
     const [password, setPassword] = useState();
 
+    const [show, setShow] = useState(false);
+    const [text, setText] = useState('Error')
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     const handleSubmitIn = async e => {
         e.preventDefault();
-        await Client.session.login( mail, password );
-        setUser(mail);
+        await Client.session.login( mail, password )
+            .then(() => setUser(mail))
+                .catch(() => handleShow(), setText(ERROR.LOGIN));
+        
       }
 
     const handleSubmitUp = async e => {
         e.preventDefault();
-        await Client.account.register( mail, password );
-        setUser(mail);
+        await Client.account.register( mail, password )
+            .then(console.log("then"))
+                .catch(() => handleShow(), setText(ERROR.REGISTER));
     }
 
     return (    
         <>
+                <ModalError show={show} onHide={handleClose} text={text}/>
                 <Form> 
                     <Form.Group className="form-group" controlId="formBasicEmail">
                         <Form.Label>Mail</Form.Label>
@@ -37,8 +54,7 @@ export function UserForm({setUser}) {
                             autoComplete="off"
                             placeholder="mail@example.org" 
                             onChange={event => setMail(event.target.value)}
-                            />
-                            
+                            />            
                     </Form.Group>
 
                     <Form.Group className="form-group" controlId="formBasicPassword">

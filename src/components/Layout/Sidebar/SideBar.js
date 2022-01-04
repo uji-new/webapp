@@ -3,10 +3,12 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './SideBar.css'
 import {
-  faTimes
+  faTimes,
+  faPlus
 } from "@fortawesome/free-solid-svg-icons";
 import { 
   faTrashAlt,
+  faPlusSquare,
   faSave
 } from"@fortawesome/free-regular-svg-icons"
 import { 
@@ -82,7 +84,7 @@ export const SideBar = (props) => {
                     <ButtonGroup key={l.coords+'A'} aria-label="Basic example">
                       <Button variant="secondary" key={index+'f'} onClick={() => setLugar(l)} >{l.alias}</Button>
                       <Button  sm={1} size="sm" className="sidebar-action" variant="outline-secondary" key={index+"a"} onClick={(e) => handleGuardar(e,l)} >
-                        <FontAwesomeIcon icon={faSave} />
+                        <FontAwesomeIcon icon={faPlus} />
                       </Button>
                       <Button  sm={1} size="sm" className="sidebar-action" variant="outline-secondary" key={index+"b"} onClick={(e) => handleEliminar(e,l)} >
                         <FontAwesomeIcon icon={faTrashAlt} />
