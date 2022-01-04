@@ -4,36 +4,61 @@ import {
     Tabs, 
     Container,
     Button,
-    ButtonGroup
+    ButtonGroup,
+    Col, Form, Row
  } from "react-bootstrap";
 import PropTypes from 'prop-types';
 import Client from 'utils/Client'
-import { SingIn } from 'components';
-import { SingUp } from 'components';
 
 export function UserForm({setUser}) {
-    const [accion, setAccion] = useState(true);
+    const [mail, setMail] = useState();
+    const [password, setPassword] = useState();
 
-    const handSingIn = () => setAccion(true);
-    const handSingUp = () => setAccion(false);
+    const handleSubmitIn = async e => {
+        e.preventDefault();
+        await Client.session.login( mail, password );
+        setUser(mail);
+      }
+
+    const handleSubmitUp = async e => {
+        e.preventDefault();
+        await Client.account.register( mail, password );
+        setUser(mail);
+    }
+
     return (    
         <>
-            <ButtonGroup aria-label="Basic example">
-                <Button 
-                    variant={accion?'success btn-block':'secondary'}
-                    onClick={handSingIn} >Sing In</Button>
-                <Button 
-                    variant={!accion?'success btn-block':'secondary'}
-                    onClick={handSingUp} >Sing Up</Button>
-            </ButtonGroup>
-            <br/>
-            <br/>
+                <Form> 
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Label>Mail</Form.Label>
+                        <Form.Control 
+                            name="mail"
+                            type="text" 
+                            autoComplete="off"
+                            placeholder="mail@example.org" 
+                            onChange={event => setMail(event.target.value)}
+                            />
+                            
+                    </Form.Group>
 
-            {accion ? <SingIn setUser={setUser}/>:<SingUp setUser={setUser}/>}
-                    
-              
-                   
-            
+                    <Form.Group controlId="formBasicPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control 
+                            name="password"                                    
+                            type="password" 
+                            placeholder="password" 
+                            onChange={event => setPassword(event.target.value)}
+                            />
+                    </Form.Group>
+                    <ButtonGroup aria-label="Basic example" className="user-form">
+                    <Button sm={1} variant="success btn-block" onClick={handleSubmitIn}>
+                        Iniciar sesion
+                    </Button>
+                    <Button sm={1} variant="success btn-block" onClick={handleSubmitUp}>
+                        Crear cuenta
+                    </Button>
+                    </ButtonGroup>
+                </Form>
         </>
          
     )

@@ -70,7 +70,7 @@ export const SideBar = (props) => {
           >
           <FontAwesomeIcon icon={faTimes} pull="right" size="xs" />
           </Button>
-          <h3> N.E.W {lugar.alias} </h3>
+          <h3> N.E.W </h3>
         </div>  
       <div>
           <Nav className="flex-column pt-2">
@@ -96,7 +96,7 @@ export const SideBar = (props) => {
             {lugares.map( (l, index) => {
                 return (
                       <ButtonGroup key={l.coords+'B'}aria-label="Basic example">
-                        <Button variant="primary" key={index+'q'} onClick={() => setLugar(l)} >{l.alias}</Button>
+                        <Button sm={1} variant="primary" key={index+'q'} onClick={() => setLugar(l)} >{l.alias}</Button>
                         <Button sm={1} className="sidebar-action" variant="outline-primary" key={index+'z'} onClick={(e) => handleEliminarGuardado(e,l)} >
                           X
                         </Button>
