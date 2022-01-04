@@ -22,7 +22,13 @@
   }
 
   .sidebar-icon {
-    border: none;
-    color: white;
-    background: rgb(13, 110, 253);;
+    border: none !important;
+    color: white !important;
+    background: rgb(13, 110, 253);
+  }
+
+
+  .sidebar-icon:focus, .sidebar-icon:hover {
+    background: rgb(11, 94, 215);
+    box-shadow: rgba(13, 110, 253, 0.25) 0 0 0 0.25rem !important;
   }
