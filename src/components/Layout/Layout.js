@@ -42,6 +42,7 @@ export const Layout = () => {
           let datosLugarAux = {}
           s.map(i => {
             serviciosLugarAux[i.service.type] = {...i.service, enabled:i.enabled}
+            console.log(i.data)
             datosLugarAux[i.service.type] = i.data
           }) 
         setServiciosLugar(serviciosLugarAux)

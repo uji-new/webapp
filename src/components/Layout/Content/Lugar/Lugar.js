@@ -42,7 +42,7 @@ const LugarGuardado = (props) => {
     const [e,sE] = useState('')
     const [n,sN] = useState('')
     
-    const [alias, setAlias] = useState('')
+    var [alias, setAlias] = useState('')
     
     useEffect(() => {
         lugar.alias ? setAlias(lugar.alias):null   
@@ -81,8 +81,8 @@ const LugarGuardado = (props) => {
             default:
                 break;
         }
-
     }
+
     const hadleActualizarAlias = async(event) => {
         event.preventDefault()
         if (b) {
@@ -95,9 +95,14 @@ const LugarGuardado = (props) => {
             let x = {...old}
             x.alias = alias
             return x
-        })
-        
+        })    
     }
+    const enterPress = (event) => {
+        var code = event.keyCode || event.which;
+        if(code === 13) { 
+            b ? hadleActualizarAlias(event):null
+        } 
+      }
 
     return (
         <>
@@ -108,12 +113,14 @@ const LugarGuardado = (props) => {
                 <input
                     onChange={(e) => setAlias(() => e.target.value)}
                     value={alias}
+                    onKeyDownCapture={(e) => enterPress(e)}
+
                 />
             )}
         </h1>
         {!lugares.every((l) => l.coords !== lugar.coords) ? <Button onClick={(e) => hadleActualizarAlias(e)}>+</Button>:null}
         </Stack>
-        <h5>{lugar.name}</h5>
+        {lugar.name === alias ? null:<h5>{lugar.name}</h5>}
 
         {/* WEATHER */}
         { serviciosLugar[Client.service.TYPE.WEATHER] ? (
@@ -137,8 +144,10 @@ const LugarGuardado = (props) => {
                     checked={e}
                     onChange={(event) => handleEventInvertir(event, Client.service.TYPE.EVENTS)}/>
                 <h1 id="events"> {serviciosLugar[Client.service.TYPE.EVENTS].name}</h1>
-                {datosLugar[Client.service.TYPE.EVENTS] && e ? ( 
-                    <Row xs={2} md={1} className="events-cards g-4">
+                {e ? ( 
+                    datosLugar[Client.service.TYPE.EVENTS] === false ? (
+                        <p>Intentelo mas tarde</p>
+                    ):<Row xs={2} md={1} className="events-cards g-4">
                         {datosLugar[Client.service.TYPE.EVENTS].length ? datosLugar[Client.service.TYPE.EVENTS].map((e, idx) => <Event key={idx} event={e}/>) : <p>No hay ningun evento</p>}
                     </Row>
                 ):null}
@@ -154,8 +163,10 @@ const LugarGuardado = (props) => {
                     onChange={(e) => handleEventInvertir(e, Client.service.TYPE.NEWS)}
                 />
                 <h1 id="news">{serviciosLugar[Client.service.TYPE.NEWS].name}</h1>
-                {datosLugar[Client.service.TYPE.NEWS] && n ? (
-                    <Row xs={2} md={1} className="news-cards g-4">
+                {n ? (
+                    datosLugar[Client.service.TYPE.NEWS] === false ? (
+                        <p>Intentelo mas tarde</p>
+                    ):<Row xs={2} md={1} className="news-cards g-4">
                         {datosLugar[Client.service.TYPE.NEWS].length ? datosLugar[Client.service.TYPE.NEWS].map((e, idx) => <New key={idx} event={e}/>) : <p>No hay ninguna noticia</p>}
                     </Row>
                 ):null}
