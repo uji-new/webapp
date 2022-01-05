@@ -14,7 +14,8 @@ import {
   Button, 
   Stack,
   Offcanvas,
-  Form
+  Form,
+  ButtonGroup
 } from "react-bootstrap";
 
 import { SearchBar } from "features";
@@ -118,6 +119,22 @@ const SessionOffCanvas = ({setLugaresNoG, setLugar}) => {
     }
 
 }
+  const handleDelSession = async e => {
+    e.preventDefault();
+    setLugaresNoG([])
+    await Client.session.logout();
+    await Client.session.loginAsGuest()
+    setUser(null);
+  }
+
+  const handleDelAccount = async e => {
+    e.preventDefault();
+    setLugaresNoG([])
+    await Client.account.deregister();
+    await Client.session.loginAsGuest()
+    setUser(null);
+  }
+
   return (
     <>
       <Button variant="primary" onClick={handleShow} className="me-2">
@@ -178,13 +195,16 @@ const SessionOffCanvas = ({setLugaresNoG, setLugar}) => {
                     </Stack>
                     <p>{servicios[Client.service.TYPE.NEWS].description}</p>
                   </>):null}
-                  <Stack direction="horizontal" gap={2}>
-                    <strong className="username">{user}</strong>
-                    <LogOut 
-                      setLugaresNoG={setLugaresNoG}
-                      setUser={setUser}
-                    />
-                  </Stack>
+                  <h1>Cuenta</h1>
+                  <p className="username"><strong>{user}</strong></p>
+                  <ButtonGroup aria-label="Basic example" className="form-buttons">
+                    <Button sm={1} type="submit" variant="primary" onClick={handleDelSession}>
+                      Cerrar session
+                    </Button>
+                    <Button sm={1} variant="primary" onClick={handleDelAccount}>
+                      Elininar cuenta
+                    </Button>
+                  </ButtonGroup>
                 </Offcanvas.Body>
             </>
           )}

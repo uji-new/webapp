@@ -45,7 +45,7 @@ export function UserForm({setUser, setLugaresNoG, setLugar}) {
     return (    
         <>
                 <ModalError show={show} onHide={handleClose} text={text}/>
-                <Form> 
+                <Form onSubmit={handleSubmitIn}> 
                     <Form.Group className="form-group" controlId="formBasicEmail">
                         <Form.Label>Mail</Form.Label>
                         <Form.Control 
