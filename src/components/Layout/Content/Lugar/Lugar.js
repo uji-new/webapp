@@ -39,7 +39,6 @@ const LugarGuardado = (props) => {
         serviciosLugar, 
         datosLugar,
         setActializarServicios,
-        lugarRender,
         b, sB
     } = props  
     
@@ -139,7 +138,7 @@ const LugarGuardado = (props) => {
                     //<Weather lugar={lugarRender} event={datosLugar[Client.service.TYPE.WEATHER]}/>
                     datosLugar[Client.service.TYPE.WEATHER] === false ? (
                         <h4 className="subtitle">Intentelo mas tarde</h4>
-                    ):<Weather lugar={lugarRender} event={datosLugar[Client.service.TYPE.WEATHER]}/>
+                    ):<Weather lugar={lugar} event={datosLugar[Client.service.TYPE.WEATHER]}/>
                 ):null}
             </section>
         ) : null}
@@ -194,8 +193,8 @@ const LugarNoGuardado = (props) => {
         setServiciosLugar,
         datosLugar,
         setDatosLugar,
-        setActializarServicios,
-        lugarRender } = props  
+        setActializarServicios
+     } = props  
 
     return(
     <>
@@ -207,7 +206,7 @@ const LugarNoGuardado = (props) => {
             <section className="service-section weather-section" data-testid="weather">
                 <h1 id="weather">{serviciosLugar[Client.service.TYPE.WEATHER].name}</h1>
                 {datosLugar[Client.service.TYPE.WEATHER] !== undefined ? (
-                    <Weather lugar={lugarRender} event={datosLugar[Client.service.TYPE.WEATHER]}/>
+                    <Weather lugar={lugar} event={datosLugar[Client.service.TYPE.WEATHER]}/>
                 ):null}
             </section>
         ) : null}
