@@ -34,24 +34,18 @@ export function UserForm({setUser, setLugaresNoG, setLugar}) {
                 .catch(() => handleShow(), setText(ERROR.LOGIN));
         
       }
-    //Error entra en el then y en el catch a la vez cuando hay una escepcion
-    //const handleSubmitUp = async e => {
-    //    e.preventDefault();
-    //    await Client.account.register( mail, password )
-    //        .then(setUser(mail, setLugaresNoG([]), setLugar({})))
-    //            .catch(() => handleShow(), setText(ERROR.REGISTER));
-    //}
+
     const handleSubmitUp = async e => {
         e.preventDefault();
         await Client.account.register( mail, password )
             .then(() => setUser(mail, setLugaresNoG([]), setLugar({})))
-                .catch(() => handleShow(), setText(ERROR.LOGIN))
+                .catch(() => handleShow(), setText(ERROR.REGISTER))
     }
 
     return (    
         <>
                 <ModalError show={show} onHide={handleClose} text={text}/>
-                <Form> 
+                <Form onSubmit={handleSubmitIn}> 
                     <Form.Group className="form-group" controlId="formBasicEmail">
                         <Form.Label>Mail</Form.Label>
                         <Form.Control 
