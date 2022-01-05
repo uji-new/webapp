@@ -1,0 +1,17 @@
+{
+    "theme_color": "#0d6efd",
+    "background_color": "#0d6efd",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "name": "N.E.W",
+    "short_name": "N.E.W",
+    "description": "News, Events & Weather",
+    "icons": [
+        {
+            "src": "/favicon.ico",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

@@ -12,8 +12,8 @@ import Client from 'utils/Client'
 import { ModalError } from 'features'
 
 const ERROR = {
-    LOGIN: 'La cuenta introducida no existe',
-    REGISTER: 'El correo ya esta siendo utilizado',
+    LOGIN: 'La cuenta o contraseña introducidas son incorrectas',
+    REGISTER: 'La cuenta introducida ya existe',
 }
 
 
