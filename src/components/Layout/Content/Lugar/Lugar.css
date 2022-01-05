@@ -3,7 +3,7 @@
     color: rgb(38, 38, 38);
     font-family: "Averta", helvetica, arial, sans-serif;
     font-size: 23px;
-    margin-bottom: 2em;
+    margin: 1.5rem 0 2rem 0;
     font-weight: 900;
     text-transform: uppercase;
 }
