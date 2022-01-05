@@ -25,6 +25,12 @@
   .sidebar-header {
     background: #313b4c;
     color: #adb5bd;
+    cursor: pointer;
+    transition: 0.25s;
+  }
+  
+  .sidebar-header:hover {
+    background: #2a3241;
   }
   
   .sidebar-header h3{
