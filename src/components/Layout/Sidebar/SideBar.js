@@ -59,11 +59,15 @@ export const SideBar = (props) => {
       lugaresAux.length >= 1 ? setLugar(lugaresAux[0]):setLugar({})
     }   
   }
+  const handleBienvenida = async e => {
+    e.preventDefault()
+    setLugar({})
+  }
 
     return (
       <>
       <div className={classNames("sidebar", { "is-open": props.isOpen })}>
-        <div className="sidebar-header">
+        <div className="sidebar-header" onClick={(e) => handleBienvenida(e)}>
           <Button
               variant="link"
               onClick={props.toggle}
