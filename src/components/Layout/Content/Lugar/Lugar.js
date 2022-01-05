@@ -121,7 +121,7 @@ const LugarGuardado = (props) => {
                 />
             )}
         </h1>
-        {!lugares.every((l) => l.coords !== lugar.coords) ? <Button onClick={(e) => hadleActualizarAlias(e)} variant="outline-primary"> <FontAwesomeIcon icon={faEdit} /></Button>:null}
+        {!lugares.every((l) => l.coords !== lugar.coords) ? <Button onClick={(e) => hadleActualizarAlias(e)} variant="outline-primary"> <FontAwesomeIcon icon={faEdit} onClick={(e) => hadleActualizarAlias(e)}/></Button>:null}
         </Stack>
         {lugar.name === alias ? null:<h4 className="subtitle">{lugar.name}</h4>}
 
@@ -134,7 +134,10 @@ const LugarGuardado = (props) => {
                     onChange={(e) => handleEventInvertir(e, Client.service.TYPE.WEATHER)}/>
                 <h1 id="weather">{serviciosLugar[Client.service.TYPE.WEATHER].name}</h1>
                 {datosLugar[Client.service.TYPE.WEATHER] !== undefined && w ? (
-                    <Weather lugar={lugarRender} event={datosLugar[Client.service.TYPE.WEATHER]}/>
+                    //<Weather lugar={lugarRender} event={datosLugar[Client.service.TYPE.WEATHER]}/>
+                    datosLugar[Client.service.TYPE.WEATHER] === false ? (
+                        <h4 className="subtitle">Intentelo mas tarde</h4>
+                    ):<Weather lugar={lugarRender} event={datosLugar[Client.service.TYPE.WEATHER]}/>
                 ):null}
             </section>
         ) : null}

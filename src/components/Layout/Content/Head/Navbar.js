@@ -48,6 +48,7 @@ export const NavBar = (props) => {
 
             <SessionOffCanvas 
               setLugaresNoG={props.setLugaresNoG}
+              setLugar={props.setLugar} 
             /> 
           </Stack>
           
@@ -56,7 +57,7 @@ export const NavBar = (props) => {
     );
 }
 
-const SessionOffCanvas = ({setLugaresNoG}) => {
+const SessionOffCanvas = ({setLugaresNoG, setLugar}) => {
   const { user, setUser, servicios, setServicios} = useContext(AuthContext);
   const [show, setShow] = useState(false);
 
@@ -129,7 +130,7 @@ const SessionOffCanvas = ({setLugaresNoG}) => {
               <Offcanvas.Header closeButton>
               <Offcanvas.Title><h1>Cuenta</h1></Offcanvas.Title>
               </Offcanvas.Header>
-              <Offcanvas.Body><UserForm setLugaresNoG={setLugaresNoG} setUser={setUser}/></Offcanvas.Body>
+              <Offcanvas.Body><UserForm setLugar={setLugar} setLugaresNoG={setLugaresNoG} setUser={setUser}/></Offcanvas.Body>
             </>
           ) : (
             <>  

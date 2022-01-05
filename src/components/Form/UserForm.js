@@ -17,7 +17,7 @@ const ERROR = {
 }
 
 
-export function UserForm({setUser, setLugaresNoG}) {
+export function UserForm({setUser, setLugaresNoG, setLugar}) {
     const [mail, setMail] = useState();
     const [password, setPassword] = useState();
 
@@ -30,7 +30,7 @@ export function UserForm({setUser, setLugaresNoG}) {
     const handleSubmitIn = async e => {
         e.preventDefault();
         await Client.session.login( mail, password )
-            .then(() => setUser(mail, setLugaresNoG([])))
+            .then(() => setUser(mail, setLugaresNoG([]), setLugar({})))
                 .catch(() => handleShow(), setText(ERROR.LOGIN));
         
       }
@@ -38,7 +38,7 @@ export function UserForm({setUser, setLugaresNoG}) {
     const handleSubmitUp = async e => {
         e.preventDefault();
         await Client.account.register( mail, password )
-            .then(setUser(mail, setLugaresNoG([])))
+            .then(setUser(mail, setLugaresNoG([]), setLugar({})))
                 .catch(() => handleShow(), setText(ERROR.REGISTER));
     }
 
