@@ -94,7 +94,6 @@ export const SideBar = (props) => {
               })
             )}
             <strong className="ml-3 sidebar-section">Ubicaciones</strong>
-            {console.log(lugares)}
             
             {!lugares.length ? <p className="no-lugares" >Sin Ubicaciones</p>:(
               lugares.map( (l, index) => {
