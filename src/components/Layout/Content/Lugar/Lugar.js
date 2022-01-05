@@ -18,6 +18,7 @@ import { Event } from 'components';
 import { New } from 'components';
 import { Weather } from 'components';
 import Client from "utils/Client";
+import toLocalCoords from "utils/Coords";
 
 export const Lugar = (props) => {  
     const [b, sB] = useState(false)
@@ -124,6 +125,7 @@ const LugarGuardado = (props) => {
         {!lugares.every((l) => l.coords !== lugar.coords) ? <Button onClick={(e) => hadleActualizarAlias(e)} variant="outline-primary"> <FontAwesomeIcon icon={faEdit} onClick={(e) => hadleActualizarAlias(e)}/></Button>:null}
         </Stack>
         {lugar.name === alias ? null:<h4 className="subtitle">{lugar.name}</h4>}
+        <h6 className="subtitle">{toLocalCoords(lugar.coords)}</h6>
 
         {/* WEATHER */}
         { serviciosLugar[Client.service.TYPE.WEATHER] ? (
@@ -197,7 +199,9 @@ const LugarNoGuardado = (props) => {
 
     return(
     <>
-        <h1> {lugar.name} </h1>  
+        <h1> {lugar.name} </h1>
+        <h6 className="subtitle">{toLocalCoords(lugar.coords)}</h6>
+
         {/* WEATHER */}
         { serviciosLugar[Client.service.TYPE.WEATHER] ? (
             <section className="service-section weather-section" data-testid="weather">

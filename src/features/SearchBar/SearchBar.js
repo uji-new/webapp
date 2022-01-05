@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { ListGroup,Form} from "react-bootstrap";
 import './SearchBar.css'
 import Client from 'utils/Client';
+import toLocalCoords from "utils/Coords";
 
 export const SearchBar = (props) => {
     const ulRef = useRef(); //valor fijo para la lista
@@ -98,7 +99,7 @@ export const SearchBar = (props) => {
                 onClick={(e) => handleGuardar(e, option)}
                 className="list-group-item list-group-item-action"
               >
-                {option.name}
+                {option.name} ({toLocalCoords(option.coords)})
               </button>
             );
           })}
