@@ -78,34 +78,37 @@ export const SideBar = (props) => {
           <Nav className="flex-column pt-2">
             
             <strong className="ml-3 sidebar-section">Busquedas</strong>
-            
-            {lugaresNoG.map( (l, index) => {
-                return (
-                    <ButtonGroup key={l.coords+'A'} aria-label="Basic example">
-                      <Button variant="secondary" key={index+'f'} onClick={() => setLugar(l)} >{l.alias}</Button>
-                      <Button  sm={1} size="sm" className="sidebar-action" variant="outline-secondary" key={index+"a"} onClick={(e) => handleGuardar(e,l)} >
-                        <FontAwesomeIcon icon={faPlus} />
-                      </Button>
-                      <Button  sm={1} size="sm" className="sidebar-action" variant="outline-secondary" key={index+"b"} onClick={(e) => handleEliminar(e,l)} >
-                        <FontAwesomeIcon icon={faTrashAlt} />
-                      </Button>
-                    </ButtonGroup>
-                        )
-            })}
-           
-            <strong className="ml-3 sidebar-section">Ubicaciones</strong>
-            
-            {lugares.map( (l, index) => {
-                return (
-                      <ButtonGroup key={l.coords+'B'}aria-label="Basic example">
-                        <Button sm={1} variant="primary" key={index+'q'} onClick={() => setLugar(l)} >{l.alias}</Button>
-                        <Button sm={1} className="sidebar-action" variant="outline-primary" key={index+'z'} onClick={(e) => handleEliminarGuardado(e,l)} >
+            {!lugaresNoG.length ? <p className="no-lugares" >Sin Busquedas</p>:(
+              lugaresNoG.map( (l, index) => {
+                  return (
+                      <ButtonGroup key={l.coords+'A'} aria-label="Basic example">
+                        <Button variant="secondary" key={index+'f'} onClick={() => setLugar(l)} >{l.alias}</Button>
+                        <Button  sm={1} size="sm" className="sidebar-action" variant="outline-secondary" key={index+"a"} onClick={(e) => handleGuardar(e,l)} >
+                          <FontAwesomeIcon icon={faPlus} />
+                        </Button>
+                        <Button  sm={1} size="sm" className="sidebar-action" variant="outline-secondary" key={index+"b"} onClick={(e) => handleEliminar(e,l)} >
                           <FontAwesomeIcon icon={faTrashAlt} />
                         </Button>
                       </ButtonGroup>
+                          )
+              })
+            )}
+            <strong className="ml-3 sidebar-section">Ubicaciones</strong>
+            {console.log(lugares)}
+            
+            {!lugares.length ? <p className="no-lugares" >Sin Ubicaciones</p>:(
+              lugares.map( (l, index) => {
+                  return (
+                        <ButtonGroup key={l.coords+'B'}aria-label="Basic example">
+                          <Button sm={1} variant="primary" key={index+'q'} onClick={() => setLugar(l)} >{l.alias}</Button>
+                          <Button sm={1} className="sidebar-action" variant="outline-primary" key={index+'z'} onClick={(e) => handleEliminarGuardado(e,l)} >
+                            <FontAwesomeIcon icon={faTrashAlt} />
+                          </Button>
+                        </ButtonGroup>
 
-                        )
-            })}
+                          )
+              })
+            )}
             
             <strong className="ml-3 sidebar-section">Historial</strong>
             <Button variant="secondary" onClick={() => setLugar({name : 'historial',alias : 'Historial'})}>

@@ -44,8 +44,8 @@ export function UserForm({setUser, setLugaresNoG, setLugar}) {
     const handleSubmitUp = async e => {
         e.preventDefault();
         await Client.account.register( mail, password )
-            .then(console.log("then"))
-                .catch(console.log("catch"));
+            .then(() => setUser(mail, setLugaresNoG([]), setLugar({})))
+                .catch(() => handleShow(), setText(ERROR.LOGIN))
     }
 
     return (    
