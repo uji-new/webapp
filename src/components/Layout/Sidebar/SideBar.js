@@ -78,7 +78,7 @@ export const SideBar = (props) => {
           <Nav className="flex-column pt-2">
             
             <strong className="ml-3 sidebar-section">Busquedas</strong>
-            {!lugaresNoG.length ? <p className="no-lugares" >Sin Busquedas</p>:(
+            {!lugaresNoG.length ? <p className="no-lugares" >Ninguna</p>:(
               lugaresNoG.map( (l, index) => {
                   return (
                       <ButtonGroup key={l.coords+'A'} aria-label="Basic example">
@@ -95,7 +95,7 @@ export const SideBar = (props) => {
             )}
             <strong className="ml-3 sidebar-section">Ubicaciones</strong>
             
-            {!lugares.length ? <p className="no-lugares" >Sin Ubicaciones</p>:(
+            {!lugares.length ? <p className="no-lugares" >Ninguna</p>:(
               lugares.map( (l, index) => {
                   return (
                         <ButtonGroup key={l.coords+'B'}aria-label="Basic example">
