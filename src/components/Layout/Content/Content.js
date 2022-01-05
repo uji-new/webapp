@@ -38,17 +38,6 @@ export const Content = (props) => {
     setActializarServicios,
     setActualizarLugares,
     setDatosLugar } = props
-
-  const[lugarRender, setLugarRender] = useState({})
-
-  useEffect(() => {
-    setLugarRender(lugar)
-  },[lugar])
-
-  useEffect(() => {
-    setLugarRender({})
-  },[user])
-
   
 
   return (
@@ -64,10 +53,10 @@ export const Content = (props) => {
       lugares={lugares}
     />
     
-    {lugarRender.name ? (
-      lugarRender.name === 'historial' ? (
+    {lugar.name ? (
+      lugar.name === 'historial' ? (
         <Historial setLugaresApi={setLugaresApi} setLugar={setLugar}/>
-        ):<Lugar lugarRender={lugarRender}{...props}/>
+        ):<Lugar {...props}/>
         ):<Bienvenida/>}
 
     </div>
