@@ -33,6 +33,7 @@ export const SearchBar = (props) => {
     }, []);
 
     useEffect(() => {
+      if (user) return;
       setValue('')
       setOptions([])
     }, [user]);
