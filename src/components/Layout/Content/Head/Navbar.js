@@ -124,7 +124,7 @@ const SessionOffCanvas = ({setLugaresNoG, setLugar}) => {
     setLugaresNoG([])
     await Client.session.logout();
     await Client.session.loginAsGuest()
-    setUser(null);
+    setUser(null,  setLugaresNoG([]), setLugar({}));
   }
 
   const handleDelAccount = async e => {
@@ -132,7 +132,7 @@ const SessionOffCanvas = ({setLugaresNoG, setLugar}) => {
     setLugaresNoG([])
     await Client.account.deregister();
     await Client.session.loginAsGuest()
-    setUser(null);
+    setUser(null,  setLugaresNoG([]), setLugar({}));
   }
 
   return (

@@ -30,7 +30,7 @@ export function UserForm({setUser, setLugaresNoG, setLugar}) {
     const handleSubmitIn = async e => {
         e.preventDefault();
         await Client.session.login( mail, password )
-            .then(() => setUser(mail, setLugaresNoG([]), setLugar({})))
+            .then(() => setUser(mail))
                 .catch(() => handleShow(), setText(ERROR.LOGIN));
         
       }
@@ -38,7 +38,7 @@ export function UserForm({setUser, setLugaresNoG, setLugar}) {
     const handleSubmitUp = async e => {
         e.preventDefault();
         await Client.account.register( mail, password )
-            .then(() => setUser(mail, setLugaresNoG([]), setLugar({})))
+            .then(() => setUser(mail))
                 .catch(() => handleShow(), setText(ERROR.REGISTER))
     }
 
