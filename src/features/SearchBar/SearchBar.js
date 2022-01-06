@@ -1,8 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react'
-import { ListGroup,Form} from "react-bootstrap";
+import React, { useState, useRef, useEffect, useContext } from 'react'
+
 import './SearchBar.css'
+
 import Client from 'utils/Client';
 import toLocalCoords from "utils/Coords";
+import { AuthContext } from "App.js";
+
 
 export const SearchBar = (props) => {
     const ulRef = useRef(); //valor fijo para la lista
@@ -10,6 +13,8 @@ export const SearchBar = (props) => {
     const [value, setValue] = useState('') //valor del campo input
     const [options, setOptions] = useState([]) //recomendaciones de la api
     const [idTime, setIdTime] = useState('')
+    
+    const { user, setUser} = useContext(AuthContext);
 
     const {
       lugares,
@@ -26,6 +31,11 @@ export const SearchBar = (props) => {
         ulRef.current.style.display = 'none';
       });
     }, []);
+
+    useEffect(() => {
+      setValue('')
+      setOptions([])
+    }, [user]);
     
     const rellenarOpciones = (v) => {
       Client.query.query(v).then(setOptions)
