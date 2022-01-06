@@ -2,6 +2,11 @@
     width: 100%;
   }
 
+  .offcanvas-header {
+    position: absolute;
+    right: 0;
+  }
+
   .offcanvas .username {
     text-align: center;
   }
