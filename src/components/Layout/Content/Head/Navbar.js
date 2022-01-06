@@ -196,7 +196,7 @@ const SessionOffCanvas = ({setLugaresNoG, setLugar}) => {
                     <p>{servicios[Client.service.TYPE.NEWS].description}</p>
                   </>):null}
                   <h1>Cuenta</h1>
-                  <p className="username"><strong>{user}</strong></p>
+                  <p className="username">{user}</p>
                   <ButtonGroup aria-label="Basic example" className="form-buttons">
                     <Button sm={1} type="submit" variant="primary" onClick={handleDelSession}>
                       Cerrar session
