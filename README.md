@@ -10,7 +10,7 @@
 - Dynamic: [`src`](src)
 ## Recommended software
 - Node: [Node 16.13.0](https://nodejs.org)
-- IDE: [Visual Stuido Code 1.62](https://code.visualstudio.com)
+- IDE: [Visual Studio Code 1.62](https://code.visualstudio.com)
 ## Organization repositories
 ### Project
 - Backend: [`app`](https://github.com/proyecto-new/app)
