@@ -1,10 +1,10 @@
 {
-  "name": "proyecto-atdd",
-  "description": "Proyecto ATDD",
+  "name": "proyecto-new",
+  "description": "Proyecto N.E.W",
   "license": "BSD-3-Clause",
   "repository": {
     "type": "git",
-    "url": "https://github.com/proyecto-atdd/webapp.git"
+    "url": "https://github.com/proyecto-new/webapp.git"
   },
   "proxy": "http://localhost:8080",
   "dependencies": {
