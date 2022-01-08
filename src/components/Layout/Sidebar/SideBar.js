@@ -67,7 +67,7 @@ export const SideBar = (props) => {
     return (
       <>
       <div className={classNames("sidebar", { "is-open": props.isOpen })}>
-        <div className="sidebar-header" onClick={(e) => handleBienvenida(e)}>
+        <div className="sidebar-header">
           <Button
               variant="link"
               onClick={props.toggle}
@@ -76,7 +76,7 @@ export const SideBar = (props) => {
             >
             <FontAwesomeIcon icon={faTimes} pull="right" size="xs" />
           </Button>
-          <h3><img className="brand-icon" src="/favicon.ico"/> N.E.W </h3>
+          <h3 onClick={(e) => handleBienvenida(e)}><img className="brand-icon" src="/favicon.ico"/> N.E.W </h3>
         </div>  
       <div>
           <Nav className="flex-column pt-2">
