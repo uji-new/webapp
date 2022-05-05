@@ -13,7 +13,7 @@
 - IDE: [Visual Studio Code 1.62](https://code.visualstudio.com)
 ## Organization repositories
 ### Project
-- Backend: [`app`](https://github.com/proyecto-new/app)
-- Frontend: [`webapp`](https://github.com/proyecto-new/webapp)
-- Docs: [`documentation`](https://github.com/proyecto-new/documentation)
-- Prototype: [`spike`](https://github.com/proyecto-new/spike)
+- Backend: [`app`](https://github.com/uji-new/app)
+- Frontend: [`webapp`](https://github.com/uji-new/webapp)
+- Docs: [`documentation`](https://github.com/uji-new/documentation)
+- Prototype: [`spike`](https://github.com/uji-new/spike)
